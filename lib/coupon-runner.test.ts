@@ -73,6 +73,8 @@ test('findBestCoupon não aplica nada se nenhum cupom ajuda', async () => {
 test('parseCodes aceita vários formatos e ignora lixo', () => {
   assert.deepEqual(parseCodes(' adiclub10\nESQUENTA15, promo-2026; ab  esquenta15 R$50 '), ['ADICLUB10', 'ESQUENTA15', 'PROMO-2026']);
   assert.deepEqual(parseCodes(''), []);
+  // Códigos pessoais da adidas são longos: REBR15_ + 5 blocos.
+  assert.deepEqual(parseCodes('rebr15_fw2610-aaaa-bbbb-cccc-dddd'), ['REBR15_FW2610-AAAA-BBBB-CCCC-DDDD']);
 });
 
 test('Meus cupons vêm antes dos públicos, sem repetir', () => {
