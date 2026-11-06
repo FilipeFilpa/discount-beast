@@ -6,13 +6,14 @@ export interface Store {
   domains: string[];
 }
 
-export type StoreId = 'amazon' | 'mercadolivre' | 'adidas' | 'netshoes' | 'magalu';
+export type StoreId = 'amazon' | 'mercadolivre' | 'adidas' | 'netshoes' | 'centauro' | 'magalu';
 
 export const STORES: Store[] = [
   { id: 'amazon', name: 'Amazon', domains: ['amazon.com.br'] },
   { id: 'mercadolivre', name: 'Mercado Livre', domains: ['mercadolivre.com.br'] },
   { id: 'adidas', name: 'adidas', domains: ['adidas.com.br'] },
   { id: 'netshoes', name: 'Netshoes', domains: ['netshoes.com.br'] },
+  { id: 'centauro', name: 'Centauro', domains: ['centauro.com.br'] },
   { id: 'magalu', name: 'Magalu', domains: ['magazineluiza.com.br', 'magalu.com'] },
 ];
 
