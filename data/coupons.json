@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T15:29:19.465Z",
+  "updatedAt": "2026-11-06T16:20:04.270Z",
   "coupons": [
     {
       "store": "adidas",
@@ -9,11 +9,13 @@
       "discount": "40% OFF",
       "expiresAt": "2026-12-31T23:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas em itens selecionados."
     },
     {
       "store": "adidas",
@@ -40,14 +42,15 @@
     },
     {
       "store": "adidas",
-      "code": "ESQUENTA15",
-      "title": "Economize 15% em seus pedidos aplicando cupom Adidas",
-      "discount": "15% OFF",
-      "expiresAt": null,
+      "code": "BFMAIS20",
+      "title": "+20% OFF em seus pedidos ao ativar o cupom adidas",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "terms": "Válido apenas em itens selecionados.",
       "sources": [
-        "promobit"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "adidas",
@@ -59,6 +62,17 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "adidas",
+      "code": "MAIS15",
+      "title": "Outlet com +15% extra no cupom adidas",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-21T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "adidas",
@@ -74,158 +88,182 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA1",
-      "title": "Cupom Aliexpress concede desconto de R$ 16",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 16",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$ 80."
     },
     {
       "store": "aliexpress",
       "code": "AEMEGA2",
-      "title": "Compre com código promocional Aliexpress e economize R$ 32",
-      "discount": "R$ 32 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA3",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 50",
-      "discount": "R$ 50 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA4",
-      "title": "Economize R$ 120 em seus pedidos aplicando cupom Aliexpress",
-      "discount": "R$ 120 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA5",
-      "title": "A chance de economizar R$ 210 em compras na Aliexpress",
-      "discount": "R$ 210 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA6",
-      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 300 OFF",
-      "discount": "R$ 300 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA7",
-      "title": "Os melhores itens do site com R$ 400 OFF aplicando cupom Aliexpress",
-      "discount": "R$ 400 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA8",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 580",
-      "discount": "R$ 580 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AESUPER1",
-      "title": "Aproveite para economizar R$ 540 com cupom Aliexpress",
-      "discount": "R$ 540 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AESUPER2",
-      "title": "Cupom Aliexpress concede desconto de R$ 650",
-      "discount": "R$ 650 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AFFNOV02",
       "title": "Economize R$ 32 em seus pedidos aplicando cupom Aliexpress",
       "discount": "R$ 32 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$185."
     },
     {
       "store": "aliexpress",
-      "code": "AFFNOV06",
+      "code": "AEMEGA3",
+      "title": "A chance de economizar R$ 50 em compras na Aliexpress",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$290."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA4",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 120 OFF",
+      "discount": "R$ 120 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos a partir de R$720."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA5",
+      "title": "Os melhores itens do site com R$ 210 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 210 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$1300."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA6",
       "title": "Cupom de desconto Aliexpress oferece R$ 300 OFF em suas compras",
       "discount": "R$ 300 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$1800."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA7",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 400",
+      "discount": "R$ 400 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$2500."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA8",
+      "title": "Aproveite para economizar R$ 580 com cupom Aliexpress",
+      "discount": "R$ 580 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$3700."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AESUPER1",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 540",
+      "discount": "R$ 540 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$2700."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AESUPER2",
+      "title": "Aproveite para economizar R$ 650 com cupom Aliexpress",
+      "discount": "R$ 650 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$3800."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV02",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 32",
+      "discount": "R$ 32 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$185."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV06",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 300",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$1800."
     },
     {
       "store": "aliexpress",
@@ -234,71 +272,83 @@
       "discount": "R$ 670 OFF",
       "expiresAt": "2026-11-18T23:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido apenas em compras acima de R$4200."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV01",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 16",
+      "title": "Cupom de desconto Aliexpress oferece R$ 16 OFF em suas compras",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Desconto válido para pedidos acima de R$ 80."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV03",
-      "title": "A chance de economizar R$ 50 em compras na Aliexpress",
+      "title": "Aproveite para economizar R$ 50 com cupom Aliexpress",
       "discount": "R$ 50 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$290."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV04",
-      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 120 OFF",
+      "title": "Cupom Aliexpress concede desconto de R$ 120",
       "discount": "R$ 120 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido em compras a partir de R$720."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV05",
-      "title": "Os melhores itens do site com R$ 210 OFF aplicando cupom Aliexpress",
+      "title": "Compre com código promocional Aliexpress e economize R$ 210",
       "discount": "R$ 210 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$1300."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV07",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 400",
+      "title": "Economize R$ 400 em seus pedidos aplicando cupom Aliexpress",
       "discount": "R$ 400 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$2500."
     },
     {
       "store": "aliexpress",
@@ -307,15 +357,57 @@
       "discount": "R$ 580 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido para pedidos acima de R$3700."
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR03",
+      "title": "Ganhe R$15 OFF em suas compras aplicando o cupom AliExpress",
+      "discount": "R$ 15 OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido em compras a partir de R$110."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA10",
+      "title": "AliExpress concede R$530 de economia usando cupom",
+      "discount": "R$ 530 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido apenas em compras acima de R$3400."
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA11",
+      "title": "Desconto imperdível de R$450 aplicando código AliExpress",
+      "discount": "R$ 450 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido apenas em compras acima de R$2900."
     },
     {
       "store": "aliexpress",
       "code": "AFFNOV09",
-      "title": "Aproveite para economizar R$ 750 com cupom Aliexpress",
+      "title": "Compre com código promocional Aliexpress e economize R$ 750",
       "discount": "R$ 750 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -323,6 +415,19 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "ALIFAN",
+      "title": "Primeiro pedido com R$15 OFF no cupom AliExpress",
+      "discount": "R$ 15 OFF",
+      "expiresAt": "2027-09-16T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido apenas em sua primeira compra, em pedidos a partir de R$20."
     },
     {
       "store": "aliexpress",
@@ -381,75 +486,6 @@
       "sources": [
         "meliuz",
         "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "WOBR03",
-      "title": "Ganhe R$15 OFF em suas compras aplicando o cupom AliExpress",
-      "discount": "R$ 15 OFF",
-      "expiresAt": "2026-12-31T23:59:59.000Z",
-      "sources": [
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "WOBR07",
-      "title": "Economize R$35 em compras a partir de R$280",
-      "discount": "R$ 35 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "WOBR13",
-      "title": "R$65 OFF garantido com cupom AliExpress",
-      "discount": "R$ 65 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA10",
-      "title": "AliExpress concede R$530 de economia usando cupom",
-      "discount": "R$ 530 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "AEMEGA11",
-      "title": "Desconto imperdível de R$450 aplicando código AliExpress",
-      "discount": "R$ 450 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
-      "code": "ALIFAN",
-      "title": "Primeiro pedido com R$15 OFF no cupom AliExpress",
-      "discount": "R$ 15 OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
     },
@@ -617,6 +653,102 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION1",
+      "title": "Cupom AliExpress de R$16 OFF em suas compras",
+      "discount": "R$ 16 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$80.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION2",
+      "title": "Aproveite R$32 de desconto AliExpress em seu pedido",
+      "discount": "R$ 32 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$185.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION3",
+      "title": "+R$50 extra para fechar seu Carrinho no Ali",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$290.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION4",
+      "title": "Promo 11.11 - R$120 OFF no cupom AliExpress",
+      "discount": "R$ 120 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$720.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION5",
+      "title": "11.11 com R$210 de desconto AliExpress ao ativar o cupom",
+      "discount": "R$ 210 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$1300.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION6",
+      "title": "Feche sua compra com R$300 OFF no código AliExpress",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$1800.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION7",
+      "title": "Código promocional AliExpress de R$400 no 11.11",
+      "discount": "R$ 400 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$2500.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONATION8",
+      "title": "Compre no 11.11 com R$580 de desconto no cupom AliExpress",
+      "discount": "R$ 580 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$3700.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "aliexpress",
@@ -829,17 +961,6 @@
     },
     {
       "store": "aliexpress",
-      "code": "WOBR24",
-      "title": "Desconto AliExpress: R$125 OFF em seus pedidos",
-      "discount": "R$ 125 OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "aliexpress",
       "code": "WOBR43",
       "title": "Economia de R$220 com código AliExpress",
       "discount": "R$ 220 OFF",
@@ -854,12 +975,207 @@
       "code": "20PAGINA",
       "title": "Sua primeiras compra com 20% de desconto Amazon",
       "discount": "20% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-09T02:59:00.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz"
       ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom limitado a R$10,00. Válido apenas na sua primeira compra na Amazon na categoria de Livros."
+    },
+    {
+      "store": "amazon",
+      "code": "20FFNOV",
+      "title": "Novidades Amazon com 20% OFF aplicando cupom",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-02T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "amazon",
+      "code": "25MODAPRIME",
+      "title": "Itens de Moda Esportiva com 25% de desconto utilizando cupom Amazon",
+      "discount": "25% OFF",
+      "expiresAt": "2027-01-04T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Disponível somente para quem é Prime."
+    },
+    {
+      "store": "amazon",
+      "code": "APPCOMPRA",
+      "title": "Amazon concede R$20 OFF com cupom",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Esta promoção se aplica somente aos clientes que estão comprando no aplicativo Amazon Shopping pela primeira vez. A oferta é válida para pedidos a partir de R$ 80."
+    },
+    {
+      "store": "amazon",
+      "code": "BUDDEMEYER20",
+      "title": "Use cupom Amazon e obtenha 20% OFF",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-24T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Aplicável apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "CAMAEBANHO20",
+      "title": "Lençóis, toalhas e mais: 20% OFF em cama e banho",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "ELETROPORT10",
+      "title": "Cupom Amazon com 10% OFF em eletroportáteis pelo app",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "FITNESS20",
+      "title": "Super promo Amazon com 20% OFF aplicando cupom",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no Aplicativo Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "HEINZ20",
+      "title": "Economize 20% em suas compras com cupom Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Aplicável apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "MODAPRIME20",
+      "title": "Use cupom Amazon e ganhe 20% OFF",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Aplicável apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "P4NELAS10",
+      "title": "Panelas com 10% de desconto no app",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "RELAMPAGO20",
+      "title": "20% OFF em produtos selecionados: cupom relâmpago Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "amazon",
+      "code": "TECH20",
+      "title": "Aproveite 20% OFF com cupom Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no Aplicativo Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "TERMICOS15",
+      "title": "Garrafas, copos e itens térmicos com 15% OFF",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "VENTILAR10",
+      "title": "Ventiladores com 10% de desconto",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App Amazon."
+    },
+    {
+      "store": "amazon",
+      "code": "YOPRO20APP",
+      "title": "Garanta 20% de desconto com cupom Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Aplicável apenas no App Amazon."
     },
     {
       "store": "amazon",
@@ -885,28 +1201,6 @@
     },
     {
       "store": "amazon",
-      "code": "20FFNOV",
-      "title": "Novidades Amazon com 20% OFF aplicando cupom",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "amazon",
-      "code": "25MODAPRIME",
-      "title": "Itens de Moda Esportiva com 25% de desconto utilizando cupom Amazon",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "amazon",
       "code": "5OFF",
       "title": "Ganhe 5% OFF em suas compras com cupom Amazon",
       "discount": "5% OFF",
@@ -918,14 +1212,37 @@
     },
     {
       "store": "amazon",
-      "code": "APPCOMPRA",
-      "title": "Amazon concede R$20 OFF com cupom",
-      "discount": "R$ 20 OFF",
-      "expiresAt": null,
+      "code": "BF15OFF",
+      "title": "Mercado - 15% OFF em Alimentos e Bebidas na Black Friday Amazon",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "BF15PETS",
+      "title": "Pet Shop com 15% OFF na Black Friday Amazon",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "BF40",
+      "title": "Seleção de produtos com +40% OFF na Black Friday",
+      "discount": "40% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -962,25 +1279,39 @@
     },
     {
       "store": "amazon",
-      "code": "BUDDEMEYER20",
-      "title": "Use cupom Amazon e obtenha 20% OFF",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "BRINQU3DOS15",
+      "title": "15% de desconto em Brinquedos e Jogos",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Somente no App Amazon.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
-      "code": "CAMAEBANHO20",
-      "title": "Lençóis, toalhas e mais: 20% OFF em cama e banho",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "CARTAOAMZ15",
+      "title": "+15% OFF em seus pedidos no cupom de desconto Amazon",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-16T02:59:59.000Z",
+      "terms": "Válido apenas na primeira compra com cartão Amazon.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "CARTEIRA20",
+      "title": "Carteiras e Bolsas 20% mais baratas na Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1006,6 +1337,54 @@
     },
     {
       "store": "amazon",
+      "code": "COMBO15",
+      "title": "Combo de Ofertas - Leve 3 produtos e ganhe +15% OFF adicional",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Exclusivo para membros Prime.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "COMBO30",
+      "title": "Leve 6 produtos e ganhe 30% OFF no cupom de desconto Amazon Black Friday",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Exclusivo para membros Prime.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "COMPRANOAPP",
+      "title": "Finalize com R$20 de desconto no cupom Amazon",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2026-12-12T02:59:59.000Z",
+      "terms": "Válido apenas em sua primeira compra no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "COZINHA20",
+      "title": "20% OFF em Tudo para sua Cozinha",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
       "code": "CUPOMCAD10",
       "title": "Aplique cupom Amazon e garanta 10% de desconto",
       "discount": "10% OFF",
@@ -1014,6 +1393,18 @@
         "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "amazon",
+      "code": "CUPOMNOAPP",
+      "title": "Ative R$10 de desconto no App Amazon",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2026-12-12T02:59:59.000Z",
+      "terms": "Válido apenas em sua primeira compra no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1050,17 +1441,6 @@
     },
     {
       "store": "amazon",
-      "code": "DEVOLTA500",
-      "title": "Ganhe R$500 OFF com cupom Amazon",
-      "discount": "R$ 500 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "amazon",
       "code": "DIADECUPONS",
       "title": "Hora do desconto Amazon: R$60 OFF com cupom",
       "discount": "R$ 60 OFF",
@@ -1072,14 +1452,27 @@
     },
     {
       "store": "amazon",
-      "code": "ELETROPORT10",
-      "title": "Cupom Amazon com 10% OFF em eletroportáteis pelo app",
+      "code": "ESPORTE10",
+      "title": "Aproveite 10% OFF em produtos Esportivos na Black da Amazon",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "terms": "Válido apenas no App.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "ESPORTEPRIME",
+      "title": "Itens de Esporte com 20% OFF (Só no App)",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "terms": "Válido apenas no App.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1105,20 +1498,21 @@
     },
     {
       "store": "amazon",
-      "code": "FERRAMENTA15",
-      "title": "15% de economia utilizando cupom Amazon",
-      "discount": "15% OFF",
-      "expiresAt": null,
+      "code": "FERR4MENTA10",
+      "title": "Ferramentas 10% mais baratas na Amazon",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "terms": "Cupom disponível apenas no App Amazon.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
-      "code": "FITNESS20",
-      "title": "Super promo Amazon com 20% OFF aplicando cupom",
-      "discount": "20% OFF",
+      "code": "FERRAMENTA15",
+      "title": "15% de economia utilizando cupom Amazon",
+      "discount": "15% OFF",
       "expiresAt": null,
       "sources": [
         "cuponomia"
@@ -1138,14 +1532,15 @@
     },
     {
       "store": "amazon",
-      "code": "HEINZ20",
-      "title": "Economize 20% em suas compras com cupom Amazon",
+      "code": "FUTEBOLPRIME",
+      "title": "Itens de Futebol com 20% OFF (Somente membros Prime)",
       "discount": "20% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "terms": "Válido apenas no App.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1171,6 +1566,18 @@
     },
     {
       "store": "amazon",
+      "code": "IMPERDIVEL20",
+      "title": "Cupom Amazon de 20% de desconto hoje (Apenas no APP)",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-11T02:59:00.000Z",
+      "terms": "Cupom válido apenas no APP da Amazon, nos itens selecionados do link.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
       "code": "INFLOW10",
       "title": "Aplique cupom Amazon e obtenha 10% OFF",
       "discount": "10% OFF",
@@ -1179,6 +1586,30 @@
         "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "amazon",
+      "code": "ITENSVERAO20",
+      "title": "Itens de Verão com 20% OFF no código promocional Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "terms": "Cupom disponível apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "J4RDIM15",
+      "title": "Amazon oferece 15% OFF em itens para o seu Jardim e Área Externa",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "terms": "Cupom disponível apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1193,6 +1624,18 @@
     },
     {
       "store": "amazon",
+      "code": "LIMPEZA20",
+      "title": "Limpeza e Organização com 20% OFF na Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:00.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
       "code": "LUUNA5",
       "title": "Compre com cupom Amazon e ganhe 5% OFF",
       "discount": "5% OFF",
@@ -1204,14 +1647,49 @@
     },
     {
       "store": "amazon",
-      "code": "MODAPRIME20",
-      "title": "Use cupom Amazon e ganhe 20% OFF",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "MALAPRIME",
+      "title": "Acessórios de Moda com 30% OFF (Só no App Amazon)",
+      "discount": "30% OFF",
+      "expiresAt": "2026-11-28T02:59:59.000Z",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "MESAPOSTA10",
+      "title": "Desconto de 10% em Mesa Posta no cupom",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "terms": "Válido apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "MODAPRIMEFEM",
+      "title": "Black Friday Amazon - 20% OFF em Moda Femina",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "MUSIC20",
+      "title": "Discos de Vinil com +20% OFF no App Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1237,14 +1715,63 @@
     },
     {
       "store": "amazon",
-      "code": "P4NELAS10",
-      "title": "Panelas com 10% de desconto no app",
-      "discount": "10% OFF",
-      "expiresAt": null,
+      "code": "PESCA20",
+      "title": "Itens de Pesca com 20% de desconto Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Válido no App.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "PRIMECORRIDA",
+      "title": "Tênis de Corrida com 20% OFF (Apenas para membros Prime )",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-28T02:59:59.000Z",
+      "terms": "Válido apenas no App.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "PRIMEGAME5",
+      "title": "+5% OFF em Games",
+      "discount": "5% OFF",
+      "expiresAt": "2027-03-01T02:59:59.000Z",
+      "terms": "Válido apenas para membros Prime, desconto válido somente em pagamentos à vista no Pix ou NuPay",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "PRIMEGAMES15",
+      "title": "Games, Acessórios e Consoles com 15% OFF",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-09T02:59:59.000Z",
+      "terms": "Aplicável apenas para membros Prime. Válido só no App.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "amazon",
+      "code": "REFORMA020",
+      "title": "Reforma com +20% de desconto na Amazon",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-03T02:59:59.000Z",
+      "terms": "Cupom disponível apenas no App Amazon.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1259,36 +1786,39 @@
     },
     {
       "store": "amazon",
-      "code": "RELAMPAGO20",
-      "title": "20% OFF em produtos selecionados: cupom relâmpago Amazon",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "REFORMA50",
+      "title": "Reforma e Construção com 50% OFF",
+      "discount": "50% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Válido apenas no Aplicativo Amazon.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
-      "code": "TECH20",
-      "title": "Aproveite 20% OFF com cupom Amazon",
+      "code": "RELOGIOS20",
+      "title": "Aproveite Relógios 20% mais baratos na Black Friday da Amazon",
       "discount": "20% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Somente no App Amazon.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
-      "code": "TERMICOS15",
-      "title": "Garrafas, copos e itens térmicos com 15% OFF",
+      "code": "SNACKS15",
+      "title": "Snacks 15% mais baratos",
       "discount": "15% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Aplicável apenas no App Amazon.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "amazon",
@@ -1324,60 +1854,14 @@
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
-      "store": "amazon",
-      "code": "VENTILAR10",
-      "title": "Ventiladores com 10% de desconto",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "amazon",
-      "code": "YOPRO20APP",
-      "title": "Garanta 20% de desconto com cupom Amazon",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "ADIDAS15",
-      "title": "Aproveite para economizar 15% com cupom Centauro",
-      "discount": "15% OFF",
-      "expiresAt": "2026-12-07T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "AFLCALCADOS",
-      "title": "PISANTE NOVO: 10% OFF em calçados na Centauro com cupom!",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
       "store": "centauro",
       "code": "AFLESPORTES",
       "title": "FOCO NO ESPORTE: 10% OFF na Centauro em produtos selecionados | Cupom AFLESPORTES",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
+        "cuponation",
+        "cuponeria",
         "cuponomia",
         "meliuz",
         "promobit"
@@ -1389,8 +1873,54 @@
       "code": "AFLFUTEBOL",
       "title": "HORA DO JOGO: 10% OFF em itens de futebol selecionados na Centauro!",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
+        "cuponation",
+        "cuponeria",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "TENNIS15",
+      "title": "Use cupom Centauro e tenha desconto de 15%",
+      "discount": "15% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponeria",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "ADIDAS15",
+      "title": "Aproveite para economizar 15% com cupom Centauro",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-08T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom aplicável em toda a seleção de produtos"
+    },
+    {
+      "store": "centauro",
+      "code": "AFLCALCADOS",
+      "title": "PISANTE NOVO: 10% OFF em calçados na Centauro com cupom!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria",
         "cuponomia",
         "meliuz",
         "promobit"
@@ -1402,8 +1932,9 @@
       "code": "AFLVESTUARIO",
       "title": "TREINO COM ESTILO: 10% OFF em vestuário na Centauro | Cupom AFLVESTUARIO",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
+        "cuponeria",
         "cuponomia",
         "meliuz",
         "promobit"
@@ -1415,11 +1946,105 @@
       "code": "BASQUETE15",
       "title": "Cupom de desconto Centauro oferece 15% OFF em suas compras",
       "discount": "15% OFF",
-      "expiresAt": "2027-01-01T02:59:59.000Z",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "NIKE15",
+      "title": "Use cupom Centauro e tenha desconto de 15%",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "21ONZE",
+      "title": "Garanta economia com cupom Centauro de 10%",
+      "discount": "10% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "ADIDAS30",
+      "title": "30% de economia no cupom de desconto Centauro",
+      "discount": "30% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "BOASVINDAS",
+      "title": "Cupom Centauro garante 5% OFF na sua primeira compra",
+      "discount": "5% OFF",
+      "expiresAt": "2027-01-15T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido na primeira compra."
+    },
+    {
+      "store": "centauro",
+      "code": "CASUAL20",
+      "title": "Voucher Centauro libera 20% OFF em moda casual",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "CONVERSE20",
+      "title": "Código Centauro libera 20% OFF em Converse",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "CORRIDA20",
+      "title": "Tênis e acessórios de corrida com 20% OFF no cupom Centauro",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -1438,23 +2063,36 @@
     },
     {
       "store": "centauro",
-      "code": "MAIS15",
-      "title": "CORRA PRA TREINO: 15% OFF em Tênis na Centauro",
+      "code": "INVERNO15",
+      "title": "O momento chegou: Aplique cupom Centauro e ganhe 15% OFF",
       "discount": "15% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-14T02:59:00.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
-        "meliuz",
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
       "store": "centauro",
-      "code": "NIKE15",
-      "title": "Use cupom Centauro e tenha desconto de 15%",
+      "code": "LACOSTE20",
+      "title": "Use o código Centauro e ganhe 20% OFF em Lacoste",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "MAIS15",
+      "title": "CORRA PRA TREINO: 15% OFF em Tênis na Centauro",
       "discount": "15% OFF",
-      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "expiresAt": null,
       "sources": [
         "cuponomia",
         "meliuz",
@@ -1477,43 +2115,6 @@
     },
     {
       "store": "centauro",
-      "code": "TENNIS15",
-      "title": "Use cupom Centauro e tenha desconto de 15%",
-      "discount": "15% OFF",
-      "expiresAt": "2027-01-01T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "21ONZE",
-      "title": "Garanta economia com cupom Centauro de 10%",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "ADIDAS30",
-      "title": "30% de economia no cupom de desconto Centauro",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
       "code": "AULAS-20",
       "title": "CORRE PARA O TREINO: até 60% + 20% OFF em Tênis na Centauro com cupom",
       "discount": "20% OFF",
@@ -1526,63 +2127,16 @@
     },
     {
       "store": "centauro",
-      "code": "BOASVINDAS",
-      "title": "Cupom Centauro garante 5% OFF na sua primeira compra",
+      "code": "BLACKAPP",
+      "title": "Esquenta Black Friday com 5% OFF no cupom Centauro",
       "discount": "5% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-11T02:59:00.000Z",
       "sources": [
-        "cuponomia",
-        "meliuz"
+        "cuponation",
+        "cuponomia"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "CASUAL20",
-      "title": "Voucher Centauro libera 20% OFF em moda casual",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "CONVERSE20",
-      "title": "Código Centauro libera 20% OFF em Converse",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "CORRIDA20",
-      "title": "Tênis e acessórios de corrida com 20% OFF no cupom Centauro",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "INVERNO15",
-      "title": "O momento chegou: Aplique cupom Centauro e ganhe 15% OFF",
-      "discount": "15% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas no App."
     },
     {
       "store": "centauro",
@@ -1610,18 +2164,6 @@
     },
     {
       "store": "centauro",
-      "code": "LACOSTE20",
-      "title": "Use o código Centauro e ganhe 20% OFF em Lacoste",
-      "discount": "20% OFF",
-      "expiresAt": "2026-12-31T23:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
       "code": "MARCAS30",
       "title": "O momento chegou: Aplique cupom Centauro e ganhe 70% + 30% extra OFF",
       "discount": "70% OFF",
@@ -1641,6 +2183,30 @@
       "sources": [
         "cuponomia",
         "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "MP20",
+      "title": "Garanta economia em suas compras Centauro com cupom de 20% OFF",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "NIKE30",
+      "title": "Nike Day: Até 60% OFF + 30% OFF com cupom",
+      "discount": "30% OFF",
+      "expiresAt": "2026-11-14T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -1680,14 +2246,25 @@
     },
     {
       "store": "centauro",
-      "code": "BLACKAPP",
-      "title": "Esquenta Black Friday com 5% OFF no cupom Centauro",
-      "discount": "5% OFF",
-      "expiresAt": null,
+      "code": "ADIDAS20",
+      "title": "+20% OFF em produtos adidas no código de desconto Centauro",
+      "discount": "20% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "centauro",
+      "code": "CORRE",
+      "title": "Olympikus Corre 4 com 11% OFF no cupom Centauro",
+      "discount": "11% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "centauro",
@@ -1699,6 +2276,17 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "CUPONATION",
+      "title": "TODO o site com 10% OFF com nosso cupom Centauro Exclusivo!",
+      "discount": "10% OFF",
+      "expiresAt": "2027-01-12T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "centauro",
@@ -1724,17 +2312,6 @@
     },
     {
       "store": "centauro",
-      "code": "ESQUENTABF",
-      "title": "Até 40% de desconto + 30% OFF extra com o cupom Centauro",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
       "code": "GOLACO",
       "title": "A chance de economizar 15% em compras na Centauro",
       "discount": "15% OFF",
@@ -1752,17 +2329,6 @@
       "expiresAt": null,
       "sources": [
         "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "JOGA25",
-      "title": "Centauro com 25% de desconto",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -1801,28 +2367,6 @@
     },
     {
       "store": "centauro",
-      "code": "MP20",
-      "title": "Garanta economia em suas compras Centauro com cupom de 20% OFF",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
-      "code": "NIKE30",
-      "title": "Nike Day: Até 60% OFF + 30% OFF com cupom",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "centauro",
       "code": "PAIS20",
       "title": "SURPRESA DIA DOS PAIS: até 50% OFF + 20% com cupom na Centauro",
       "discount": "50% OFF",
@@ -1853,6 +2397,17 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "centauro",
+      "code": "PROXYMEDIA",
+      "title": "10% OFF Produtos vendidos e entregues pela Centauro com Emana Pay!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "magalu",
@@ -2175,6 +2730,102 @@
     },
     {
       "store": "magalu",
+      "code": "100CUPONATION",
+      "title": "Código de R$100 de desconto Magazine Luiza",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-12-15T02:59:01.000Z",
+      "terms": "Válido apenas em compras acima de R$4999,90. Uso exclusivo para página de influenciador do Cuponation.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "10CUPONATION",
+      "title": "Garanta R$10 OFF na nossa página de influenciador Magalu",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$499,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "20CUPONATION",
+      "title": "Tenha R$20 de desconto no seu pedido Magalu",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$999,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "30CUPONATION",
+      "title": "R$30 a menos no valor final das suas compras",
+      "discount": "R$ 30 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$1499,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "40CUPONATION",
+      "title": "Aproveite R$40 OFF em toda a nossa seleção Magalu",
+      "discount": "R$ 40 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$1999,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "50CUPONATION",
+      "title": "Use o cupom e leve R$50 de desconto no carrinho",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$2499,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "60CUPONATION",
+      "title": "R$60 OFF esperam por você na página de influenciador Magalu",
+      "discount": "R$ 60 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$2999,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
+      "code": "70CUPONATION",
+      "title": "Reduza R$70 do total do seu pedido Magazine Luiza",
+      "discount": "R$ 70 OFF",
+      "expiresAt": "2027-06-02T02:59:59.000Z",
+      "terms": "Válido em compras acima de R$3499,90",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "magalu",
       "code": "ALI05",
       "title": "Os melhores itens do site com 5% OFF aplicando cupom Magazine Luiza",
       "discount": "5% OFF",
@@ -2205,6 +2856,18 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "magalu",
+      "code": "BEMVINDO20",
+      "title": "Ganhe R$20 de desconto no seu primeiro pedido usando o cupom Magazine Luiza",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2027-03-16T02:59:00.000Z",
+      "terms": "Cupom válido em compras acima de R$80,00 apenas na sua primeira compra.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "magalu",
@@ -2359,6 +3022,17 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "magalu",
+      "code": "INFLU10OFF",
+      "title": "Móveis com 10% de desconto Magalu",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "magalu",
@@ -2620,11 +3294,13 @@
       "discount": "30% OFF",
       "expiresAt": "2027-01-01T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, desconto limitado a R$500."
     },
     {
       "store": "mercadolivre",
@@ -2633,11 +3309,13 @@
       "discount": "12% OFF",
       "expiresAt": "2026-11-07T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$149, desconto limitado a R$200."
     },
     {
       "store": "mercadolivre",
@@ -2646,11 +3324,13 @@
       "discount": "20% OFF",
       "expiresAt": "2026-11-07T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$99, desconto limitado a R$50."
     },
     {
       "store": "mercadolivre",
@@ -2659,41 +3339,233 @@
       "discount": "20% OFF",
       "expiresAt": "2026-11-07T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas em compras a partir de R$79, desconto limitado a R$80."
     },
     {
       "store": "mercadolivre",
       "code": "BARATOAGORA",
       "title": "Barato agora: 30% de desconto em achados",
       "discount": "30% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-07T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, desconto limitado a R$500."
     },
     {
       "store": "mercadolivre",
-      "code": "DESCONTONAHORA",
-      "title": "Desconto na hora: 30% OFF em itens da lista",
-      "discount": "30% OFF",
-      "expiresAt": null,
+      "code": "BONUSML",
+      "title": "Desconto bônus de 20% na seleção",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, com desconto máximo de R$500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "MEUDESCONTO",
+      "title": "18% OFF em produtos escolhidos da semana",
+      "discount": "18% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, com desconto máximo de R$500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "MODASEMPRE",
+      "title": "Moda feminina e masculina com 15% de desconto",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$79, desconto limitado a R$60."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "OFFNOML",
+      "title": "Smart TVs, celulares e notebooks com cupom Mercado Livre de 15%",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$149. Desconto limitado a R$200."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "OFFPRACASA",
+      "title": "Casa e decoração com 25% de desconto",
+      "discount": "25% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$79, desconto limitado a R$80."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "QUEROOFERTA",
+      "title": "Quero oferta: 22% de desconto na seleção",
+      "discount": "22% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, desconto limitado a R$500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "QUEROOFF",
+      "title": "Cupom Mercado Livre de 20% na seleção de ofertas",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-22T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom com desconto máximo de R$500,00. Válido apenas nos produtos do link."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "SAUDEMELI",
+      "title": "Saúde e cuidados com 20% de desconto",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$79, desconto limitado a R$40."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "AGORAOUNUNCA",
+      "title": "Hora do desconto Mercado Livre: 30% OFF com cupom",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom de 30% de desconto, limitado a R$500,00."
     },
     {
       "store": "mercadolivre",
       "code": "ECONOMIZAML",
       "title": "Economize 30% em ofertas selecionadas",
       "discount": "30% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "ECONOMIZE",
+      "title": "Economia de 30% em seus pedidos com cupom Mercado Livre",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-22T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom com desconto máximo de R$500,00. Este código de desconto é válido apenas nos produtos do link."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "ESPECIAL",
+      "title": "Economia de 30% com cupom Mercado Livre",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$ 1, com desconto máximo de R$ 500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "ESPECIALMELI",
+      "title": "Seleção especial com 20% de abatimento",
+      "discount": "20% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "ESQUENTA",
+      "title": "Use código Mercado Livre e ganhe 30% OFF",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$ 1, com desconto máximo de R$ 500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "GANHOUOFF",
+      "title": "Ganhou OFF: 30% em produtos da lista",
+      "discount": "30% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "GANHOUPROMO",
+      "title": "Ganhou promo: 25% OFF em itens da seleção",
+      "discount": "25% OFF",
       "expiresAt": null,
       "sources": [
         "cuponomia",
@@ -2727,15 +3599,16 @@
     },
     {
       "store": "mercadolivre",
-      "code": "MODASEMPRE",
-      "title": "Moda feminina e masculina com 12% de desconto",
-      "discount": "12% OFF",
-      "expiresAt": null,
+      "code": "MEUMIMO",
+      "title": "Desconto imperdível de 25% com cupom Mercado Livre",
+      "discount": "25% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
       "sources": [
-        "cuponomia",
-        "meliuz"
+        "cuponation",
+        "cuponomia"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom de 25% de desconto, limitado a R$500,00."
     },
     {
       "store": "mercadolivre",
@@ -2751,27 +3624,16 @@
     },
     {
       "store": "mercadolivre",
-      "code": "OFFNOML",
-      "title": "Smart TVs, celulares e notebooks com cupom Mercado Livre de 10%",
-      "discount": "10% OFF",
-      "expiresAt": null,
+      "code": "OFERTAESPECIAL",
+      "title": "Voucher Mercado Livre concede 25% de desconto",
+      "discount": "25% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
       "sources": [
-        "cuponomia",
-        "meliuz"
+        "cuponation",
+        "cuponomia"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "OFFPRACASA",
-      "title": "Casa e decoração com 20% de desconto",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$ 1, com desconto máximo de R$ 500."
     },
     {
       "store": "mercadolivre",
@@ -2787,27 +3649,55 @@
     },
     {
       "store": "mercadolivre",
-      "code": "QUEROOFERTA",
-      "title": "Quero oferta: 22% de desconto na seleção",
-      "discount": "22% OFF",
-      "expiresAt": null,
+      "code": "PEGUESEUOFF",
+      "title": "Código promocional Mercado Livre garante desconto de 30%",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
       "sources": [
-        "cuponomia",
-        "meliuz"
+        "cuponation",
+        "cuponomia"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom de 30% de desconto, limitado a R$500,00."
     },
     {
       "store": "mercadolivre",
-      "code": "SAUDEMELI",
-      "title": "Saúde e cuidados com 10% de desconto",
-      "discount": "10% OFF",
-      "expiresAt": null,
+      "code": "PRESENTINHO",
+      "title": "20% OFF com voucher Mercado Livre",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
       "sources": [
-        "cuponomia",
-        "meliuz"
+        "cuponation",
+        "cuponomia"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom de 20% de desconto, limitado a R$500,00."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "SUPERDESCONTOS",
+      "title": "A chance de economizar 25% com cupom Mercado Livre",
+      "discount": "25% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, com desconto máximo de R$500."
+    },
+    {
+      "store": "mercadolivre",
+      "code": "SUPERPROMOS",
+      "title": "Ganhe 25% OFF utilizando cupom Mercado Livre",
+      "discount": "25% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em compras a partir de R$1, com desconto máximo de R$500."
     },
     {
       "store": "mercadolivre",
@@ -2823,6 +3713,19 @@
     },
     {
       "store": "mercadolivre",
+      "code": "VANTAGEMMELI",
+      "title": "Ganhe 25% OFF com cupom Mercado Livre",
+      "discount": "25% OFF",
+      "expiresAt": "2026-12-22T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom com desconto máximo de R$500,00. Em compras a partir de R$1,00. Válido apenas nos produtos do link."
+    },
+    {
+      "store": "mercadolivre",
       "code": "VEMCOMPRAR",
       "title": "Compre na seleção e leve 22% OFF",
       "discount": "22% OFF",
@@ -2835,47 +3738,27 @@
     },
     {
       "store": "mercadolivre",
-      "code": "AGORAOUNUNCA",
-      "title": "Hora do desconto Mercado Livre: 30% OFF com cupom",
+      "code": "AVENEMELI",
+      "title": "15% OFF em itens da marca Avène",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em pedidos a partir de R$5. Desconto máximo de R$145.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "BATEUPRONTOCUPOM",
+      "title": "Voucher de 30% OFF nas ofertas de vendedores",
       "discount": "30% OFF",
-      "expiresAt": null,
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "terms": "Válido em compras a partir de R$1. Desconto máximo de R$500.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "AUTOAQUI",
-      "title": "Itens para carro e moto com 18% de desconto",
-      "discount": "18% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "BONUSML",
-      "title": "Compre com cupom Mercado Livre e aproveite 20% de desconto",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "CASAAQUI",
-      "title": "Móveis para o lar com 20% de desconto",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
@@ -2912,14 +3795,15 @@
     },
     {
       "store": "mercadolivre",
-      "code": "CONSTRUIRAQUI",
-      "title": "Reforma com 20% de desconto em materiais",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "DARROWMELI",
+      "title": "Itens Darrow com 15% de desconto Meli",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em compras mínimas de R$5 e desconto máximo de R$145.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
@@ -2934,83 +3818,6 @@
     },
     {
       "store": "mercadolivre",
-      "code": "DESCONTOSESPECIAIS",
-      "title": "Cupom Mercado Livre com 10% OFF",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "ECONOMIZE",
-      "title": "Economia de 30% em seus pedidos com cupom Mercado Livre",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "ESPECIAL",
-      "title": "Economia de 30% com cupom Mercado Livre",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "ESPECIALMELI",
-      "title": "Economia de 20% com cupom Mercado Livre",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "ESQUENTA",
-      "title": "Use código Mercado Livre e ganhe 30% OFF",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "GANHOUOFF",
-      "title": "Garanta desconto de 30% aplicando cupom Mercado Livre",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "GANHOUPROMO",
-      "title": "Use cupom Mercado Livre e ganhe 25% OFF",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
       "code": "GARIMPEI",
       "title": "Cupom Mercado Livre concede desconto de 30%",
       "discount": "30% OFF",
@@ -3019,6 +3826,30 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "GARNIERNOMELI",
+      "title": "Garnier com 15% OFF no Mercado Livre",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em compras a partir de R$49.9 e desconto máximo de R$20.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "ISDINMELI",
+      "title": "Isdin com 15% OFF no Meli",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em compras a partir de R$5. Desconto máximo de R$145.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
@@ -3055,28 +3886,6 @@
     },
     {
       "store": "mercadolivre",
-      "code": "MEUDESCONTO",
-      "title": "18% OFF com cupom Mercado Livre",
-      "discount": "18% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "MEUMIMO",
-      "title": "Desconto imperdível de 25% com cupom Mercado Livre",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
       "code": "MODAMELI",
       "title": "Roupas, calçados e acessórios com 12% OFF",
       "discount": "12% OFF",
@@ -3088,36 +3897,15 @@
     },
     {
       "store": "mercadolivre",
-      "code": "OFERTAESPECIAL",
-      "title": "Voucher Mercado Livre concede 25% de desconto",
-      "discount": "25% OFF",
-      "expiresAt": null,
+      "code": "OFERTAPRATECH",
+      "title": "10% OFF em tech e eletrodomésticos no Mercado Livre",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "terms": "Válido em compras a partir de R$ 149, com desconto máximo de R$ 200.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "PEGUESEUOFF",
-      "title": "Código promocional Mercado Livre garante desconto de 30%",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "PRESENTINHO",
-      "title": "20% OFF com voucher Mercado Livre",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
@@ -3132,47 +3920,39 @@
     },
     {
       "store": "mercadolivre",
-      "code": "QUEROOFF",
-      "title": "Código promocional Mercado Livre garante 20% de desconto",
-      "discount": "20% OFF",
-      "expiresAt": null,
+      "code": "SKIN15",
+      "title": "Skincare - 15% OFF em produtos Mantercop",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em compras mínimas de R$5 e desconto máximo de R$145.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
-      "code": "SEMPRESAUDE",
-      "title": "Bem-estar e saúde com 10% de economia",
+      "code": "SPORTS11DO11",
+      "title": "Itens esportivos com 10% OFF no 11.11 Mercado Livre",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$299. Desconto limitado a R$100.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
-      "code": "SUPERDESCONTOS",
-      "title": "A chance de economizar 25% com cupom Mercado Livre",
+      "code": "SUPERDESCONTO",
+      "title": "Seu pedido hoje com 25% de desconto extra no Meli",
       "discount": "25% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-22T02:59:00.000Z",
+      "terms": "Cupom com desconto máximo de R$500,00. Este código de desconto é válido apenas nos produtos do link.",
       "sources": [
-        "cuponomia"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "SUPERPROMOS",
-      "title": "Ganhe 25% OFF utilizando cupom Mercado Livre",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "mercadolivre",
@@ -3186,26 +3966,44 @@
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
-      "store": "mercadolivre",
-      "code": "VANTAGEMMELI",
-      "title": "Ganhe 25% OFF com cupom Mercado Livre",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
       "store": "netshoes",
       "code": "KIDSNETS",
       "title": "Tenha 30% de economia usando o cupom Netshoes",
       "discount": "30% OFF",
       "expiresAt": "2026-12-31T23:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "PRIMEIRACOMPRA",
+      "title": "Desconto especial de 10% válido para a sua primeira compra",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "10% OFF, com limite de R$ 50,00 de desconto."
+    },
+    {
+      "store": "netshoes",
+      "code": "JBL30",
+      "title": "Compre com cupom de desconto Netshoes e ganhe 30%",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3224,26 +4022,131 @@
     },
     {
       "store": "netshoes",
-      "code": "PRIMEIRACOMPRA",
-      "title": "Desconto especial de 10% válido para a sua primeira compra",
-      "discount": "10% OFF",
+      "code": "OFERTANETS",
+      "title": "Faça compras com cupom de desconto Netshoes e economize R$ 69,99",
+      "discount": "Frete grátis",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido para produtos vendidos e entregues pela Netshoes, exceto itens com selo. Desconto máximo de R$50."
+    },
+    {
+      "store": "netshoes",
+      "code": "VESTELAS",
+      "title": "15% OFF em suas compras com cupom Netshoes",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-02T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em lista selecionada."
+    },
+    {
+      "store": "netshoes",
+      "code": "VESTRUN15",
+      "title": "Faça seus pedidos online com 15% de desconto",
+      "discount": "15% OFF",
       "expiresAt": "2026-12-31T23:59:59.000Z",
       "sources": [
+        "cuponation",
         "cuponomia",
-        "meliuz",
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
       "store": "netshoes",
-      "code": "JBL30",
-      "title": "Compre com cupom de desconto Netshoes e ganhe 30%",
-      "discount": "30% OFF",
-      "expiresAt": null,
+      "code": "BOTA15",
+      "title": "Use cupom Netshoes e ganhe 15% OFF em botas Acero",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
       "sources": [
-        "cuponomia",
+        "cuponation",
         "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "BOTA20",
+      "title": "Cupom de desconto Netshoes oferece 20% em botas Acero",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "BOTA25",
+      "title": "Botas Acero com 25% OFF aplicando cupom Netshoes",
+      "discount": "25% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "BOTA30",
+      "title": "Economize 30% em botas Acero com cupom de desconto Netshoes",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "CONVERSE15",
+      "title": "Converse com 15% de desconto",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "CREATINA21",
+      "title": "R$21 OFF com cupom Netshoes em creatina Dark Lab 1 kg",
+      "discount": "R$ 21 OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas em compras a partir de R$70."
+    },
+    {
+      "store": "netshoes",
+      "code": "LACOSTENETS25",
+      "title": "Ative o cupom de desconto Netshoes para ter 25% OFF",
+      "discount": "25% OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3256,6 +4159,18 @@
       "sources": [
         "cuponomia",
         "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "MAIS12",
+      "title": "Cupom Netshoes de 12% OFF em compras",
+      "discount": "12% OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3285,15 +4200,28 @@
     },
     {
       "store": "netshoes",
-      "code": "OFERTANETS",
-      "title": "Faça compras com cupom de desconto Netshoes e economize R$ 69,99",
-      "discount": "Frete grátis",
-      "expiresAt": null,
+      "code": "NEWERA25",
+      "title": "Até 30% OFF em New Era com cupom Netshoes",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
       "sources": [
-        "cuponomia",
-        "promobit"
+        "cuponation",
+        "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "NIKE30",
+      "title": "Produtos da marca Nike com 30% de desconto",
+      "discount": "30% OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em produtos Nike dessa seleção."
     },
     {
       "store": "netshoes",
@@ -3309,6 +4237,44 @@
     },
     {
       "store": "netshoes",
+      "code": "PRESENTE20",
+      "title": "No mês do seu aniversário ganhe 20% OFF com cupom Netshoes",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "PRIMEIRA10",
+      "title": "Código promocional Netshoes concede 10% OFF",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas para itens da lista selecionada. Desconto não cumulativo com outras ofertas. O desconto não contempla o frete."
+    },
+    {
+      "store": "netshoes",
+      "code": "PROGRESSIVO",
+      "title": "11.11 com desconto progressivo de até 20% OFF",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-12T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Regras: leve 2 peças = 10% OFF // 3 peças = 15% OFF // 4 peças ou mais = 20% OFF."
+    },
+    {
+      "store": "netshoes",
       "code": "QUERO10",
       "title": "Ganhe 10% em sua compra com cupom Netshoes",
       "discount": "10% OFF",
@@ -3316,6 +4282,42 @@
       "sources": [
         "cuponomia",
         "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "QUERO45",
+      "title": "Desconto Netshoes de até 60% OFF em Alpha Co",
+      "discount": "60% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "RUN100",
+      "title": "A Netshoes oferece R$100 OFF para os seus pedidos",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "RUNNING30",
+      "title": "Cupom Netshoes concede 30% de desconto",
+      "discount": "30% OFF",
+      "expiresAt": "2026-11-17T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3333,25 +4335,101 @@
     },
     {
       "store": "netshoes",
-      "code": "VESTELAS",
-      "title": "15% OFF em suas compras com cupom Netshoes",
+      "code": "SELLER15",
+      "title": "Suas compras com 15% de desconto",
       "discount": "15% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-11-14T02:59:00.000Z",
       "sources": [
-        "cuponomia",
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Aplicável em produtos vendidos e entregues por outros parceiros na Netshoes."
+    },
+    {
+      "store": "netshoes",
+      "code": "SUPER200",
+      "title": "Tênis da marca adidas com R$200 OFF",
+      "discount": "R$ 200 OFF",
+      "expiresAt": "2026-11-17T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "SUPLE10",
+      "title": "Suplementos com 10% de desconto usando cupom Netshoes",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-12T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "SUPLE15",
+      "title": "Ganhe 15% em suplementos com cupom de desconto Netshoes",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-12T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "SUPLE25",
+      "title": "Cupom Netshoes garante 25% OFF em suplementos",
+      "discount": "25% OFF",
+      "expiresAt": "2026-11-12T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido apenas nos produtos com o selo do cupom."
+    },
+    {
+      "store": "netshoes",
+      "code": "TURBO10",
+      "title": "Motorsport com 10% de desconto no carrinho",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponation",
         "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
       "store": "netshoes",
-      "code": "VESTRUN15",
-      "title": "Faça seus pedidos online com 15% de desconto",
-      "discount": "15% OFF",
-      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "code": "TURBO5",
+      "title": "Aproveite 5% OFF em Motorsport",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
       "sources": [
-        "cuponomia",
-        "promobit"
+        "cuponation",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "VESTELES",
+      "title": "Desconto Netshoes garante 15% OFF em suas compras",
+      "discount": "15% OFF",
+      "expiresAt": "2027-01-02T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3365,6 +4443,42 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "ADIDAS10",
+      "title": "Black November Netshoes - 10% OFF em itens da adidas",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas nos itens com o selo do cupom.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "ADIDAS20",
+      "title": "adidas com +20% OFF no código de desconto Netshoes",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas nos itens com o selo do cupom.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "ADIDAS5",
+      "title": "Tudo da addias com +5% OFF na Black Friday Netshoes",
+      "discount": "5% OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "terms": "Válido apenas nos itens com o selo do cupom.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3401,47 +4515,26 @@
     },
     {
       "store": "netshoes",
-      "code": "BOTA15",
-      "title": "Use cupom Netshoes e ganhe 15% OFF em botas Acero",
-      "discount": "15% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "BOTA20",
-      "title": "Cupom de desconto Netshoes oferece 20% em botas Acero",
+      "code": "BEMESTAR20",
+      "title": "Cupom Netshoes: Ganhe 20% OFF em produtos de saúde e bem estar",
       "discount": "20% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
-        "meliuz"
+        "cuponeria"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
-      "code": "BOTA25",
-      "title": "Botas Acero com 25% OFF aplicando cupom Netshoes",
-      "discount": "25% OFF",
-      "expiresAt": null,
+      "code": "BLACK40",
+      "title": "+R$40 OFF no cupom de desconto Netshoes Black Friday",
+      "discount": "R$ 40 OFF",
+      "expiresAt": "2026-11-14T02:59:59.000Z",
+      "terms": "Válido apenas em compras acima de R$399.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "BOTA30",
-      "title": "Economize 30% em botas Acero com cupom de desconto Netshoes",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3467,14 +4560,15 @@
     },
     {
       "store": "netshoes",
-      "code": "CONVERSE15",
-      "title": "Converse com 15% de desconto",
-      "discount": "15% OFF",
-      "expiresAt": null,
+      "code": "COMBO",
+      "title": "Cupom especial de combo: leve 3 produtos e pague 2",
+      "discount": "",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Este cupom é válido apenas nos produtos da seleção.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3522,14 +4616,15 @@
     },
     {
       "store": "netshoes",
-      "code": "CREATINA21",
-      "title": "R$21 OFF com cupom Netshoes em creatina Dark Lab 1 kg",
-      "discount": "R$ 21 OFF",
-      "expiresAt": null,
+      "code": "CUPONATION",
+      "title": "Cupom Netshoes de 10% OFF em suas compras",
+      "discount": "10% OFF",
+      "expiresAt": "2027-01-19T02:59:00.000Z",
+      "terms": "Válido em pedidos vendidos e entregues pela Netshoes, desconto máximo de R$60.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3555,6 +4650,17 @@
     },
     {
       "store": "netshoes",
+      "code": "ESTILO10",
+      "title": "Vestuário Casual com +10% OFF na Netshoes",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-17T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
       "code": "FIT30",
       "title": "Economize até 30% usando o cupom de desconto Netshoes",
       "discount": "30% OFF",
@@ -3574,6 +4680,18 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "FITLOOK10",
+      "title": "Ganhe 10% MENOS em looks de treino com o código de desconto Netshoes",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "terms": "Válido em itens selecionados.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3621,14 +4739,26 @@
     },
     {
       "store": "netshoes",
-      "code": "LACOSTENETS25",
-      "title": "Ative o cupom de desconto Netshoes para ter 25% OFF",
-      "discount": "25% OFF",
-      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "code": "INVERNOKIDS",
+      "title": "Cupom Netshoes: Ganhe 10% OFF em produtos de inverno infantil",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
-        "promobit"
+        "cuponeria"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "KIDS",
+      "title": "25% OFF em itens infantis na Netshoes",
+      "discount": "25% OFF",
+      "expiresAt": "2026-11-10T02:59:00.000Z",
+      "terms": "Válido para produtos vendidos e entregues pela Netshoes.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3643,14 +4773,27 @@
     },
     {
       "store": "netshoes",
-      "code": "MAIS12",
-      "title": "Cupom Netshoes de 12% OFF em compras",
-      "discount": "12% OFF",
-      "expiresAt": null,
+      "code": "MAIS10",
+      "title": "Kit de Meias com R$10 de desconto na Netshoes",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2026-11-14T02:59:59.000Z",
+      "terms": "Válido apenas em compras a partir de R$79.",
       "sources": [
-        "meliuz"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "MARATONA40",
+      "title": "Maratona Netshoes com R$40 OFF no cupom",
+      "discount": "R$ 40 OFF",
+      "expiresAt": "2026-12-02T02:59:00.000Z",
+      "terms": "Válido apenas em compras acima de R$399, exceto em itens com o selo \\",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3698,28 +4841,6 @@
     },
     {
       "store": "netshoes",
-      "code": "NEWERA25",
-      "title": "Até 30% OFF em New Era com cupom Netshoes",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "NIKE30",
-      "title": "Produtos da marca Nike com 30% de desconto",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
       "code": "NOVA15",
       "title": "Desconto de 15% em todo o site da Netshoes",
       "discount": "15% OFF",
@@ -3753,45 +4874,12 @@
     },
     {
       "store": "netshoes",
-      "code": "PRESENTE20",
-      "title": "No mês do seu aniversário ganhe 20% OFF com cupom Netshoes",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "PRIMEIRA10",
-      "title": "Código promocional Netshoes concede 10% OFF",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
       "code": "PRIMEIRA20",
       "title": "Use cupom Netshoes e tenha desconto de 20%",
       "discount": "20% OFF",
       "expiresAt": null,
       "sources": [
         "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "PROGRESSIVO",
-      "title": "11.11 com desconto progressivo de até 20% OFF",
-      "discount": "20% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -3819,17 +4907,6 @@
     },
     {
       "store": "netshoes",
-      "code": "QUERO45",
-      "title": "Desconto Netshoes de até 60% OFF em Alpha Co",
-      "discount": "60% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
       "code": "REBOOK",
       "title": "Aplique o código e ganhe 20% de desconto",
       "discount": "20% OFF",
@@ -3841,14 +4918,15 @@
     },
     {
       "store": "netshoes",
-      "code": "RUN100",
-      "title": "A Netshoes oferece R$100 OFF para os seus pedidos",
-      "discount": "R$ 100 OFF",
-      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "code": "REEBOK20",
+      "title": "Reebok - R$20 OFF em roupas da marca",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2026-11-10T02:59:00.000Z",
+      "terms": "Válido em compras a partir de R$89.",
       "sources": [
-        "promobit"
+        "cuponation"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3863,91 +4941,25 @@
     },
     {
       "store": "netshoes",
-      "code": "RUNNING30",
-      "title": "Cupom Netshoes concede 30% de desconto",
-      "discount": "30% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "SELLER15",
-      "title": "Suas compras com 15% de desconto",
-      "discount": "15% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "SUPER200",
-      "title": "Tênis da marca adidas com R$200 OFF",
-      "discount": "R$ 200 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "SUPLE10",
-      "title": "Suplementos com 10% de desconto usando cupom Netshoes",
+      "code": "SUPER10",
+      "title": "Cupom Netshoes de 10% de desconto com código da Cuponeria",
       "discount": "10% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
-        "meliuz"
+        "cuponeria"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
-      "code": "SUPLE15",
-      "title": "Ganhe 15% em suplementos com cupom de desconto Netshoes",
+      "code": "SUPLEMENTOS",
+      "title": "Cupom Netshoes: Ganhe 15%OFF em suplementos selecionados",
       "discount": "15% OFF",
-      "expiresAt": null,
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
-        "meliuz"
+        "cuponeria"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "SUPLE25",
-      "title": "Cupom Netshoes garante 25% OFF em suplementos",
-      "discount": "25% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "TURBO10",
-      "title": "Motorsport com 10% de desconto no carrinho",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "TURBO5",
-      "title": "Aproveite 5% OFF em Motorsport",
-      "discount": "5% OFF",
-      "expiresAt": null,
-      "sources": [
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "netshoes",
@@ -3962,14 +4974,25 @@
     },
     {
       "store": "netshoes",
-      "code": "VESTELES",
-      "title": "Desconto Netshoes garante 15% OFF em suas compras",
-      "discount": "15% OFF",
-      "expiresAt": null,
+      "code": "VALE20",
+      "title": "Cupom Netshoes: Ganhe 20% OFF em Produtos selecionados no site",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
       "sources": [
-        "meliuz"
+        "cuponeria"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "netshoes",
+      "code": "VALE40",
+      "title": "Cupom Netshoes: de R$40 de desconto em Itens selecionados no site",
+      "discount": "R$ 40 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "shopee",
@@ -3985,6 +5008,19 @@
     },
     {
       "store": "shopee",
+      "code": "OFERTAS10",
+      "title": "Aplique cupom Shopee e obtenha 10% OFF",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-04T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z",
+      "terms": "Válido em compras acima de R$59. Limitado a R$50."
+    },
+    {
+      "store": "shopee",
       "code": "10DEDESCONTO",
       "title": "Cupom Shopee concede 10% OFF em produtos",
       "discount": "10% OFF",
@@ -3996,6 +5032,41 @@
     },
     {
       "store": "shopee",
+      "code": "113SQU3NT411",
+      "title": "Ative o cupom Shopee e consiga R$15 OFF acima de R$75",
+      "discount": "R$ 15 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "shopee",
+      "code": "11ESQUENTA20OFF",
+      "title": "Todo o site e app da Shopee com R$20 OFF usando esse cupom",
+      "discount": "R$ 20 OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "terms": "Válido em compras acima de R$199.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "shopee",
+      "code": "3SQU3NT411",
+      "title": "R$150 de desconto no cupom Shopee",
+      "discount": "R$ 150 OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "terms": "Válido em compras acima de R$150.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "shopee",
       "code": "40OFFD4SH0",
       "title": "Ganhe R$40 OFF em suas compras com cupom Shopee",
       "discount": "R$ 40 OFF",
@@ -4004,6 +5075,17 @@
         "cuponomia"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "5D3D3SC0NT0",
+      "title": "Código promocional Shopee oferece R$5 OFF acima de R$25",
+      "discount": "R$ 5 OFF",
+      "expiresAt": "2026-11-10T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "shopee",
@@ -4414,23 +5496,23 @@
     },
     {
       "store": "shopee",
+      "code": "GK15OUT",
+      "title": "R$15 de desconto em compras acima de R$69 no cupom Shopee",
+      "discount": "R$ 15 OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "shopee",
       "code": "M3L1UZ2810SHOPB",
       "title": "Cupom de desconto Shopee exclusivo oferece R$15 OFF",
       "discount": "R$ 15 OFF",
       "expiresAt": null,
       "sources": [
         "meliuz"
-      ],
-      "firstSeen": "2026-11-06T15:29:19.465Z"
-    },
-    {
-      "store": "shopee",
-      "code": "OFERTAS10",
-      "title": "Aplique cupom Shopee e obtenha 10% OFF",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
     },
@@ -4466,6 +5548,17 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "S3GUND410",
+      "title": "R$10 OFF acima de R$59 nesse cupom de desconto Shopee",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
       "store": "shopee",
@@ -4510,6 +5603,17 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "ULT1M0D0M3S",
+      "title": "Cupom Shopee garante R$10 de desconto em compras a partir de R$59",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2026-11-14T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T16:20:04.270Z"
     }
   ]
 }

@@ -30,6 +30,7 @@ export function mergeCoupons(results: SourceResult[], previous: Coupon[], now: D
       if (!existing.sources.includes(source)) existing.sources.push(source);
       if (!existing.title) existing.title = raw.title;
       if (!existing.discount) existing.discount = raw.discount;
+      if (!existing.terms && raw.terms) existing.terms = raw.terms;
       // Se as fontes discordam da validade, fica a mais longa (a extensão testa de qualquer jeito).
       if (raw.expiresAt && (!existing.expiresAt || raw.expiresAt > existing.expiresAt)) existing.expiresAt = raw.expiresAt;
       return;
@@ -40,6 +41,7 @@ export function mergeCoupons(results: SourceResult[], previous: Coupon[], now: D
       title: raw.title,
       discount: raw.discount,
       expiresAt: raw.expiresAt,
+      ...(raw.terms && { terms: raw.terms }),
       sources: [source],
       firstSeen: previousByKey.get(k)?.firstSeen ?? nowIso,
     });

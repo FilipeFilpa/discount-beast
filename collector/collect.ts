@@ -2,7 +2,7 @@
  * Coletor de cupons públicos do Discount Beast.
  *
  * Roda no GitHub Actions (.github/workflows/collect-coupons.yml) 2x por dia:
- * 1. Abre a página de cupons de cada loja em cada site (Promobit, Méliuz, Cuponomia).
+ * 1. Abre a página de cupons de cada loja em cada site (Promobit, Méliuz, Cuponomia, Cuponation, Cuponeria).
  * 2. Junta tudo, tira repetidos e vencidos.
  * 3. Salva em data/coupons.json, que a extensão baixa.
  *
@@ -12,12 +12,14 @@ import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import type { CouponFeed } from '../lib/coupons.ts';
 import { STORES } from '../lib/stores.ts';
 import { buildFeed, mergeCoupons, type SourceResult } from './merge.ts';
+import { cuponation } from './sources/cuponation.ts';
+import { cuponeria } from './sources/cuponeria.ts';
 import { cuponomia } from './sources/cuponomia.ts';
 import { meliuz } from './sources/meliuz.ts';
 import { promobit } from './sources/promobit.ts';
 import { fetchHtml } from './util.ts';
 
-const SOURCES = [promobit, meliuz, cuponomia];
+const SOURCES = [promobit, meliuz, cuponomia, cuponation, cuponeria];
 const OUTPUT = new URL('../data/coupons.json', import.meta.url);
 
 async function readPrevious(): Promise<CouponFeed | null> {
@@ -32,7 +34,7 @@ async function main() {
   const now = new Date();
   const previous = await readPrevious();
 
-  // Busca todas as páginas em paralelo (são só ~18 páginas).
+  // Busca todas as páginas em paralelo (~40 páginas).
   const jobs = SOURCES.flatMap((source) =>
     STORES.flatMap((store) => {
       const url = source.urls[store.id];
