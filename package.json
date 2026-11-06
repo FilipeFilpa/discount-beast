@@ -11,7 +11,7 @@
     "check": "tsc --noEmit",
     "postinstall": "wxt prepare",
     "collect": "node collector/collect.ts",
-    "test": "node --test \"collector/**/*.test.ts\""
+    "test": "node --test \"collector/**/*.test.ts\" \"lib/**/*.test.ts\""
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

@@ -6,7 +6,7 @@ Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, M
 
 - [x] Passo 1: base da extensão (detecta as lojas e mostra um popup)
 - [x] Passo 2: coletor de cupons grátis (GitHub Actions + JSON)
-- [ ] Passo 3: aplicar cupons automaticamente em uma loja
+- [x] Passo 3: testar cupons automaticamente no carrinho da adidas
 - [ ] Passo 4: expandir para as outras lojas e comparar preços
 
 ## Como instalar no seu Chrome
@@ -29,6 +29,15 @@ Depois:
 
 Abra qualquer uma das lojas: o ícone ganha um ✓ verde e o popup mostra os cupons públicos daquela loja. Clique num código para copiar.
 
+### Testar cupons na adidas
+
+1. Abra o seu carrinho na adidas.com.br.
+2. Um cartão do Discount Beast aparece no canto de baixo, à direita.
+3. Clique em **Testar cupons** e não mexa na página enquanto ele trabalha (leva uns 5 segundos por cupom).
+4. A extensão aplica cada código, anota o Total, tira e passa para o próximo. No fim deixa aplicado o que deixou o Total mais baixo.
+
+Ela lembra o resultado de cada código (só no seu Chrome). Códigos recusados ficam 3 dias sem ser testados de novo, e no máximo 15 códigos são testados por vez.
+
 ## Como os cupons chegam na extensão
 
 1. O GitHub Actions roda o coletor ([`collector/`](collector/)) todo dia às 6h e às 18h (horário de Brasília).
@@ -49,7 +58,7 @@ Se uma coleta falhar, o GitHub manda um e-mail para você.
 | `npm run build` | Gera a versão final em `.output/chrome-mv3` |
 | `npm run check` | Confere os tipos do TypeScript |
 | `npm run collect` | Roda o coletor de cupons no seu computador e atualiza `data/coupons.json` |
-| `npm test` | Roda os testes do coletor |
+| `npm test` | Roda os testes do coletor e do testador de cupons |
 
 ## Estrutura
 
@@ -57,12 +66,16 @@ Se uma coleta falhar, o GitHub manda um e-mail para você.
 entrypoints/
   background.ts      # roda em segundo plano, marca o ícone quando você está numa loja
   store.content.ts   # roda dentro das páginas das lojas
+  adidas-cart.content.ts  # cartão "Testar cupons" no carrinho da adidas
   popup/             # janelinha que abre ao clicar no ícone
 lib/
   stores.ts          # lista das lojas suportadas
   messages.ts        # formato das mensagens entre as partes da extensão
   coupons.ts         # formato do data/coupons.json
   coupon-store.ts    # baixa e guarda os cupons dentro da extensão
+  coupon-runner.ts   # testa os cupons um a um e escolhe o melhor (serve para qualquer loja)
+  coupon-history.ts  # lembra o que cada código fez da última vez
+  carts/adidas.ts    # como mexer no carrinho da adidas (seletores ficam aqui)
 collector/
   collect.ts         # coletor que roda no GitHub Actions
   merge.ts           # junta cupons de várias fontes sem repetir
