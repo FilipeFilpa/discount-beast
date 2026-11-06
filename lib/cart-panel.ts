@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser';
 import { mergeCodes } from './codes';
 import { getCouponHistory, saveCouponResults } from './coupon-history';
+import { cartKey, describeCart, profileCart, scoreCoupon, SKIP_BELOW, type CartInfo } from './coupon-match';
 import { findBestCoupon, orderCandidates, type CartAdapter, type RunReport } from './coupon-runner';
 import { couponsFor, getCouponFeed } from './coupon-store';
 import { getMyCoupons } from './my-coupons';
@@ -72,22 +73,42 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
   root.querySelector('.x')!.addEventListener('click', () => host.remove());
 
   let candidates: string[] = [];
+  let key = '';
+  /** Lê o carrinho (produtos + Total) e põe os cupons que combinam com ele na frente. */
   const load = async (updateMessage = true) => {
     const mine = await getMyCoupons(store);
     const coupons = couponsFor(await getCouponFeed(), store);
-    // Ordem: os seus, depois os que você viu no Pelando, depois os do feed público.
+    // Ordem: os seus, depois os que você viu no Pelando, depois os do feed público (pela nota de compatibilidade).
     const pelando = await getPelandoCoupons(store);
-    const codes = mergeCodes([...mine, ...pelando], coupons.map((c) => c.code));
-    candidates = orderCandidates(codes, await getCouponHistory(store));
+    const personal = mergeCodes(mine, pelando);
+    const codes = mergeCodes(personal, coupons.map((c) => c.code));
+    const info: CartInfo = { items: cart.items?.() ?? [], subtotal: await cart.total() };
+    const profile = profileCart(info, storeName);
+    const byCode = new Map(coupons.map((c) => [c.code, c]));
+    key = cartKey(info);
+    const notes = new Map(codes.map((code) => [code, scoreCoupon(byCode.get(code) ?? { code }, profile)]));
+    candidates = orderCandidates(codes, await getCouponHistory(store), Date.now(), undefined, {
+      cartKey: key,
+      score: (code) => notes.get(code)?.score ?? 0,
+      keepFirst: personal,
+      minScore: SKIP_BELOW,
+    });
+    console.info('[Discount Beast] carrinho lido:', info, 'ordem dos testes:', candidates.map((c) => `${c} (${notes.get(c)?.score ?? 0}: ${notes.get(c)?.why.join(', ') ?? ''})`));
     go.disabled = candidates.length === 0;
     if (!updateMessage) return;
     const mineCount = candidates.filter((c) => mine.includes(c)).length;
     const pelandoCount = candidates.filter((c) => pelando.includes(c) && !mine.includes(c)).length;
     const parts = [mineCount && `${mineCount} seus`, pelandoCount && `${pelandoCount} do Pelando`].filter(Boolean);
     const yours = parts.length ? ` (${parts.join(', ')})` : '';
+    const seen = describeCart(profile);
+    const read = info.items.length
+      ? `Li no carrinho: ${info.items.length} ${info.items.length === 1 ? 'produto' : 'produtos'}${seen ? ` (${seen})` : ''}${info.subtotal !== null ? `, ${formatBRL(info.subtotal)}` : ''}. `
+      : '';
+    const skipped = [...notes.values()].filter((n) => n.score < SKIP_BELOW).length;
+    const skippedText = skipped ? ` ${skipped} não servem para este carrinho (valor mínimo, só no app...).` : '';
     msg.textContent = candidates.length
-      ? `${candidates.length} cupons para testar neste carrinho${yours}. Leva uns segundos por cupom.`
-      : 'Nenhum cupom novo para testar agora.';
+      ? `${read}Vou testar ${candidates.length} cupons${yours}, os que combinam com ele primeiro.${skippedText} Leva uns segundos por cupom.`
+      : `${read}Nenhum cupom novo para testar agora.${skippedText}`;
   };
   load().catch(() => (msg.textContent = 'Não consegui carregar a lista de cupons.'));
   // Se você adicionar um código em "Meus cupons" ou abrir o Pelando com o carrinho aberto, a contagem atualiza na hora.
@@ -100,10 +121,12 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     go.disabled = true;
     list.hidden = true;
     try {
+      // A página pode ter mudado desde que o cartão abriu (produto novo, quantidade): lê de novo.
+      await load(false);
       const report = await findBestCoupon(cart, candidates, ({ index, count, code }) => {
         msg.textContent = `Testando ${index} de ${count}: ${code}…`;
       });
-      await saveCouponResults(store, report.results);
+      await saveCouponResults(store, report.results, key);
       showReport(report);
     } catch (error) {
       console.warn('[Discount Beast]', error);
@@ -124,7 +147,7 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     } else {
       msg.textContent = 'Nenhum cupom baixou o Total deste carrinho.';
     }
-    const label = { worked: '✓', rejected: '✗ recusado', unknown: '? sem resposta' } as const;
+    const label = { worked: '✓', rejected: '✗ recusado', ineligible: '✗ não vale p/ estes itens', unknown: '? sem resposta' } as const;
     list.replaceChildren(
       ...results.map((r) => {
         const li = document.createElement('li');

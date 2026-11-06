@@ -1,3 +1,4 @@
+import type { CartItem } from '../coupon-match';
 import type { CartAdapter, TryStatus } from '../coupon-runner';
 import { parseBRL } from '../price';
 import { clickLikeAPerson, isVisible, sleep, stableValue, typeInto, visible, waitFor } from './dom';
@@ -25,7 +26,24 @@ export const NETSHOES = {
   /** Texto do botão quando não tem cupom. */
   emptyButtonText: /^\s*inserir\s*$/i,
   removeText: /remov|excluir|retirar/i,
+  /** Produto do carrinho (HTML salvo em 06/11/2026). Os selos podem trazer o código do cupom. */
+  item: '.product-item',
+  itemName: '[qa-auto="product-name"]',
+  itemSeller: '[qa-auto="product-seller"]',
+  itemStamps: '[qa-auto="product-stamps"]',
 } as const;
+
+export function readNetshoesItems(): CartItem[] {
+  return [...document.querySelectorAll(NETSHOES.item)].flatMap((el) => {
+    const name = el.querySelector(NETSHOES.itemName)?.textContent?.trim();
+    if (!name) return [];
+    const seller = el.querySelector(NETSHOES.itemSeller)?.textContent?.trim();
+    const stamps = el.querySelector(NETSHOES.itemStamps);
+    // Texto e atributos dos selos (o código pode estar num alt/title).
+    const stampText = stamps ? `${stamps.textContent ?? ''} ${[...stamps.querySelectorAll('[alt],[title],[aria-label]')].map((e) => `${e.getAttribute('alt') ?? ''} ${e.getAttribute('title') ?? ''} ${e.getAttribute('aria-label') ?? ''}`).join(' ')}`.trim() : '';
+    return [{ name, seller, stamps: stampText }];
+  });
+}
 
 export function isNetshoesCart(): boolean {
   return /^\/cart/.test(location.pathname) && visible(NETSHOES.total) !== null;
@@ -111,6 +129,8 @@ export const netshoesCart: CartAdapter = {
     }
     throw new Error('Não consegui tirar o cupom da Netshoes.');
   },
+
+  items: readNetshoesItems,
 
   async close() {
     if (!visible(NETSHOES.modal)) return;

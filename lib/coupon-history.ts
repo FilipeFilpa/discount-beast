@@ -10,10 +10,11 @@ export async function getCouponHistory(store: StoreId): Promise<Record<string, P
   return couponHistory?.[store] ?? {};
 }
 
-export async function saveCouponResults(store: StoreId, results: TryResult[]): Promise<void> {
+/** `cart` = cartKey do carrinho testado (para lembrar onde um código "não vale para estes itens"). */
+export async function saveCouponResults(store: StoreId, results: TryResult[], cart?: string): Promise<void> {
   const { couponHistory = {} } = (await browser.storage.local.get('couponHistory')) as { couponHistory?: History };
   const at = Date.now();
   const mine = { ...couponHistory[store] };
-  for (const r of results) mine[r.code] = { status: r.status, saving: r.saving, at };
+  for (const r of results) mine[r.code] = { status: r.status, saving: r.saving, at, ...(cart ? { cart } : {}) };
   await browser.storage.local.set({ couponHistory: { ...couponHistory, [store]: mine } });
 }

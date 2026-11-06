@@ -1,3 +1,4 @@
+import type { CartItem } from '../coupon-match';
 import type { CartAdapter, TryStatus } from '../coupon-runner';
 import { parseBRL } from '../price';
 import { clickLikeAPerson, isVisible, sleep, stableValue, typeInto, visible, waitFor } from './dom';
@@ -18,7 +19,23 @@ export const CENTAURO = {
   submit: 'button[data-testid="coupon-button"]',
   error: '#discount-coupon-error, [data-testid="discount-coupon"] [data-testid="hint"]',
   removeText: /remov|excluir|retirar|apagar/i,
+  /** Produto do carrinho: nome e "Vendido e Entregue por: <strong>Centauro</strong>". */
+  item: '[data-testid="product-cart-card"]',
+  itemName: '[data-testid="product-name"]',
+  itemAttributes: '[data-testid="product-attributes"]',
+  /** "não é válido para um ou mais itens" (Cód CHK167): o código existe, mas não serve para estes produtos. */
+  ineligibleText: /CHK167|n[ãa]o (é|e) v[áa]lido para|n[ãa]o se aplica|itens? (n[ãa]o )?eleg/i,
 } as const;
+
+export function readCentauroItems(): CartItem[] {
+  return [...document.querySelectorAll(CENTAURO.item)].flatMap((card) => {
+    const name = card.querySelector(CENTAURO.itemName)?.textContent?.trim();
+    if (!name) return [];
+    const attrs = card.querySelector(CENTAURO.itemAttributes)?.textContent ?? '';
+    const seller = attrs.match(/vendido e entregue por:?\s*(.+)$/i)?.[1]?.trim();
+    return [{ name, seller }];
+  });
+}
 
 export function isCentauroCart(): boolean {
   return /\/checkouts\/carrinho/.test(location.pathname) && visible(CENTAURO.section) !== null;
@@ -80,7 +97,7 @@ export const centauroCart: CartAdapter = {
     const outcome = await waitFor<TryStatus>(() => {
       const err = visibleError();
       if (err) {
-        if (err !== oldError || Date.now() - start > 4000) return 'rejected';
+        if (err !== oldError || Date.now() - start > 4000) return CENTAURO.ineligibleText.test(err.textContent ?? '') ? 'ineligible' : 'rejected';
         return null;
       }
       oldError = null;
@@ -105,6 +122,8 @@ export const centauroCart: CartAdapter = {
     }
     throw new Error('Não consegui tirar o cupom da Centauro.');
   },
+
+  items: readCentauroItems,
 
   async close() {
     // A Centauro não usa janela para o cupom: o campo fica na própria página.

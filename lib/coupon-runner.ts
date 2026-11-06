@@ -1,5 +1,9 @@
+import type { CartItem } from './coupon-match';
+
 /** O que aconteceu quando um código foi testado no carrinho. */
-export type TryStatus = 'worked' | 'rejected' | 'unknown';
+export type TryStatus = 'worked' | 'rejected' | 'ineligible' | 'unknown';
+// 'ineligible' = o código existe, mas não vale para os produtos deste carrinho
+// (ex.: Centauro "não é válido para um ou mais itens", Cód CHK167). Vale testar em outro carrinho.
 
 export interface TryResult {
   code: string;
@@ -16,6 +20,19 @@ export interface PastResult {
   saving?: number;
   /** Quando foi testado (ms desde 1970). */
   at: number;
+  /** Qual carrinho (ver cartKey em coupon-match.ts), para status 'ineligible'. */
+  cart?: string;
+}
+
+export interface RankOptions {
+  /** Chave do carrinho atual: um 'ineligible' de outro carrinho volta a ser testado. */
+  cartKey?: string;
+  /** Nota de compatibilidade com o carrinho (maior = testar antes). */
+  score?: (code: string) => number;
+  /** Códigos que ficam na frente dos outros nunca testados, na ordem dada (os seus). */
+  keepFirst?: string[];
+  /** Nota mínima para entrar na lista (os seus entram sempre). */
+  minScore?: number;
 }
 
 /**
@@ -33,6 +50,8 @@ export interface CartAdapter {
   remove(): Promise<void>;
   /** Fecha a gaveta de cupons, se ficou aberta. */
   close(): Promise<void>;
+  /** Produtos do carrinho (nome, vendedor, selos), para escolher os cupons que combinam. */
+  items?(): CartItem[];
 }
 
 export interface RunReport {
@@ -59,26 +78,43 @@ export const RETRY_REJECTED_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
 /**
  * Escolhe a ordem dos testes:
  * 1. códigos que já funcionaram antes (os de maior economia primeiro);
- * 2. códigos nunca testados, na ordem recebida (os seus de "Meus cupons" primeiro, depois o feed);
- * 3. códigos recusados há mais de 3 dias (podem ter voltado).
- * Recusados recentemente ficam de fora. No máximo `max` códigos.
+ * 2. códigos nunca testados: os seus de "Meus cupons"/Pelando primeiro, depois os que combinam
+ *    mais com o carrinho (`score`); empate mantém a ordem recebida. Um código que "existe mas não
+ *    vale para estes itens" num carrinho diferente conta como nunca testado (com um bônus: ele existe);
+ * 3. códigos recusados há mais de 3 dias (podem ter voltado), também pela nota.
+ * Recusados recentemente (e 'ineligible' recente neste mesmo carrinho) ficam de fora,
+ * assim como os de nota abaixo de `minScore`. No máximo `max` códigos.
  */
 export function orderCandidates(
   allCodes: string[],
   history: Record<string, PastResult>,
   now = Date.now(),
   max = MAX_TRIES,
+  rank: RankOptions = {},
 ): string[] {
   const codes = [...new Set(allCodes)];
+  const { cartKey, score = () => 0, keepFirst = [], minScore = -Infinity } = rank;
+  const elsewhere = (p: PastResult) => p.status === 'ineligible' && cartKey !== undefined && p.cart !== cartKey;
   const worked = codes
     .filter((c) => history[c]?.status === 'worked')
     .sort((a, b) => (history[b]?.saving ?? 0) - (history[a]?.saving ?? 0));
-  const fresh = codes.filter((c) => !history[c]);
+  const fresh = codes.filter((c) => !history[c] || elsewhere(history[c]!));
   const retry = codes.filter((c) => {
     const past = history[c];
-    return past && past.status !== 'worked' && now - past.at >= RETRY_REJECTED_AFTER_MS;
+    return past && past.status !== 'worked' && !elsewhere(past) && now - past.at >= RETRY_REJECTED_AFTER_MS;
   });
-  return [...worked, ...fresh, ...retry].slice(0, max);
+  const mine = new Set(keepFirst);
+  const notes = new Map(codes.map((c) => [c, score(c) + (history[c] && elsewhere(history[c]!) ? 2 : 0)]));
+  const byScore = (list: string[]) => {
+    const pinned = keepFirst.filter((c) => list.includes(c));
+    const rest = list
+      .filter((c) => !mine.has(c) && notes.get(c)! >= minScore)
+      .map((c, i) => ({ c, i }))
+      .sort((a, b) => notes.get(b.c)! - notes.get(a.c)! || a.i - b.i)
+      .map((x) => x.c);
+    return [...pinned, ...rest];
+  };
+  return [...worked, ...byScore(fresh), ...byScore(retry)].slice(0, max);
 }
 
 /**
