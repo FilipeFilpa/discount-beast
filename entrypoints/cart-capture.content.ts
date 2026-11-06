@@ -3,15 +3,21 @@ import { findStoreByHost } from '@/lib/stores';
 
 /**
  * Lojas onde o testador ainda não sabe mexer no carrinho. Na página do carrinho
- * aparece um botão (em todas as páginas da loja) que baixa o HTML limpo, para o Filipe mandar e a gente achar os seletores.
+ * aparece um botão que baixa o HTML limpo, para o Filipe mandar e a gente achar os seletores.
  * Quando a loja ganhar adaptador (lib/carts/<loja>.ts), tire ela daqui.
  */
 export default defineContentScript({
   matches: ['https://*.netshoes.com.br/*', 'https://netshoes.com.br/*', 'https://*.centauro.com.br/*', 'https://centauro.com.br/*'],
   runAt: 'document_idle',
   main() {
-    // Não sabemos ainda o endereço exato do carrinho de cada loja, então o botão aparece em todas as páginas delas.
-    createButton();
+    // Agora as duas lojas têm adaptador; o botão fica só no carrinho, para salvar o caso
+    // "cupom aceito" quando aparecer um código válido (ainda não vimos esse HTML).
+    let host: HTMLElement | null = null;
+    setInterval(() => {
+      const inCart = /^\/cart|\/checkouts\/carrinho/.test(location.pathname);
+      if (inCart && !host) host = createButton();
+      if (host) host.hidden = !inCart;
+    }, 1500);
   },
 });
 
@@ -31,7 +37,7 @@ function createButton(): HTMLElement {
     </style>
     <div class="card">
       <button class="x" title="Fechar">×</button>
-      <p><strong>🦁 Discount Beast</strong><br>Ainda estou aprendendo esta loja. Abra o carrinho e clique abaixo.</p>
+      <p><strong>🦁 Discount Beast</strong><br>Se um cupom for aceito, clique abaixo e mande o arquivo para o Claude.</p>
       <button class="go">Salvar carrinho para o Discount Beast</button>
       <p class="msg" style="margin:8px 0 0"></p>
     </div>`;
