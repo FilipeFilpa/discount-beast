@@ -120,7 +120,8 @@ export function matchScore(product: PageProduct, hit: Pick<SearchHit, 'title' | 
 
   const brand = product.brand ? normalize(product.brand) : '';
   const hitWords = words(hit.title);
-  if (brand && !normalize(hit.title).includes(brand)) return { score: 0, why: 'outra marca' };
+  // Na loja da própria marca (adidas.com.br) o título não repete a marca: vale o endereço também.
+  if (brand && !haystack.includes(brand)) return { score: 0, why: 'outra marca' };
 
   const a = profile(product.name, product.brand);
   const b = profile(hit.title, product.brand);

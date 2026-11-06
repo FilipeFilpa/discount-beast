@@ -31,12 +31,35 @@ export function readPageProduct(doc: Document = document): PageProduct | null {
   const fromLd = productFromJsonLd(blocks, location.href);
   const meta = (name: string) => doc.querySelector<HTMLMetaElement>(`meta[property="${name}"], meta[name="${name}"], meta[itemprop="${name}"]`)?.content ?? null;
   const metaPrice = Number(meta('product:price:amount') ?? meta('og:price:amount') ?? meta('price') ?? NaN);
-  if (fromLd) return { ...fromLd, price: fromLd.price ?? (metaPrice > 0 ? metaPrice : null) };
+  if (fromLd) return { ...fromLd, price: fromLd.price ?? (metaPrice > 0 ? metaPrice : visiblePrice(doc)) };
   // Sem JSON-LD: só conta como página de produto se a loja disser que é (og:type product) e tiver preço.
   if (!/product/i.test(meta('og:type') ?? '') || !(metaPrice > 0)) return null;
   const name = doc.querySelector('h1')?.textContent?.trim() || meta('og:title');
   if (!name) return null;
   return { name, brand: meta('product:brand') ?? meta('og:brand'), gtin: null, sku: null, price: metaPrice, url: location.href };
+}
+
+/**
+ * Sem preço no JSON-LD (ex.: Netshoes): pega o preço em destaque na tela, o "R$" com a maior fonte,
+ * ignorando preço riscado, parcela ("8x de R$ 75,00") e o nosso cartão.
+ */
+function visiblePrice(doc: Document): number | null {
+  let best: { size: number; value: number } | null = null;
+  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    const el = node.parentElement;
+    const text = node.textContent ?? '';
+    if (!el || !/\d/.test(text) || el.closest('s, del, discount-beast-prices, discount-beast-panel')) continue;
+    const full = /R\$/.test(text) ? text : el.parentElement?.textContent ?? '';
+    const m = full.match(/R\$\s*(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
+    if (!m || /\d+\s*x\s*(de\s*)?R\$/i.test(full)) continue;
+    const style = getComputedStyle(el);
+    if (style.textDecorationLine.includes('line-through') || el.getBoundingClientRect().width === 0) continue;
+    const size = parseFloat(style.fontSize);
+    const value = Number(`${m[1]!.replace(/\./g, '')}.${m[2]}`);
+    if (value > 0 && (!best || size > best.size)) best = { size, value };
+  }
+  return best?.value ?? null;
 }
 
 function createPanel(store: StoreId, product: PageProduct): HTMLElement {

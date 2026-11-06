@@ -85,3 +85,10 @@ test('"M" no fim do nome da adidas é masculino', () => {
   assert.ok(matchScore(rc, hit('Tênis Adidas Adizero Drive Rc Feminino')).score < MATCH_MIN);
   assert.ok(matchScore({ ...rc, name: 'Tênis Adizero Drive RC W' }, hit('Tênis Adidas Adizero Drive Rc Masculino')).score < MATCH_MIN);
 });
+
+test('na loja da marca o título não traz a marca, mas o endereço traz', () => {
+  const ns: PageProduct = { name: 'Tênis Adidas Adizero Drive Rc Masculino - Pink+Preto', brand: 'Adidas', gtin: null, sku: 'FBA-86EP-492', price: 599.99, url: 'u' };
+  assert.ok(matchScore(ns, hit('Tênis Adizero Drive RC M', 699.99, 'https://www.adidas.com.br/tenis-adizero-drive-rc/JR1234.html')).score >= MATCH_MIN);
+  assert.ok(matchScore(ns, hit('Tênis Adizero Drive RC W', 699.99, 'https://www.adidas.com.br/tenis-adizero-drive-rc/JR9999.html')).score < MATCH_MIN);
+  assert.ok(matchScore(ns, hit('Tênis Adizero Drive RC', 99, 'https://www.mercadolivre.com.br/tenis-generico/up/MLBU1')).score < MATCH_MIN);
+});
