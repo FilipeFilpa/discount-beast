@@ -5,6 +5,8 @@ import { codeFromText, codesFromJson, mergeSeen, PELANDO_MAX_AGE_MS, storeFromPe
 test('storeFromPelandoPath reconhece a loja pela URL de cupons', () => {
   assert.equal(storeFromPelandoPath('/cupons-de-descontos/adidas'), 'adidas');
   assert.equal(storeFromPelandoPath('/cupons-de-descontos/magazine-luiza'), 'magalu');
+  assert.equal(storeFromPelandoPath('/cupons-de-descontos/aliexpress'), 'aliexpress');
+  assert.equal(storeFromPelandoPath('/cupons-de-descontos/shopee'), 'shopee');
   assert.equal(storeFromPelandoPath('/cupons-de-descontos/mercado-livre/'), 'mercadolivre');
   assert.equal(storeFromPelandoPath('/d/tenis-adidas-123'), undefined); // não é página de cupons
   assert.equal(storeFromPelandoPath('/cupons-de-descontos/shein'), undefined);
