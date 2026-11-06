@@ -18,6 +18,8 @@ export const ADIDAS = {
   appliedArea: '[data-auto-id="voucher-wallet-wrapper"], .cart-coupon-container, [data-auto-id="cart-coupon-applied"]',
   /** Do mais específico para o mais genérico: o primeiro visível vence. */
   removeButton: [
+    // Conferido no DevTools em 06/11/2026: <div class="coupon-complete__close"> → <button data-auto-id="glass-coupon-button-delete">
+    'button[data-auto-id="glass-coupon-button-delete"]',
     '[class*="coupon-complete__close"]',
     '[data-auto-id*="remove" i], [data-auto-id*="close" i], [data-auto-id*="delete" i]',
     '[aria-label*="remov" i], [aria-label*="fechar" i], [aria-label*="close" i], [aria-label*="excluir" i]',
@@ -123,7 +125,11 @@ function findRemoveButton(): HTMLElement | null {
   for (const selector of ADIDAS.removeButton) {
     for (const area of areas) {
       const hit = [...area.querySelectorAll(selector)].find((el) => el.getBoundingClientRect().width > 0);
-      if (hit) return (hit.closest<HTMLElement>('button, [role="button"]') ?? (hit instanceof HTMLElement ? hit : hit.parentElement));
+      if (!hit) continue;
+      // Clica sempre no <button> de verdade: o de dentro (se achamos o "embrulho") ou o de fora (se achamos o ícone).
+      if (hit.matches('button, [role="button"]')) return hit as HTMLElement;
+      const button = hit.querySelector<HTMLElement>('button, [role="button"]') ?? hit.closest<HTMLElement>('button, [role="button"]');
+      return button ?? (hit instanceof HTMLElement ? hit : hit.parentElement);
     }
   }
   return null;
