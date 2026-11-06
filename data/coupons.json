@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T13:53:47.593Z",
+  "updatedAt": "2026-11-06T15:29:19.465Z",
   "coupons": [
     {
       "store": "adidas",
@@ -70,6 +70,784 @@
         "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA1",
+      "title": "Cupom Aliexpress concede desconto de R$ 16",
+      "discount": "R$ 16 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA2",
+      "title": "Compre com código promocional Aliexpress e economize R$ 32",
+      "discount": "R$ 32 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA3",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 50",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA4",
+      "title": "Economize R$ 120 em seus pedidos aplicando cupom Aliexpress",
+      "discount": "R$ 120 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA5",
+      "title": "A chance de economizar R$ 210 em compras na Aliexpress",
+      "discount": "R$ 210 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA6",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 300 OFF",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA7",
+      "title": "Os melhores itens do site com R$ 400 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 400 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA8",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 580",
+      "discount": "R$ 580 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AESUPER1",
+      "title": "Aproveite para economizar R$ 540 com cupom Aliexpress",
+      "discount": "R$ 540 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AESUPER2",
+      "title": "Cupom Aliexpress concede desconto de R$ 650",
+      "discount": "R$ 650 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV02",
+      "title": "Economize R$ 32 em seus pedidos aplicando cupom Aliexpress",
+      "discount": "R$ 32 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV06",
+      "title": "Cupom de desconto Aliexpress oferece R$ 300 OFF em suas compras",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV22",
+      "title": "Desconto de R$670 OFF em suas compras com cupom AliExpress",
+      "discount": "R$ 670 OFF",
+      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV01",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 16",
+      "discount": "R$ 16 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV03",
+      "title": "A chance de economizar R$ 50 em compras na Aliexpress",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV04",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 120 OFF",
+      "discount": "R$ 120 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV05",
+      "title": "Os melhores itens do site com R$ 210 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 210 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV07",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 400",
+      "discount": "R$ 400 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV08",
+      "title": "Os melhores itens do site com R$ 580 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 580 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AFFNOV09",
+      "title": "Aproveite para economizar R$ 750 com cupom Aliexpress",
+      "discount": "R$ 750 OFF",
+      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD6",
+      "title": "Os melhores itens do site com R$240 OFF aplicando cupom AliExpress",
+      "discount": "R$ 240 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD8",
+      "title": "A chance de economizar R$445 em compras na AliExpress",
+      "discount": "R$ 445 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRFSAFF01",
+      "title": "Receba R$10 OFF no seu carrinho com o cupom AliExpress",
+      "discount": "R$ 10 OFF",
+      "expiresAt": "2026-12-31T23:59:00.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRFSAFF07",
+      "title": "Desconto especial de R$305 OFF no pedido com o cupom AliExpress",
+      "discount": "R$ 305 OFF",
+      "expiresAt": "2026-12-31T23:59:00.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRFSAFF08",
+      "title": "Economize R$440 na Promoção de Primavera",
+      "discount": "R$ 440 OFF",
+      "expiresAt": "2026-12-31T23:59:00.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR03",
+      "title": "Ganhe R$15 OFF em suas compras aplicando o cupom AliExpress",
+      "discount": "R$ 15 OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR07",
+      "title": "Economize R$35 em compras a partir de R$280",
+      "discount": "R$ 35 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR13",
+      "title": "R$65 OFF garantido com cupom AliExpress",
+      "discount": "R$ 65 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA10",
+      "title": "AliExpress concede R$530 de economia usando cupom",
+      "discount": "R$ 530 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "AEMEGA11",
+      "title": "Desconto imperdível de R$450 aplicando código AliExpress",
+      "discount": "R$ 450 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "ALIFAN",
+      "title": "Primeiro pedido com R$15 OFF no cupom AliExpress",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BDBR04",
+      "title": "Obtenha R$22 OFF com cupom AliExpress",
+      "discount": "R$ 22 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BDBR06",
+      "title": "Aproveite desconto AliExpress e ganhe R$33 OFF",
+      "discount": "R$ 33 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BDBR10",
+      "title": "Faça compras com cupom AliExpress e obtenha R$56 OFF",
+      "discount": "R$ 56 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BDBR15",
+      "title": "Ative cupom de desconto e ganhe R$85 OFF",
+      "discount": "R$ 85 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BDBR30",
+      "title": "Pague R$170 a menos com cupom AliExpress",
+      "discount": "R$ 170 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRAE11",
+      "title": "Aplique o cupom e leve R$305 OFF",
+      "discount": "R$ 305 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRAE3",
+      "title": "Garanta R$50 OFF usando o cupom AliExpress",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD1",
+      "title": "Faça compras com cupom de desconto AliExpress e economize R$12",
+      "discount": "R$ 12 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD2",
+      "title": "Cupom AliExpress concede desconto de R$18",
+      "discount": "R$ 18 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD3",
+      "title": "Aproveite para economizar R$50 com cupom AliExpress",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD4",
+      "title": "Use cupom AliExpress e tenha desconto de R$85",
+      "discount": "R$ 85 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD5",
+      "title": "Cupom de desconto Aliexpress oferece R$165 OFF em suas compras",
+      "discount": "R$ 165 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRCD7",
+      "title": "O momento chegou: Aplique cupom AliExpress e ganhe R$315 OFF",
+      "discount": "R$ 315 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRFS3",
+      "title": "Cupom de desconto AliExpress garante R$40 de economia",
+      "discount": "R$ 40 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "BRGM8",
+      "title": "COMPRE MAIS: R$ 545 OFF na AliExpress com cupom (a partir de R$ 4.200)",
+      "discount": "R$ 545 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA1",
+      "title": "Cupom AliExpress exclusivo concede R$18 OFF",
+      "discount": "R$ 18 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA2",
+      "title": "Aproveite R$35 OFF com cupom AliExpress",
+      "discount": "R$ 35 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA3",
+      "title": "R$65 OFF para você economizar",
+      "discount": "R$ 65 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA4",
+      "title": "Sua chance de garantir R$110 de economia",
+      "discount": "R$ 110 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA5",
+      "title": "Economia de R$195 em suas compras com cupom AliExpress",
+      "discount": "R$ 195 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA6",
+      "title": "Código AliExpress garante R$270 OFF",
+      "discount": "R$ 270 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA7",
+      "title": "Aplique código AliExpress para garantir R$390 OFF",
+      "discount": "R$ 390 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "CUPONOMIA8",
+      "title": "Suas compras com R$600 de economia",
+      "discount": "R$ 600 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "FABR43",
+      "title": "Até 60% OFF nos produtos + R$220 no voucher AliExpress",
+      "discount": "60% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "GRANDE1",
+      "title": "Cupom AliExpress concede desconto de R$ 840",
+      "discount": "R$ 840 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "MEGABR08",
+      "title": "COMPRE O QUE QUISER: R$ 545 de desconto na AliExpress (a partir de R$ 4.200)",
+      "discount": "Frete grátis",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "MELIUZ1",
+      "title": "Cupom AliExpress exclusivo com R$16 OFF",
+      "discount": "R$ 16 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "MELIUZ3",
+      "title": "Ganhe R$50 OFF usando o cupom AliExpress",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "MELIUZ5",
+      "title": "Suas compras com R$210 de economia no AliExpress",
+      "discount": "R$ 210 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "MELIUZ8",
+      "title": "R$580 OFF garantido com cupom AliExpress",
+      "discount": "R$ 580 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "NIVER1",
+      "title": "R$ 500 de desconto em compras a partir de R$ 3.700",
+      "discount": "R$ 500 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "NIVER2",
+      "title": "R$ 680 de desconto em compras a partir de R$ 4.900",
+      "discount": "R$ 680 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "NOVA1",
+      "title": "COMPRE MAIS: R$ 240 OFF em compras acima de R$ 1.600 na AliExpress (com cupom)",
+      "discount": "R$ 240 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "NOVA2",
+      "title": "R$ 860 OFF na AliExpress (acima de R$ 5.200) com cupom",
+      "discount": "R$ 860 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR24",
+      "title": "Desconto AliExpress: R$125 OFF em seus pedidos",
+      "discount": "R$ 125 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "aliexpress",
+      "code": "WOBR43",
+      "title": "Economia de R$220 com código AliExpress",
+      "discount": "R$ 220 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
     },
     {
       "store": "amazon",
@@ -3192,6 +3970,546 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUPOM10",
+      "title": "R$10 OFF acima de R$89 com cupom Shopee",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "10DEDESCONTO",
+      "title": "Cupom Shopee concede 10% OFF em produtos",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "40OFFD4SH0",
+      "title": "Ganhe R$40 OFF em suas compras com cupom Shopee",
+      "discount": "R$ 40 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "70D3D3SC0NT0",
+      "title": "Confira desconto imperdível de R$70 com cupom Shopee",
+      "discount": "R$ 70 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "99N4SH0",
+      "title": "R$35 OFF com cupom Shopee",
+      "discount": "R$ 35 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "AG05DD",
+      "title": "Cupom Shopee concede desconto de R$5",
+      "discount": "R$ 5 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "C0M3C0U200",
+      "title": "O momento chegou: Aplique cupom Shopee e ganhe R$ 200 OFF",
+      "discount": "R$ 200 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CHOICE40",
+      "title": "Shopee garante desconto de 40% com cupom",
+      "discount": "40% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A0606PB",
+      "title": "R$15 de desconto com cupom exclusivo Shopee",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A0808PB",
+      "title": "Ganhe R$25 OFF com cupom Shopee exclusivo",
+      "discount": "R$ 25 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A0909PB",
+      "title": "Cupom Shopee concede R$30 OFF",
+      "discount": "R$ 30 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A1010PB",
+      "title": "Compre com cupom exclusivo Shopee e ganhe R$20 OFF",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A1706PB",
+      "title": "Aplique cupom Shopee exclusivo e ganhe R$20 OFF",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A2005PB",
+      "title": "Shopee garante R$10 OFF em seus pedidos com cupom exclusivo",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A2309PB",
+      "title": "Use cupom Shopee exclusivo e ganhe R$10 OFF",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A2608PB",
+      "title": "Ganhe R$15 OFF com cupom Shopee exclusivo",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0M1A2810PB",
+      "title": "R$15 OFF em suas compras com cupom Shopee exclusivo",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MI408PB",
+      "title": "Cupom Shopee exclusivo garante R$10 OFF",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MI41503PB",
+      "title": "Utilize cupom Shopee exclusivo e obtenha R$20 OFF",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA0202PB",
+      "title": "R$20 OFF utilizando cupom Shopee",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA1401PB",
+      "title": "Shopee garante R$10 OFF em suas compras com cupom exclusivo",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA2204PB",
+      "title": "Aplique cupom exclusivo Shopee e ganhe R$15 OFF",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA2502PB",
+      "title": "Hora do desconto: R$10 OFF com cupom Shopee exclusivo",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA2503PB",
+      "title": "Código Shopee exclusivo concede R$15 OFF",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUP0N0MIA70707SHOPB",
+      "title": "Compre com cupom Shopee exclusivo e ganhe R$30 OFF",
+      "discount": "R$ 30 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUPOM30",
+      "title": "Sua chance de economizar R$30 em compras a partir de R$279",
+      "discount": "R$ 30 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUPOM80",
+      "title": "R$80 OFF com cupom Shopee",
+      "discount": "R$ 80 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUPOMAQUI",
+      "title": "Renove seus móveis com R$160 OFF usando cupom Shopee",
+      "discount": "R$ 160 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "CUPON0MIA0404PB",
+      "title": "Promo Shopee: R$20 OFF com cupom exclusivo",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "DESCONTO30AF",
+      "title": "Aplique cupom Shopee e ganhe R$ 30 OFF",
+      "discount": "R$ 30 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "DESCONTOAQUI",
+      "title": "Confira: R$20 OFF em pedidos acima de R$199 com cupom Shopee",
+      "discount": "R$ 20 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "FRETEGRATIS",
+      "title": "Ganhe frete grátis em pedidos superiores a R$10 com cupom Shopee",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHE10AQUI",
+      "title": "Use cupom Shopee para garantir R$10",
+      "discount": "R$ 10 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHE25",
+      "title": "Código promocional Shopee dá R$5 OFF a partir de R$25",
+      "discount": "R$ 5 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHE35",
+      "title": "Economize agora R$35 OFF em compras",
+      "discount": "R$ 35 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHE5OFF",
+      "title": "Ganhe 5% OFF na Shopee usando código promocional",
+      "discount": "5% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHECUPOM",
+      "title": "Aproveite cupom Shopee e ganhe R$100",
+      "discount": "R$ 100 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GANHEDESCONTO",
+      "title": "Código Shopee oferece R$56 OFF em seleção de produtos",
+      "discount": "R$ 56 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GARANTA30",
+      "title": "Aproveite R$30 em seus pedidos usando código",
+      "discount": "R$ 30 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "GARANTADESCONTO",
+      "title": "Desconto de R$50 em pedidos acima de R$409",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "M3L1UZ2810SHOPB",
+      "title": "Cupom de desconto Shopee exclusivo oferece R$15 OFF",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "OFERTAS10",
+      "title": "Aplique cupom Shopee e obtenha 10% OFF",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "PNEUS15",
+      "title": "Voucher Shopee garante 15% OFF em pneus",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "PR0M0B1TELETPB",
+      "title": "Cupom de desconto exclusivo de R$200 OFF na Shopee",
+      "discount": "R$ 200 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "RESGATECUPONS",
+      "title": "Cupom Shopee com até 50% de economia em compras",
+      "discount": "50% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "SHOPEE100AF",
+      "title": "Cupom Shopee concede desconto de R$100",
+      "discount": "R$ 100 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "SHOPEE300AF",
+      "title": "Use cupom Shopee e tenha desconto de R$300",
+      "discount": "R$ 300 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "SUP3R9N1N3",
+      "title": "Aproveite para economizar R$15 com cupom Shopee",
+      "discount": "R$ 15 OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
+    },
+    {
+      "store": "shopee",
+      "code": "TECNOLOGIA50",
+      "title": "Garanta R$50 em seus pedidos",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-06T15:29:19.465Z"
     }
   ]
 }
