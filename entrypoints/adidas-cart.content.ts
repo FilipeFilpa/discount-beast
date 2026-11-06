@@ -117,7 +117,10 @@ function createPanel(): Panel {
       ...results.map((r) => {
         const li = document.createElement('li');
         if (r.code === best?.code) li.className = 'best';
-        const text = r.status === 'worked' ? `✓ −${formatBRL(r.saving ?? 0)}` : label[r.status];
+        const saving = r.saving ?? 0;
+        // Alguns cupons (ex.: 15% do adiClub) trocam as promoções do site e deixam o Total mais caro.
+        const worked = saving >= 0 ? `✓ −${formatBRL(saving)}` : `↑ +${formatBRL(-saving)} (mais caro)`;
+        const text = r.status === 'worked' ? worked : label[r.status];
         li.append(Object.assign(document.createElement('span'), { textContent: r.code }), Object.assign(document.createElement('span'), { textContent: text }));
         return li;
       }),
