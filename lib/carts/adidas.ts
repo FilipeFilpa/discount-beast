@@ -1,3 +1,4 @@
+import type { CartItem } from '../coupon-match';
 import type { CartAdapter, TryStatus } from '../coupon-runner';
 import { parseBRL } from '../price';
 import { clickLikeAPerson, findByText, isVisible, readPriceByLabel, sleep, stableValue, typeInto, visible, waitFor } from './dom';
@@ -27,7 +28,18 @@ export const ADIDAS = {
     'svg',
   ],
   totalText: /^total$/i,
+  /** Nome dos produtos do carrinho. AINDA NÃO CONFERIDO no DevTools: palpites do mais ao menos específico. */
+  itemName: '[data-auto-id*="line-item-name" i], [data-auto-id*="product-name" i], [class*="line-item__name" i], [class*="line-item-name" i], [class*="product-name" i]',
 } as const;
+
+/** Produtos do carrinho da adidas (só nomes; vendedor é sempre a adidas). Vazio se o palpite não bater. */
+export function readAdidasItems(): CartItem[] {
+  const names = [...document.querySelectorAll(ADIDAS.itemName)]
+    .filter((el) => isVisible(el) && !el.closest('discount-beast-panel'))
+    .map((el) => el.textContent?.replace(/\s+/g, ' ').trim() ?? '')
+    .filter((t) => t.length > 3 && t.length < 150);
+  return [...new Set(names)].map((name) => ({ name, seller: 'adidas' }));
+}
 
 /** O link "Usar pontos ou descontos" está na página? (é assim que sabemos que é o carrinho) */
 export function isAdidasCart(): boolean {
@@ -95,6 +107,8 @@ export const adidasCart: CartAdapter = {
     }
     throw new Error('O cupom não saiu do carrinho.');
   },
+
+  items: readAdidasItems,
 
   async close() {
     const input = visible(ADIDAS.input);
