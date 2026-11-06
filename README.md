@@ -46,7 +46,7 @@ Recebeu um código por e-mail, app ou adiClub? Abra o popup, escolha a loja em *
 ## Como os cupons chegam na extensão
 
 1. O GitHub Actions roda o coletor ([`collector/`](collector/)) todo dia às 6h e às 18h (horário de Brasília).
-2. O coletor lê as páginas de cupons do **Promobit**, **Méliuz** e **Cuponomia** para cada loja, junta tudo, tira repetidos e vencidos.
+2. O coletor lê as páginas de cupons do **Promobit**, **Méliuz**, **Cuponomia**, **Cuponation** e **Cuponeria** para cada loja, junta tudo, tira repetidos e vencidos.
 3. O resultado vai para [`data/coupons.json`](data/coupons.json), que fica público no GitHub.
 4. A extensão baixa esse arquivo ao abrir o Chrome e a cada 6 horas.
 
@@ -86,7 +86,7 @@ lib/
 collector/
   collect.ts         # coletor que roda no GitHub Actions
   merge.ts           # junta cupons de várias fontes sem repetir
-  sources/           # um arquivo por site de cupons (promobit, meliuz, cuponomia)
+  sources/           # um arquivo por site de cupons (promobit, meliuz, cuponomia, cuponation, cuponeria)
 data/
   coupons.json       # cupons coletados (atualizado pelo robô, não edite à mão)
 .github/workflows/

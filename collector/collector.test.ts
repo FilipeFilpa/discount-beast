@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { buildFeed, mergeCoupons } from './merge.ts';
+import { cuponation } from './sources/cuponation.ts';
+import { cuponeria } from './sources/cuponeria.ts';
 import { cuponomia } from './sources/cuponomia.ts';
 import { meliuz } from './sources/meliuz.ts';
 import { promobit } from './sources/promobit.ts';
@@ -54,6 +56,35 @@ test('cuponomia lê só os itens do tipo código da loja certa', () => {
   const html = `<ul>${item('code', 'adidas', 'ACHADOS')}${item('offer', 'adidas', '')}${item('code', 'nike', 'NIKE10')}</ul>`;
   assert.deepEqual(cuponomia.parse(html, 'adidas'), [
     { code: 'ACHADOS', title: 'Use cupom adidas e receba 10% OFF', discount: '10% OFF', expiresAt: null },
+  ]);
+});
+
+test('cuponation lê o JSON escapado, só códigos da loja certa, sem repetir', () => {
+  const voucher = (code: string | null, type: string, page: string, extra = '') =>
+    `"voucher":{"idPool":"x","title":"Botas com 15% OFF","caption1":"15%","caption2":"OFF","endTime":"2026-12-01T02:59:59.000Z",` +
+    `"code":${code ? `"${code}"` : 'null'},"termsAndConditions":"Válido apenas nos produtos com o selo do cupom.${extra}",` +
+    `"retailer":{"name":"Netshoes","landingPage":{"url":"${page}"}},"voucherTypeName":"${type}"}`;
+  const rsc = [
+    voucher('BOTA15', 'Code', 'cupom-desconto-netshoes'),
+    voucher('BOTA15', 'Code', 'cupom-desconto-netshoes'),
+    voucher(null, 'Deal', 'cupom-desconto-netshoes'),
+    voucher('CENTAURO10', 'Code', 'cupom-centauro'),
+  ].join(',');
+  const html = `<script>self.__next_f.push([1,"${rsc.replace(/"/g, '\\"')}"])</script>`;
+  assert.deepEqual(cuponation.parse(html, 'netshoes'), [
+    { code: 'BOTA15', title: 'Botas com 15% OFF', discount: '15% OFF', expiresAt: '2026-12-01T02:59:59.000Z', terms: 'Válido apenas nos produtos com o selo do cupom.' },
+  ]);
+  assert.throws(() => cuponation.parse('<html></html>', 'netshoes'), /voucher/);
+});
+
+test('cuponeria lê offersActive, pula ofertas sem código e limpa as regras', () => {
+  const offersActive = [
+    { title: 'Cupom Netshoes 10% primeira compra', code: 'PRIMEIRA10', badge: '10%', rules: 'Válido para itens da lista.\r\nCashback válido em todas as compras.', expired: false, expirationDate: '2026-12-31 00:00:00' },
+    { title: 'Outlet', code: null, badge: '80%', rules: '', expired: false, expirationDate: null },
+  ];
+  const html = `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify({ props: { pageProps: { offersActive } } })}</script>`;
+  assert.deepEqual(cuponeria.parse(html, 'netshoes'), [
+    { code: 'PRIMEIRA10', title: 'Cupom Netshoes 10% primeira compra', discount: '10% OFF', expiresAt: '2026-12-31T03:00:00.000Z', terms: 'Válido para itens da lista.' },
   ]);
 });
 

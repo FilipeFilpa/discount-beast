@@ -7,6 +7,8 @@ export interface RawCoupon {
   title: string;
   discount: string;
   expiresAt: string | null;
+  /** Regras do cupom (onde vale, valor mínimo...). Só algumas fontes trazem. */
+  terms?: string;
 }
 
 /** Um site de cupons. Para adicionar outro, crie um arquivo nesta pasta e registre em collector/collect.ts. */

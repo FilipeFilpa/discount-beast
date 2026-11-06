@@ -1,7 +1,7 @@
 import type { StoreId } from './stores.ts';
 
 /** De onde o cupom veio. */
-export type CouponSource = 'promobit' | 'meliuz' | 'cuponomia';
+export type CouponSource = 'promobit' | 'meliuz' | 'cuponomia' | 'cuponation' | 'cuponeria';
 
 /** Um cupom público encontrado pelo coletor (collector/collect.ts). */
 export interface Coupon {
@@ -14,6 +14,11 @@ export interface Coupon {
   discount: string;
   /** Validade em ISO 8601, ou null quando o site não informa. */
   expiresAt: string | null;
+  /**
+   * Regras do cupom, quando o site informa (ex.: "Válido apenas nos produtos com o selo do cupom.").
+   * Ajuda a entender por que um código foi recusado no carrinho.
+   */
+  terms?: string;
   /** Sites onde o cupom apareceu. Quanto mais fontes, mais confiável. */
   sources: CouponSource[];
   /** Primeira vez que o coletor viu o cupom (ISO 8601). */
