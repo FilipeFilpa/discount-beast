@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser';
 import { bestMatch, matchScore, MATCH_MIN, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
-import { extractSearchHits, fetchProductPrice, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
+import { hitsFromPolycards } from './polycards';
+import { extractSearchHits, fetchPageText, fetchProductPrice, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
 
 /** O que o cartão mostra para cada loja. */
@@ -83,41 +84,49 @@ function waitForLoad(tabId: number): Promise<void> {
 
 /** Lê os resultados várias vezes até aparecer algo (ou estourar o tempo). */
 async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]> {
+  const run = async (mode: 'live' | 'generic' | 'fetch') => {
+    const [result] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, mode] }).catch(() => []);
+    return (result?.result as SearchHit[] | undefined) ?? [];
+  };
+  const priced = (hits: SearchHit[]) => hits.some((h) => h.price > 0);
   const end = Date.now() + RESULTS_TIMEOUT_MS;
-  let hits: SearchHit[] = [];
+  let titlesOnly: SearchHit[] = [];
   let triedFetch = false;
   while (Date.now() < end) {
-    const [result] = await browser.scripting.executeScript({
-      target: { tabId },
-      func: extractSearchHits,
-      args: [source.productLink.source],
-    });
-    hits = (result?.result as SearchHit[] | undefined) ?? [];
-    if (!hits.some((h) => h.price > 0)) {
-      // O formato do link de produto pode ter mudado: tenta o plano B, que aceita qualquer link de produto da loja.
-      const [loose] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, 'generic'] });
-      const looseHits = (loose?.result as SearchHit[] | undefined) ?? [];
-      if (looseHits.some((h) => h.price > 0) || !hits.length) hits = looseHits;
-      if (!hits.some((h) => h.price > 0) && !triedFetch) {
-        triedFetch = true;
-        const [fetched] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, 'fetch'] }).catch(() => []);
-        const fetchedHits = (fetched?.result as SearchHit[] | undefined) ?? [];
-        if (fetchedHits.length) console.info(`[Discount Beast] ${source.name}: achei no HTML baixado (plano C)`, fetchedHits.slice(0, 3));
-        if (fetchedHits.some((h) => h.price > 0) || !hits.length) hits = fetchedHits;
-      }
-      if (looseHits.length) console.info(`[Discount Beast] ${source.name}: achei pelo plano B (links genéricos)`, hits.slice(0, 3));
-    }
-    // Espera aparecer pelo menos um preço; se nunca aparecer, segue só com os títulos.
-    if (hits.some((h) => h.price > 0)) {
+    // Plano A: a lista desenhada na aba, com o formato de link de produto da loja.
+    const hits = await run('live');
+    if (priced(hits)) {
       // Dá mais um tempinho para a lista terminar de carregar e lê de novo.
       await sleep(1000);
-      const [again] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source] });
-      const more = (again?.result as SearchHit[] | undefined) ?? [];
+      const more = await run('live');
       return more.length >= hits.length ? more : hits;
     }
+    if (hits.length) titlesOnly = hits;
+    if (!triedFetch) {
+      triedFetch = true;
+      // Plano B (Mercado Livre): numa aba de fundo a lista não aparece, mas os produtos vêm num JSON dentro do HTML.
+      const [page] = await browser.scripting.executeScript({ target: { tabId }, func: fetchPageText }).catch(() => []);
+      const fromJson = hitsFromPolycards(String(page?.result ?? ''));
+      if (fromJson.length) {
+        console.info(`[Discount Beast] ${source.name}: li o JSON da página`, fromJson.slice(0, 3));
+        return fromJson;
+      }
+      // Plano C: o HTML que o servidor mandou, antes do JavaScript da loja.
+      const fetched = await run('fetch');
+      if (priced(fetched)) return fetched;
+      if (fetched.length && !titlesOnly.length) titlesOnly = fetched;
+    }
+    // Plano D: o formato do link pode ter mudado; aceita qualquer link de produto da loja.
+    const loose = await run('generic');
+    if (priced(loose)) {
+      console.info(`[Discount Beast] ${source.name}: achei por links genéricos`, loose.slice(0, 3));
+      return loose;
+    }
+    if (loose.length && !titlesOnly.length) titlesOnly = loose;
     await sleep(1500);
   }
-  return hits;
+  // Nunca apareceu preço (ex.: Netshoes mostra "Confira"): segue com os títulos; o preço vem da página do produto.
+  return titlesOnly;
 }
 
 /**

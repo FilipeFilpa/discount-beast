@@ -207,3 +207,9 @@ export async function fetchProductPrice(url: string): Promise<number | null> {
   }
   return prices.length ? Math.min(...prices) : null;
 }
+
+/** Baixa o HTML da página aberta na aba (mesmo site, seus cookies). Roda dentro da aba. */
+export async function fetchPageText(): Promise<string> {
+  const response = await fetch(location.href, { credentials: 'include' });
+  return (await response.text()).slice(0, 5_000_000);
+}
