@@ -1,6 +1,6 @@
 import type { CartAdapter, TryStatus } from '../coupon-runner';
 import { parseBRL } from '../price';
-import { findByText, isVisible, sleep, typeInto, visible, waitFor } from './dom';
+import { clickLikeAPerson, findByText, isVisible, readPriceByLabel, sleep, stableValue, typeInto, visible, waitFor } from './dom';
 
 /**
  * Seletores do carrinho da adidas.com.br (conferidos no DevTools em 06/11/2026).
@@ -36,14 +36,7 @@ export function isAdidasCart(): boolean {
 
 /** Lê o Total do "Resumo do pedido": acha o texto "Total" e o preço na mesma linha. */
 export function readAdidasTotal(): number | null {
-  for (const label of findByText(ADIDAS.totalText)) {
-    let row: HTMLElement | null = label;
-    for (let up = 0; row && up < 4; up++, row = row.parentElement) {
-      const price = parseBRL(row.textContent ?? '');
-      if (price !== null) return price;
-    }
-  }
-  return null;
+  return readPriceByLabel(ADIDAS.totalText, parseBRL);
 }
 
 export const adidasCart: CartAdapter = {
@@ -55,18 +48,8 @@ export const adidasCart: CartAdapter = {
     return match?.[1]?.toUpperCase() ?? null;
   },
 
-  async total(changedFrom) {
-    // Espera o Total mudar (até 5 s) e depois ficar parado por ~1 s.
-    if (changedFrom !== undefined) await waitFor(() => { const t = readAdidasTotal(); return t !== null && t !== changedFrom; }, 5000);
-    let last = readAdidasTotal();
-    let stableSince = Date.now();
-    const end = Date.now() + 8000;
-    while (Date.now() < end && Date.now() - stableSince < 1000) {
-      await sleep(200);
-      const now = readAdidasTotal();
-      if (now !== last) { last = now; stableSince = Date.now(); }
-    }
-    return last;
+  total(changedFrom) {
+    return stableValue(readAdidasTotal, changedFrom);
   },
 
   async apply(code) {
@@ -141,17 +124,6 @@ function findRemoveButton(): HTMLElement | null {
     }
   }
   return null;
-}
-
-/** Alguns botões React só reagem aos eventos de mouse completos, não só ao "click". */
-function clickLikeAPerson(el: HTMLElement): void {
-  const box = el.getBoundingClientRect();
-  const at = { bubbles: true, cancelable: true, clientX: box.x + box.width / 2, clientY: box.y + box.height / 2 };
-  el.dispatchEvent(new PointerEvent('pointerdown', at));
-  el.dispatchEvent(new MouseEvent('mousedown', at));
-  el.dispatchEvent(new PointerEvent('pointerup', at));
-  el.dispatchEvent(new MouseEvent('mouseup', at));
-  el.click();
 }
 
 /** Abre a gaveta "Usar pontos ou descontos" (se já não estiver aberta) e devolve o campo do cupom. */
