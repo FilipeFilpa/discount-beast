@@ -1,8 +1,14 @@
 import type { Message } from '@/lib/messages';
 import { REFRESH_MINUTES, refreshCoupons } from '@/lib/coupon-store';
+import { comparePrices } from '@/lib/price-compare';
 
 export default defineBackground(() => {
-  browser.runtime.onMessage.addListener((message: Message, sender) => {
+  browser.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
+    if (message.type === 'compare-prices') {
+      // Busca nas outras lojas (abre e fecha abas de fundo). "return true" = a resposta vem depois.
+      comparePrices(message.product, message.from).then(sendResponse, (error) => sendResponse({ error: String(error) }));
+      return true;
+    }
     if (message.type !== 'store-visit' || sender.tab?.id === undefined) return;
 
     // Marca o ícone da extensão na aba com um "✓" verde para mostrar que a loja é suportada.
