@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import type { Coupon } from './coupons.ts';
 import { findBestCoupon, orderCandidates, type CartAdapter, type TryStatus } from './coupon-runner.ts';
+import { mergeCodes, parseCodes } from './codes.ts';
 import { parseBRL } from './price.ts';
 
 test('parseBRL lê preços da adidas', () => {
@@ -10,12 +10,10 @@ test('parseBRL lê preços da adidas', () => {
   assert.equal(parseBRL('Grátis'), null);
 });
 
-const coupon = (code: string): Coupon => ({ store: 'adidas', code, title: '', discount: '', expiresAt: null, sources: ['promobit'], firstSeen: '' });
-
 test('orderCandidates: os que funcionaram primeiro, recusados recentes ficam de fora', () => {
   const now = Date.UTC(2026, 10, 6);
   const day = 24 * 60 * 60 * 1000;
-  const coupons = ['A', 'B', 'C', 'D', 'E'].map(coupon);
+  const coupons = ['A', 'B', 'C', 'D', 'E'];
   const history = {
     B: { status: 'rejected' as const, at: now - day },
     C: { status: 'worked' as const, saving: 5, at: now - day },
@@ -70,4 +68,15 @@ test('findBestCoupon não aplica nada se nenhum cupom ajuda', async () => {
   const report = await findBestCoupon(cart, ['XYZ', 'FRETEGRATIS']);
   assert.equal(report.best, null);
   assert.equal(applied(), null);
+});
+
+test('parseCodes aceita vários formatos e ignora lixo', () => {
+  assert.deepEqual(parseCodes(' adiclub10\nESQUENTA15, promo-2026; ab  esquenta15 R$50 '), ['ADICLUB10', 'ESQUENTA15', 'PROMO-2026']);
+  assert.deepEqual(parseCodes(''), []);
+});
+
+test('Meus cupons vêm antes dos públicos, sem repetir', () => {
+  const codes = mergeCodes(['MEU10', 'ACHADOS'], ['ACHADOS', 'PROMOBIT']);
+  assert.deepEqual(codes, ['MEU10', 'ACHADOS', 'PROMOBIT']);
+  assert.deepEqual(orderCandidates(codes, {}), ['MEU10', 'ACHADOS', 'PROMOBIT']);
 });

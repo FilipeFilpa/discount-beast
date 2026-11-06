@@ -1,5 +1,3 @@
-import type { Coupon } from './coupons.ts';
-
 /** O que aconteceu quando um código foi testado no carrinho. */
 export type TryStatus = 'worked' | 'rejected' | 'unknown';
 
@@ -61,17 +59,17 @@ export const RETRY_REJECTED_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
 /**
  * Escolhe a ordem dos testes:
  * 1. códigos que já funcionaram antes (os de maior economia primeiro);
- * 2. códigos nunca testados, na ordem do feed (confirmados por mais sites primeiro);
+ * 2. códigos nunca testados, na ordem recebida (os seus de "Meus cupons" primeiro, depois o feed);
  * 3. códigos recusados há mais de 3 dias (podem ter voltado).
  * Recusados recentemente ficam de fora. No máximo `max` códigos.
  */
 export function orderCandidates(
-  coupons: Coupon[],
+  allCodes: string[],
   history: Record<string, PastResult>,
   now = Date.now(),
   max = MAX_TRIES,
 ): string[] {
-  const codes = [...new Set(coupons.map((c) => c.code))];
+  const codes = [...new Set(allCodes)];
   const worked = codes
     .filter((c) => history[c]?.status === 'worked')
     .sort((a, b) => (history[b]?.saving ?? 0) - (history[a]?.saving ?? 0));

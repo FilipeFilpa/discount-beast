@@ -1,7 +1,9 @@
 import { adidasCart, isAdidasCart } from '@/lib/carts/adidas';
+import { mergeCodes } from '@/lib/codes';
 import { getCouponHistory, saveCouponResults } from '@/lib/coupon-history';
 import { findBestCoupon, orderCandidates, type RunReport } from '@/lib/coupon-runner';
 import { couponsFor, getCouponFeed } from '@/lib/coupon-store';
+import { getMyCoupons } from '@/lib/my-coupons';
 import { formatBRL } from '@/lib/price';
 
 /**
@@ -63,15 +65,23 @@ function createPanel(): Panel {
 
   let candidates: string[] = [];
   const load = async (updateMessage = true) => {
+    const mine = await getMyCoupons('adidas');
     const coupons = couponsFor(await getCouponFeed(), 'adidas');
-    candidates = orderCandidates(coupons, await getCouponHistory('adidas'));
+    const codes = mergeCodes(mine, coupons.map((c) => c.code));
+    candidates = orderCandidates(codes, await getCouponHistory('adidas'));
     go.disabled = candidates.length === 0;
     if (!updateMessage) return;
+    const mineCount = candidates.filter((c) => mine.includes(c)).length;
+    const yours = mineCount ? ` (${mineCount} seus)` : '';
     msg.textContent = candidates.length
-      ? `${candidates.length} cupons para testar neste carrinho. Leva uns segundos por cupom.`
+      ? `${candidates.length} cupons para testar neste carrinho${yours}. Leva uns segundos por cupom.`
       : 'Nenhum cupom novo para testar agora.';
   };
   load().catch(() => (msg.textContent = 'Não consegui carregar a lista de cupons.'));
+  // Se você adicionar um código em "Meus cupons" com o carrinho aberto, a contagem atualiza na hora.
+  browser.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.myCoupons && !panel.busy) load().catch(() => {});
+  });
 
   go.addEventListener('click', async () => {
     panel.busy = true;

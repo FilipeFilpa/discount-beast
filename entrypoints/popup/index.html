@@ -14,6 +14,17 @@
       <p id="status">Verificando a aba atual…</p>
       <h2 id="coupons-title" hidden>Cupons encontrados</h2>
       <ul id="coupons"></ul>
+      <section id="mine">
+        <h2>Meus cupons</h2>
+        <p class="hint">Cole códigos que você recebeu por e-mail, app ou adiClub. Ficam só neste Chrome.</p>
+        <label class="row">Loja
+          <select id="mine-store"></select>
+        </label>
+        <textarea id="mine-input" rows="2" placeholder="Ex.: MEUCUPOM10, ADICLUB15"></textarea>
+        <button id="mine-add" type="button">Salvar</button>
+        <p id="mine-msg" class="hint" aria-live="polite"></p>
+        <ul id="mine-list"></ul>
+      </section>
       <h2>Lojas suportadas</h2>
       <ul id="stores"></ul>
     </main>
