@@ -8,6 +8,8 @@ const SLUGS = {
   amazon: 'amazon',
   mercadolivre: 'mercado-livre',
   magalu: 'magazine-luiza',
+  aliexpress: 'aliexpress',
+  shopee: 'shopee',
 } as const;
 
 /**

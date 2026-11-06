@@ -14,6 +14,8 @@ export const meliuz: Source = {
     amazon: 'https://www.meliuz.com.br/desconto/cupom-desconto-amazon',
     mercadolivre: 'https://www.meliuz.com.br/desconto/cupom-desconto-mercado-livre',
     magalu: 'https://www.meliuz.com.br/desconto/cupom-magazine-luiza',
+    aliexpress: 'https://www.meliuz.com.br/desconto/cupom-aliexpress',
+    shopee: 'https://www.meliuz.com.br/desconto/cupom-shopee',
   },
   parse(html) {
     const tags = html.match(/<div class="cpn-layout[^"]*"[^>]*data-offer-code="[^"]*"[^>]*>/g) ?? [];

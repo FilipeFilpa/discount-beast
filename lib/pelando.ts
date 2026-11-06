@@ -15,6 +15,8 @@ const STORE_SLUGS: Record<StoreId, string[]> = {
   netshoes: ['netshoes'],
   centauro: ['centauro'],
   magalu: ['magazine-luiza', 'magalu', 'magazineluiza'],
+  aliexpress: ['aliexpress'],
+  shopee: ['shopee'],
 };
 
 /** Descobre a loja pela URL da página de cupons. Ex.: "/cupons-de-descontos/adidas" → "adidas". */

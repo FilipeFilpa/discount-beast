@@ -1,6 +1,6 @@
 # Discount Beast
 
-Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, Mercado Livre, adidas, Netshoes, Centauro e Magalu.
+Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, Mercado Livre, adidas, Netshoes, Centauro, Magalu, AliExpress e Shopee.
 
 ## Status
 
