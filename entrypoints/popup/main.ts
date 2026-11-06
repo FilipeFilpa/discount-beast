@@ -15,7 +15,7 @@ const mineMsgEl = document.querySelector<HTMLParagraphElement>('#mine-msg')!;
 const mineListEl = document.querySelector<HTMLUListElement>('#mine-list')!;
 
 /** Lojas onde a extensão já testa cupons sozinha no carrinho. */
-const AUTO_TEST: StoreId[] = ['adidas'];
+const AUTO_TEST: StoreId[] = ['adidas', 'netshoes'];
 
 /** Uma linha da lista: código (clique para copiar), desconto e descrição. */
 function couponItem(coupon: Coupon): HTMLLIElement {
