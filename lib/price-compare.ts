@@ -1,5 +1,6 @@
 import { browser } from 'wxt/browser';
 import { bestMatch, matchScore, MATCH_MIN, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
+import { hitsFromNextData } from './next-data';
 import { hitsFromPolycards } from './polycards';
 import { extractSearchHits, fetchPageText, fetchProductPrice, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
@@ -106,7 +107,10 @@ async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]
       triedFetch = true;
       // Plano B (Mercado Livre): numa aba de fundo a lista não aparece, mas os produtos vêm num JSON dentro do HTML.
       const [page] = await browser.scripting.executeScript({ target: { tabId }, func: fetchPageText }).catch(() => []);
-      const fromJson = hitsFromPolycards(String(page?.result ?? ''));
+      const html = String(page?.result ?? '');
+      // Mercado Livre ("polycards") ou lojas em Next.js como a Magalu (__NEXT_DATA__).
+      const poly = hitsFromPolycards(html);
+      const fromJson = poly.length ? poly : hitsFromNextData(html, new URL(source.searchUrl('x')).origin, source.productLink);
       if (fromJson.length) {
         console.info(`[Discount Beast] ${source.name}: li o JSON da página`, fromJson.slice(0, 3));
         return fromJson;
