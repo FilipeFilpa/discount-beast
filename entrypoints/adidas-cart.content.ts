@@ -4,6 +4,7 @@ import { getCouponHistory, saveCouponResults } from '@/lib/coupon-history';
 import { findBestCoupon, orderCandidates, type RunReport } from '@/lib/coupon-runner';
 import { couponsFor, getCouponFeed } from '@/lib/coupon-store';
 import { getMyCoupons } from '@/lib/my-coupons';
+import { getPelandoCoupons } from '@/lib/pelando-coupons';
 import { formatBRL } from '@/lib/price';
 
 /**
@@ -67,20 +68,24 @@ function createPanel(): Panel {
   const load = async (updateMessage = true) => {
     const mine = await getMyCoupons('adidas');
     const coupons = couponsFor(await getCouponFeed(), 'adidas');
-    const codes = mergeCodes(mine, coupons.map((c) => c.code));
+    // Ordem: os seus, depois os que você viu no Pelando, depois os do feed público.
+    const pelando = await getPelandoCoupons('adidas');
+    const codes = mergeCodes([...mine, ...pelando], coupons.map((c) => c.code));
     candidates = orderCandidates(codes, await getCouponHistory('adidas'));
     go.disabled = candidates.length === 0;
     if (!updateMessage) return;
     const mineCount = candidates.filter((c) => mine.includes(c)).length;
-    const yours = mineCount ? ` (${mineCount} seus)` : '';
+    const pelandoCount = candidates.filter((c) => pelando.includes(c) && !mine.includes(c)).length;
+    const parts = [mineCount && `${mineCount} seus`, pelandoCount && `${pelandoCount} do Pelando`].filter(Boolean);
+    const yours = parts.length ? ` (${parts.join(', ')})` : '';
     msg.textContent = candidates.length
       ? `${candidates.length} cupons para testar neste carrinho${yours}. Leva uns segundos por cupom.`
       : 'Nenhum cupom novo para testar agora.';
   };
   load().catch(() => (msg.textContent = 'Não consegui carregar a lista de cupons.'));
-  // Se você adicionar um código em "Meus cupons" com o carrinho aberto, a contagem atualiza na hora.
+  // Se você adicionar um código em "Meus cupons" ou abrir o Pelando com o carrinho aberto, a contagem atualiza na hora.
   browser.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.myCoupons && !panel.busy) load().catch(() => {});
+    if (area === 'local' && (changes.myCoupons || changes.pelandoCoupons) && !panel.busy) load().catch(() => {});
   });
 
   go.addEventListener('click', async () => {
