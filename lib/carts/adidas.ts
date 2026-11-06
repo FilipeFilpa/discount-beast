@@ -94,15 +94,23 @@ export const adidasCart: CartAdapter = {
   },
 
   async remove() {
-    const close = findRemoveButton();
-    if (!close) {
-      // Ajuda a consertar: o HTML do cartão aparece no Console (F12) da página.
-      console.warn('[Discount Beast] cartão do cupom:', visible(ADIDAS.appliedArea)?.outerHTML);
-      throw new Error('Não achei o "X" para tirar o cupom.');
+    // Às vezes a adidas ignora o primeiro clique no "X" (página ainda carregando ou ocupada).
+    // Tentamos até 3 vezes, achando o botão de novo a cada tentativa.
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const close = await waitFor(findRemoveButton, 3000);
+      if (!close) {
+        if (!visible(ADIDAS.applied)) return;
+        // Ajuda a consertar: o HTML do cartão aparece no Console (F12) da página.
+        console.warn('[Discount Beast] cartão do cupom:', visible(ADIDAS.appliedArea)?.outerHTML);
+        throw new Error('Não achei o "X" para tirar o cupom.');
+      }
+      close.scrollIntoView({ block: 'center' });
+      await sleep(300);
+      clickLikeAPerson(close);
+      if (await waitFor(() => !visible(ADIDAS.applied), attempt === 3 ? 10_000 : 5000)) return;
+      console.warn(`[Discount Beast] o cupom continuou no carrinho depois do clique ${attempt}:`, close.outerHTML);
     }
-    clickLikeAPerson(close);
-    const gone = await waitFor(() => !visible(ADIDAS.applied), 10_000);
-    if (!gone) throw new Error('O cupom não saiu do carrinho.');
+    throw new Error('O cupom não saiu do carrinho.');
   },
 
   async close() {
