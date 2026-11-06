@@ -1,6 +1,6 @@
 import { browser } from 'wxt/browser';
-import { bestMatch, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
-import { extractSearchHits, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
+import { bestMatch, matchScore, MATCH_MIN, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
+import { extractSearchHits, fetchProductPrice, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
 
 /** O que o cartão mostra para cada loja. */
@@ -46,8 +46,10 @@ async function searchStore(source: PriceSource, query: string, product: PageProd
     await waitForLoad(tabId);
     const hits = await readHits(tabId, source);
     report.hits = hits.length;
+    await fillMissingPrices(tabId, product, hits);
     report.match = bestMatch(product, hits);
-    if (!hits.length) {
+    // Não achou o mesmo modelo: guarda a página para o botão "Salvar diagnóstico".
+    if (!report.match) {
       const [shot] = await browser.scripting.executeScript({ target: { tabId }, func: snapshotSearchPage }).catch(() => []);
       report.snapshot = shot?.result as PriceReport['snapshot'];
     }
@@ -90,13 +92,15 @@ async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]
       args: [source.productLink.source],
     });
     hits = (result?.result as SearchHit[] | undefined) ?? [];
-    if (!hits.length) {
+    if (!hits.some((h) => h.price > 0)) {
       // O formato do link de produto pode ter mudado: tenta o plano B, que aceita qualquer link de produto da loja.
       const [loose] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, true] });
-      hits = (loose?.result as SearchHit[] | undefined) ?? [];
-      if (hits.length) console.info(`[Discount Beast] ${source.name}: achei pelo plano B (links genéricos)`, hits.slice(0, 3));
+      const looseHits = (loose?.result as SearchHit[] | undefined) ?? [];
+      if (looseHits.some((h) => h.price > 0) || !hits.length) hits = looseHits;
+      if (looseHits.length) console.info(`[Discount Beast] ${source.name}: achei pelo plano B (links genéricos)`, hits.slice(0, 3));
     }
-    if (hits.length) {
+    // Espera aparecer pelo menos um preço; se nunca aparecer, segue só com os títulos.
+    if (hits.some((h) => h.price > 0)) {
       // Dá mais um tempinho para a lista terminar de carregar e lê de novo.
       await sleep(1000);
       const [again] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source] });
@@ -106,4 +110,24 @@ async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]
     await sleep(1500);
   }
   return hits;
+}
+
+/**
+ * Cartões sem preço (ex.: Netshoes numa aba de fundo mostra "Confira"): para os até 3 que
+ * parecem o mesmo produto, lê o preço direto na página do produto.
+ */
+async function fillMissingPrices(tabId: number, product: PageProduct, hits: SearchHit[]): Promise<void> {
+  const todo = hits
+    .filter((h) => h.price <= 0)
+    .map((h) => ({ hit: h, score: matchScore(product, h).score }))
+    .filter((x) => x.score >= MATCH_MIN)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+  await Promise.all(
+    todo.map(async ({ hit }) => {
+      const [result] = await browser.scripting.executeScript({ target: { tabId }, func: fetchProductPrice, args: [hit.url] }).catch(() => []);
+      const price = result?.result as number | null | undefined;
+      if (price && price > 0) hit.price = price;
+    }),
+  );
 }

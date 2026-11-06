@@ -146,11 +146,11 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
     );
     list.hidden = false;
 
-    // Alguma loja voltou vazia: botão que baixa o que a aba viu, para o Claude ajustar a busca.
+    // Alguma loja não achou o produto: botão que baixa o que a aba viu, para o Claude ajustar a busca.
     root.querySelector('.diag')?.remove();
     const empty = reports.filter((r) => r.snapshot);
     if (empty.length) {
-      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: 'Salvar diagnóstico das buscas vazias' });
+      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: 'Salvar diagnóstico das lojas sem resultado' });
       diag.style.cssText = 'margin-top:8px;background:#6b7280;font-size:12px;padding:7px';
       diag.addEventListener('click', () => {
         for (const r of empty) {

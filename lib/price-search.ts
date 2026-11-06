@@ -29,8 +29,8 @@ export const PRICE_SOURCES: PriceSource[] = [
     id: 'netshoes',
     name: 'Netshoes',
     searchUrl: (q) => `https://www.netshoes.com.br/busca?nsCat=Natural&q=${plus(q)}`,
-    // ex.: /p/tenis-adidas-duramo-sl-masculino-FB8-6385-006 (o final é o código do produto)
-    productLink: /netshoes\.com\.br\/(p\/)?[^?#]*[A-Z0-9]{3}-\d{4}-\d{3}/i,
+    // ex.: /p/tenis-adidas-adizero-drive-rc-masculino-FBA-86EP-492 (o final é o código do produto)
+    productLink: /netshoes\.com\.br\/(p\/)?[^?#]*[A-Z0-9]{3}-[A-Z0-9]{4}-\d{3}/i,
   },
   {
     id: 'centauro',
@@ -128,16 +128,17 @@ export function extractSearchHits(linkPattern: string, max = 24, generic = false
       prices = /R\$/.test(node.textContent ?? '') ? pricesIn(node) : [];
       if (prices.length) break;
     }
-    if (!prices.length) continue;
+    // Sem preço no cartão (a Netshoes só mostra "Confira" numa aba de fundo): entra com preço 0,
+    // e o background busca o preço na página do produto se o título bater.
     const titleEl = card.querySelector('h2, h3, [class*="title" i], [class*="name" i]');
-    const candidates = [titleEl?.textContent, card.querySelector('img[alt]')?.getAttribute('alt'), link.getAttribute('title'), link.textContent, link.getAttribute('aria-label')]
+    const candidates = [link.getAttribute('data-name'), titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), link.textContent, card.querySelector('img[alt]')?.getAttribute('alt')]
       // Rótulos de acessibilidade como "Ir para a página do produto Tênis..." (Centauro).
       .map((t) => (t ?? '').replace(/\s+/g, ' ').trim().replace(/^ir para (a )?(p[aá]gina )?(d[oe] )?(produto )?/i, ''))
       .filter((t) => t.length >= 6 && !/R\$/.test(t));
     const title = candidates[0];
     if (!title) continue;
     seen.add(key);
-    hits.push({ title, price: Math.min(...prices), url: link.href });
+    hits.push({ title, price: prices.length ? Math.min(...prices) : 0, url: link.href });
     if (hits.length >= max) break;
   }
   return hits;
@@ -157,4 +158,37 @@ export function snapshotSearchPage(): { url: string; title: string; html: string
     }
   }
   return { url: location.href, title: document.title, html: clone.outerHTML.slice(0, 3_000_000) };
+}
+
+/**
+ * Lê o preço na página do produto (JSON-LD ou meta tags). Roda dentro da aba da loja,
+ * então o pedido sai do próprio site, com os seus cookies, como um clique normal.
+ */
+export async function fetchProductPrice(url: string): Promise<number | null> {
+  const response = await fetch(url, { credentials: 'include' });
+  if (!response.ok) return null;
+  const html = await response.text();
+  const prices: number[] = [];
+  const collect = (node: unknown, depth = 0): void => {
+    if (!node || typeof node !== 'object' || depth > 8) return;
+    if (Array.isArray(node)) return node.forEach((n) => collect(n, depth + 1));
+    const o = node as Record<string, unknown>;
+    for (const key of ['price', 'lowPrice']) {
+      const n = Number(String(o[key] ?? '').replace(',', '.'));
+      if (Number.isFinite(n) && n > 0) prices.push(n);
+    }
+    for (const key of ['offers', '@graph', 'hasVariant', 'priceSpecification']) collect(o[key], depth + 1);
+  };
+  for (const m of html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      collect(JSON.parse(m[1] ?? ''));
+    } catch {
+      // bloco quebrado: ignora
+    }
+  }
+  if (!prices.length) {
+    const meta = html.match(/property="product:price:amount"\s+content="([\d.]+)"/i) ?? html.match(/content="([\d.]+)"\s+property="product:price:amount"/i);
+    if (meta?.[1]) prices.push(Number(meta[1]));
+  }
+  return prices.length ? Math.min(...prices) : null;
 }
