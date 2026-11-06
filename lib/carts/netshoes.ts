@@ -59,6 +59,9 @@ export const netshoesCart: CartAdapter = {
 
   async apply(code) {
     const before = readNetshoesTotal();
+    // O "Cupom inválido." do código anterior pode ficar na tela e confundir o teste:
+    // fechar e abrir a janela de novo limpa o formulário.
+    if (visible(NETSHOES.error)) await netshoesCart.close();
     const input = await openModal();
     const staleError = visible(NETSHOES.error);
     typeInto(input, code);
