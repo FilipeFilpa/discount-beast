@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser';
 import type { ComparePricesMessage, ComparePricesResponse } from './messages';
 import type { PriceReport } from './price-compare';
+import { downloadText } from './page-capture';
 import { formatBRL } from './price';
 import { PRICE_SOURCES } from './price-search';
 import { productFromJsonLd, type PageProduct } from './product-match';
@@ -113,7 +114,8 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
       const strong = document.createElement('strong');
       strong.textContent = `${best.storeName}: ${formatBRL(best.match!.price)}`;
       msg.append('Menor preço: ', strong, ` (${formatBRL(price - best.match!.price)} a menos que aqui).`);
-    } else msg.textContent = `Aqui já é o menor preço (${formatBRL(price)}).`;
+    } else if (best.match!.price === price) msg.textContent = `Mesmo preço na ${best.storeName} (${formatBRL(price)}). Nenhuma loja está mais barata.`;
+    else msg.textContent = `Aqui já é o menor preço (${formatBRL(price)}).`;
 
     list.replaceChildren(
       ...reports.map((r) => {
@@ -143,6 +145,23 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
       }),
     );
     list.hidden = false;
+
+    // Alguma loja voltou vazia: botão que baixa o que a aba viu, para o Claude ajustar a busca.
+    root.querySelector('.diag')?.remove();
+    const empty = reports.filter((r) => r.snapshot);
+    if (empty.length) {
+      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: 'Salvar diagnóstico das buscas vazias' });
+      diag.style.cssText = 'margin-top:8px;background:#6b7280;font-size:12px;padding:7px';
+      diag.addEventListener('click', () => {
+        for (const r of empty) {
+          const s = r.snapshot!;
+          const header = `<!-- discount-beast price search\nstore: ${r.store}\nsearch: ${r.searchUrl}\nurl: ${s.url}\ntitle: ${s.title.replaceAll('--', '- -')}\n-->\n`;
+          downloadText(`discount-beast-busca-${r.store}.html`, header + s.html);
+        }
+        diag.textContent = `${empty.length} arquivo(s) salvo(s) em Downloads.`;
+      });
+      go.after(diag);
+    }
   }
 
   return host;

@@ -1,6 +1,6 @@
 import { browser } from 'wxt/browser';
 import { bestMatch, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
-import { extractSearchHits, PRICE_SOURCES, type PriceSource } from './price-search';
+import { extractSearchHits, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
 
 /** O que o cartão mostra para cada loja. */
@@ -13,6 +13,8 @@ export interface PriceReport {
   /** Quantos produtos a busca mostrou. 0 = a loja não respondeu ou mudou a página. */
   hits: number;
   error?: string;
+  /** Cópia da página de busca quando ela voltou vazia (botão "Salvar diagnóstico"). */
+  snapshot?: { url: string; title: string; html: string };
 }
 
 const PAGE_TIMEOUT_MS = 25_000;
@@ -45,6 +47,10 @@ async function searchStore(source: PriceSource, query: string, product: PageProd
     const hits = await readHits(tabId, source);
     report.hits = hits.length;
     report.match = bestMatch(product, hits);
+    if (!hits.length) {
+      const [shot] = await browser.scripting.executeScript({ target: { tabId }, func: snapshotSearchPage }).catch(() => []);
+      report.snapshot = shot?.result as PriceReport['snapshot'];
+    }
     console.info(`[Discount Beast] ${source.name}: ${hits.length} resultados para "${query}"`, hits, '→', report.match);
   } catch (error) {
     report.error = (error as Error).message;
@@ -84,6 +90,12 @@ async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]
       args: [source.productLink.source],
     });
     hits = (result?.result as SearchHit[] | undefined) ?? [];
+    if (!hits.length) {
+      // O formato do link de produto pode ter mudado: tenta o plano B, que aceita qualquer link de produto da loja.
+      const [loose] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, true] });
+      hits = (loose?.result as SearchHit[] | undefined) ?? [];
+      if (hits.length) console.info(`[Discount Beast] ${source.name}: achei pelo plano B (links genéricos)`, hits.slice(0, 3));
+    }
     if (hits.length) {
       // Dá mais um tempinho para a lista terminar de carregar e lê de novo.
       await sleep(1000);

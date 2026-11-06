@@ -43,8 +43,8 @@ export const PRICE_SOURCES: PriceSource[] = [
     id: 'mercadolivre',
     name: 'Mercado Livre',
     searchUrl: (q) => `https://lista.mercadolivre.com.br/${slug(q)}`,
-    // ex.: produto.mercadolivre.com.br/MLB-123... ou mercadolivre.com.br/.../p/MLB123
-    productLink: /mercadolivre\.com\.br\/[^?#]*MLB-?\d{6,}/i,
+    // ex.: produto.mercadolivre.com.br/MLB-123..., mercadolivre.com.br/.../p/MLB123 ou .../up/MLBU123
+    productLink: /mercadolivre\.com\.br\/[^?#]*MLBU?-?\d{6,}/i,
   },
 ];
 
@@ -63,8 +63,9 @@ export function sourceFor(id: StoreId): PriceSource | undefined {
  * o "cartão" do produto (o bloco que tem um preço R$ e só esse produto) e lê título e preço.
  * Preço riscado ("de R$ 499") e parcela ("10x de R$ 39,99") são ignorados.
  */
-export function extractSearchHits(linkPattern: string, max = 24): SearchHit[] {
-  const productLink = new RegExp(linkPattern, 'i');
+export function extractSearchHits(linkPattern: string, max = 24, generic = false): SearchHit[] {
+  // Plano B (generic): qualquer link da própria loja com nome comprido de produto (4+ hifens no caminho).
+  const productLink = generic ? new RegExp(`^https?://[^/]*${location.hostname.replace(/^www\./, '').replace(/\./g, '\\.')}/[^?#]*-[^?#/]*-[^?#/]*-[^?#/]*-`, 'i') : new RegExp(linkPattern, 'i');
   const PRICE = /R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/g;
   const keyOf = (href: string) => href.split(/[?#]/)[0] ?? href;
 
@@ -129,8 +130,9 @@ export function extractSearchHits(linkPattern: string, max = 24): SearchHit[] {
     }
     if (!prices.length) continue;
     const titleEl = card.querySelector('h2, h3, [class*="title" i], [class*="name" i]');
-    const candidates = [titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), card.querySelector('img[alt]')?.getAttribute('alt'), link.textContent]
-      .map((t) => (t ?? '').replace(/\s+/g, ' ').trim())
+    const candidates = [titleEl?.textContent, card.querySelector('img[alt]')?.getAttribute('alt'), link.getAttribute('title'), link.textContent, link.getAttribute('aria-label')]
+      // Rótulos de acessibilidade como "Ir para a página do produto Tênis..." (Centauro).
+      .map((t) => (t ?? '').replace(/\s+/g, ' ').trim().replace(/^ir para (a )?(p[aá]gina )?(d[oe] )?(produto )?/i, ''))
       .filter((t) => t.length >= 6 && !/R\$/.test(t));
     const title = candidates[0];
     if (!title) continue;
@@ -139,4 +141,20 @@ export function extractSearchHits(linkPattern: string, max = 24): SearchHit[] {
     if (hits.length >= max) break;
   }
   return hits;
+}
+
+/**
+ * Diagnóstico: quando uma busca volta vazia, guarda uma cópia limpa da página que a aba viu
+ * (sem scripts, imagens e estilos) para o Filipe mandar e a gente ajustar a loja.
+ * Também roda dentro da aba, então não usa nada de fora.
+ */
+export function snapshotSearchPage(): { url: string; title: string; html: string } {
+  const clone = document.documentElement.cloneNode(true) as HTMLElement;
+  clone.querySelectorAll('script, style, noscript, iframe, svg, img, picture, video, link, meta, template, input').forEach((el) => el.remove());
+  for (const el of clone.querySelectorAll('*')) {
+    for (const attr of [...el.attributes]) {
+      if (attr.name === 'style' || attr.name.startsWith('on') || attr.name === 'srcset' || attr.name === 'd') el.removeAttribute(attr.name);
+    }
+  }
+  return { url: location.href, title: document.title, html: clone.outerHTML.slice(0, 3_000_000) };
 }
