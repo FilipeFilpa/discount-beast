@@ -1,6 +1,7 @@
 import { couponsFor, getCouponFeed } from '@/lib/coupon-store';
 import type { Coupon } from '@/lib/coupons';
 import { addMyCoupons, getMyCoupons, removeMyCoupon } from '@/lib/my-coupons';
+import { getPelandoCoupons } from '@/lib/pelando-coupons';
 import { findStoreByHost, STORES, type StoreId } from '@/lib/stores';
 
 const statusEl = document.querySelector<HTMLParagraphElement>('#status')!;
@@ -105,7 +106,12 @@ async function render() {
   if (!current) return;
   couponsTitleEl.hidden = false;
   couponsTitleEl.textContent = 'Cupons encontrados';
-  const coupons = couponsFor(await getCouponFeed(), current.id);
+  const feed = couponsFor(await getCouponFeed(), current.id);
+  // Códigos que você viu no Pelando e que o feed público não tem.
+  const fromPelando: Coupon[] = (await getPelandoCoupons(current.id))
+    .filter((code) => !feed.some((c) => c.code === code))
+    .map((code) => ({ store: current.id, code, title: 'Visto por você no Pelando', discount: '', expiresAt: null, sources: [], firstSeen: '' }));
+  const coupons = [...fromPelando, ...feed];
   couponsTitleEl.textContent = `Cupons encontrados (${coupons.length})`;
   couponsEl.replaceChildren(
     ...(coupons.length
