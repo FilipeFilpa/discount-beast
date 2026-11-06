@@ -87,7 +87,9 @@ function profile(title: string, brand: string | null): Profile {
   // "Tam 42", "Tamanho M", "Nº 40": a palavra depois é tamanho.
   const all = words(title).filter((w, i, list) => !/^(tam|tamanho|n|no|numero)$/.test(list[i - 1] ?? ''));
   const category = all.find((w) => CATEGORIES.includes(w)) ?? null;
-  const gender = all.map((w) => GENDERS[w]).find(Boolean) ?? null;
+  // A adidas termina o nome com "M" (masculino) ou "W" (feminino): "Tênis Adizero Drive RC M".
+  const last = all[all.length - 1];
+  const gender = all.map((w) => GENDERS[w]).find(Boolean) ?? (last === 'm' ? 'm' : last === 'w' ? 'f' : null);
   const model = all.filter((w) => !brandWords.has(w) && !CATEGORIES.includes(w) && !GENDERS[w] && !NOISE.has(w) && !isSize(w));
   const codes = all.filter((w) => w.length >= 5 && /[a-z]/.test(w) && /\d/.test(w));
   return { category, gender, model: [...new Set(model)], codes };

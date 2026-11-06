@@ -63,9 +63,12 @@ export function sourceFor(id: StoreId): PriceSource | undefined {
  * o "cartão" do produto (o bloco que tem um preço R$ e só esse produto) e lê título e preço.
  * Preço riscado ("de R$ 499") e parcela ("10x de R$ 39,99") são ignorados.
  */
-export function extractSearchHits(linkPattern: string, max = 24, generic = false): SearchHit[] {
+export async function extractSearchHits(linkPattern: string, max = 24, mode: 'live' | 'generic' | 'fetch' = 'live'): Promise<SearchHit[]> {
   // Plano B (generic): qualquer link da própria loja com nome comprido de produto (4+ hifens no caminho).
-  const productLink = generic ? new RegExp(`^https?://[^/]*${location.hostname.replace(/^www\./, '').replace(/\./g, '\\.')}/[^?#]*-[^?#/]*-[^?#/]*-[^?#/]*-`, 'i') : new RegExp(linkPattern, 'i');
+  // Plano C (fetch): a loja não desenha a lista numa aba de fundo (Mercado Livre). Baixa o HTML da própria
+  // busca (mesmo site, seus cookies) e lê os produtos que já vêm prontos nele.
+  const doc = mode === 'fetch' ? new DOMParser().parseFromString(await (await fetch(location.href, { credentials: 'include' })).text(), 'text/html') : document;
+  const productLink = mode === 'generic' ? new RegExp(`^https?://[^/]*${location.hostname.replace(/^www\./, '').replace(/\./g, '\\.')}/[^?#]*-[^?#/]*-[^?#/]*-[^?#/]*-`, 'i') : new RegExp(linkPattern, 'i');
   const PRICE = /R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/g;
   const keyOf = (href: string) => href.split(/[?#]/)[0] ?? href;
 
@@ -73,7 +76,11 @@ export function extractSearchHits(linkPattern: string, max = 24, generic = false
     for (let node: Element | null = el; node && node !== stop.parentElement; node = node.parentElement) {
       if (/^(S|DEL|STRIKE)$/.test(node.tagName)) return true;
       if (/previous|old-?price|list-?price|price-?from|from-?price|original/i.test(String(node.getAttribute('class') ?? ''))) return true;
-      if (getComputedStyle(node).textDecorationLine.includes('line-through')) return true;
+      try {
+        if (mode !== 'fetch' && getComputedStyle(node).textDecorationLine.includes('line-through')) return true;
+      } catch {
+        // página baixada (plano C) não tem estilos calculados
+      }
     }
     return false;
   };
@@ -95,7 +102,7 @@ export function extractSearchHits(linkPattern: string, max = 24, generic = false
       if (fraction) prices.push(Number(`${fraction}.${cents}`));
     }
     if (prices.length) return prices;
-    const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
+    const walker = doc.createTreeWalker(card, NodeFilter.SHOW_TEXT);
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
       const el = node.parentElement;
       if (!el) continue;
@@ -112,7 +119,7 @@ export function extractSearchHits(linkPattern: string, max = 24, generic = false
     return prices;
   };
 
-  const links = [...document.querySelectorAll<HTMLAnchorElement>('a[href]')].filter((a) => productLink.test(a.href) && !/click1\.|\/mclics\//.test(a.href));
+  const links = [...doc.querySelectorAll<HTMLAnchorElement>('a[href]')].filter((a) => productLink.test(a.href) && !/click1\.|\/mclics\//.test(a.href));
   const hits: SearchHit[] = [];
   const seen = new Set<string>();
   for (const link of links) {
@@ -149,7 +156,7 @@ export function extractSearchHits(linkPattern: string, max = 24, generic = false
  * (sem scripts, imagens e estilos) para o Filipe mandar e a gente ajustar a loja.
  * Também roda dentro da aba, então não usa nada de fora.
  */
-export function snapshotSearchPage(): { url: string; title: string; html: string } {
+export async function snapshotSearchPage(): Promise<{ url: string; title: string; html: string }> {
   const clone = document.documentElement.cloneNode(true) as HTMLElement;
   clone.querySelectorAll('script, style, noscript, iframe, svg, img, picture, video, link, meta, template, input').forEach((el) => el.remove());
   for (const el of clone.querySelectorAll('*')) {
@@ -157,7 +164,15 @@ export function snapshotSearchPage(): { url: string; title: string; html: string
       if (attr.name === 'style' || attr.name.startsWith('on') || attr.name === 'srcset' || attr.name === 'd') el.removeAttribute(attr.name);
     }
   }
-  return { url: location.href, title: document.title, html: clone.outerHTML.slice(0, 3_000_000) };
+  // O HTML que o servidor mandou (antes do JavaScript da loja mexer), para ver se os produtos vêm nele.
+  let raw = '';
+  try {
+    raw = (await (await fetch(location.href, { credentials: 'include' })).text()).slice(0, 3_000_000);
+  } catch (error) {
+    raw = `fetch falhou: ${String(error)}`;
+  }
+  const html = `${clone.outerHTML.slice(0, 2_000_000)}\n<!-- ===== HTML bruto do servidor ===== -->\n<textarea>${raw.replaceAll('</textarea', '&lt;/textarea')}</textarea>`;
+  return { url: location.href, title: document.title, html };
 }
 
 /**

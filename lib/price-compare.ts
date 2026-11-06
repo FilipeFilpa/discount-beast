@@ -85,6 +85,7 @@ function waitForLoad(tabId: number): Promise<void> {
 async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]> {
   const end = Date.now() + RESULTS_TIMEOUT_MS;
   let hits: SearchHit[] = [];
+  let triedFetch = false;
   while (Date.now() < end) {
     const [result] = await browser.scripting.executeScript({
       target: { tabId },
@@ -94,9 +95,16 @@ async function readHits(tabId: number, source: PriceSource): Promise<SearchHit[]
     hits = (result?.result as SearchHit[] | undefined) ?? [];
     if (!hits.some((h) => h.price > 0)) {
       // O formato do link de produto pode ter mudado: tenta o plano B, que aceita qualquer link de produto da loja.
-      const [loose] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, true] });
+      const [loose] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, 'generic'] });
       const looseHits = (loose?.result as SearchHit[] | undefined) ?? [];
       if (looseHits.some((h) => h.price > 0) || !hits.length) hits = looseHits;
+      if (!hits.some((h) => h.price > 0) && !triedFetch) {
+        triedFetch = true;
+        const [fetched] = await browser.scripting.executeScript({ target: { tabId }, func: extractSearchHits, args: [source.productLink.source, 24, 'fetch'] }).catch(() => []);
+        const fetchedHits = (fetched?.result as SearchHit[] | undefined) ?? [];
+        if (fetchedHits.length) console.info(`[Discount Beast] ${source.name}: achei no HTML baixado (plano C)`, fetchedHits.slice(0, 3));
+        if (fetchedHits.some((h) => h.price > 0) || !hits.length) hits = fetchedHits;
+      }
       if (looseHits.length) console.info(`[Discount Beast] ${source.name}: achei pelo plano B (links genéricos)`, hits.slice(0, 3));
     }
     // Espera aparecer pelo menos um preço; se nunca aparecer, segue só com os títulos.

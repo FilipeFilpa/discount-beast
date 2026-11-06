@@ -76,3 +76,12 @@ test('productFromJsonLd lê Product, @graph e ProductGroup', () => {
   assert.equal(g?.price, 349.99);
   assert.equal(productFromJsonLd([JSON.stringify({ '@type': 'Organization', name: 'x' })], 'u'), null);
 });
+
+test('"M" no fim do nome da adidas é masculino', () => {
+  const rc: PageProduct = { name: 'Tênis Adizero Drive RC M', brand: 'adidas', gtin: null, sku: null, price: 699.99, url: 'u' };
+  assert.equal(searchQuery(rc), 'tenis adidas adizero drive rc');
+  assert.ok(matchScore(rc, hit('Tênis Adidas Adizero Drive Rc Masculino')).score >= MATCH_MIN);
+  assert.ok(matchScore(rc, hit('Tênis Masculino Adizero Drive Rc M adidas')).score >= MATCH_MIN);
+  assert.ok(matchScore(rc, hit('Tênis Adidas Adizero Drive Rc Feminino')).score < MATCH_MIN);
+  assert.ok(matchScore({ ...rc, name: 'Tênis Adizero Drive RC W' }, hit('Tênis Adidas Adizero Drive Rc Masculino')).score < MATCH_MIN);
+});
