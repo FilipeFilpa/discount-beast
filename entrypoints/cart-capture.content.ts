@@ -10,15 +10,21 @@ export default defineContentScript({
   matches: [
     'https://*.netshoes.com.br/*', 'https://netshoes.com.br/*', 'https://*.centauro.com.br/*', 'https://centauro.com.br/*',
     'https://*.kabum.com.br/*', 'https://kabum.com.br/*',
+    'https://*.pichau.com.br/*', 'https://pichau.com.br/*', 'https://*.terabyteshop.com.br/*', 'https://terabyteshop.com.br/*',
   ],
   runAt: 'document_idle',
   main() {
     // Netshoes/Centauro já têm adaptador: o botão fica só no carrinho, para salvar o caso
     // "cupom aceito" quando aparecer um código válido (ainda não vimos esse HTML).
-    // KaBuM!: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
+    // KaBuM!: o botão serve para salvar o caso "cupom aceito".
+    // Pichau/Terabyte: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
+    // Nelas ainda não sabemos a URL exata do carrinho, então aceitamos qualquer caminho com carrinho/cart/checkout.
     let host: HTMLElement | null = null;
     setInterval(() => {
-      const inCart = /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
+      const loose = /pichau|terabyteshop/.test(location.hostname);
+      const inCart = loose
+        ? /cart|carrinho|checkout|pagamento|sacola|endereco/i.test(location.pathname)
+        : /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
       if (inCart && !host) host = createButton();
       if (host) host.hidden = !inCart;
     }, 1500);
