@@ -80,7 +80,9 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     const coupons = couponsFor(await getCouponFeed(), store);
     // Ordem: os seus, depois os que você viu no Pelando, depois os do feed público (pela nota de compatibilidade).
     const pelando = await getPelandoCoupons(store);
-    const personal = mergeCodes(mine, pelando);
+    // Os que a própria loja sugere para este carrinho vêm antes de tudo.
+    const suggested = cart.suggested?.() ?? [];
+    const personal = mergeCodes(suggested, mergeCodes(mine, pelando));
     const codes = mergeCodes(personal, coupons.map((c) => c.code));
     const info: CartInfo = { items: cart.items?.() ?? [], subtotal: await cart.total() };
     const profile = profileCart(info, storeName);
@@ -97,8 +99,9 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     go.disabled = candidates.length === 0;
     if (!updateMessage) return;
     const mineCount = candidates.filter((c) => mine.includes(c)).length;
-    const pelandoCount = candidates.filter((c) => pelando.includes(c) && !mine.includes(c)).length;
-    const parts = [mineCount && `${mineCount} seus`, pelandoCount && `${pelandoCount} do Pelando`].filter(Boolean);
+    const pelandoCount = candidates.filter((c) => pelando.includes(c) && !mine.includes(c) && !suggested.includes(c)).length;
+    const suggestedCount = candidates.filter((c) => suggested.includes(c)).length;
+    const parts = [suggestedCount && `${suggestedCount} sugeridos pela ${storeName}`, mineCount && `${mineCount} seus`, pelandoCount && `${pelandoCount} do Pelando`].filter(Boolean);
     const yours = parts.length ? ` (${parts.join(', ')})` : '';
     const seen = describeCart(profile);
     const read = info.items.length
