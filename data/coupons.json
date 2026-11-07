@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-07T00:37:07.927Z",
+  "updatedAt": "2026-11-07T02:33:59.796Z",
   "coupons": [
     {
       "store": "adidas",
@@ -2409,6 +2409,1086 @@
         "cuponeria"
       ],
       "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "kabum",
+      "code": "FARMOU",
+      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 11% OFF",
+      "discount": "11% OFF",
+      "expiresAt": "2026-11-10T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LU5OFF",
+      "title": "Economize 5% em seus pedidos aplicando cupom KaBuM!",
+      "discount": "5% OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z",
+      "terms": "Válido nos itens dessa seleção."
+    },
+    {
+      "store": "kabum",
+      "code": "NINJAFC",
+      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 60% OFF",
+      "discount": "60% OFF",
+      "expiresAt": "2026-11-08T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TONOKABUM",
+      "title": "Bem-vindo à Kabum! 5% OFF na sua primeira compra!",
+      "discount": "5% OFF",
+      "expiresAt": "2027-03-26T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponeria",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "11DO11HUSKY",
+      "title": "Aplique o cupom KaBum! e receba 11% de desconto",
+      "discount": "11% OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "AURAGAMER",
+      "title": "A chance de economizar 9% em compras na KaBuM!",
+      "discount": "9% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "DRAMOFF15",
+      "title": "Corra pro cupom KaBuM! e garanta 15% OFF",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ESQUENTA",
+      "title": "Os melhores itens do site com 5% OFF aplicando cupom KaBuM!",
+      "discount": "5% OFF",
+      "expiresAt": "2026-11-12T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "GAB15",
+      "title": "Use o cupom KaBum! e obtenha 15% OFF em suas compras",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-11T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "GTAVAMBORA",
+      "title": "Cupom KaBuM!: R$60 OFF em GTA VI para PS5",
+      "discount": "R$ 60 OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z",
+      "terms": "Válido apenas no item do link."
+    },
+    {
+      "store": "kabum",
+      "code": "HYPERX15",
+      "title": "Economize 15% em seus pedidos aplicando cupom KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "NOTE14",
+      "title": "14% de Desconto no Notebook Lenovo IdeaPad Slim 3 15AHP10 AMD Ryzen 7 8840HS 16GB 512GB SSD Windows 11 Home com o cupom NOTE14",
+      "discount": "14% OFF",
+      "expiresAt": "2026-11-10T13:00:00.000Z",
+      "sources": [
+        "cuponeria",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "NOTE15OFF",
+      "title": "Compre com código promocional KaBuM! e economize 15%",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-10T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SOFTWARES10",
+      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 10% OFF",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "100IMPRESSORA",
+      "title": "Impressoras selecionadas com R$100 de desconto",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "120IMPRESSORA",
+      "title": "A chance de economizar R$ 120 em compras na KaBuM!",
+      "discount": "R$ 120 OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "130IMPRESSORA",
+      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe R$ 130 OFF",
+      "discount": "R$ 130 OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "200OFFSCANNER",
+      "title": "Os melhores itens do site com R$ 200 OFF aplicando cupom KaBuM!",
+      "discount": "R$ 200 OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "50IMPRESSORA",
+      "title": "Economize R$ 50 em seus pedidos aplicando cupom KaBuM!",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-12-01T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "AMD15OFF",
+      "title": "Turbine seu setup com o processador AMD Ryzen 7 5700 e 15% de desconto",
+      "discount": "7% OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ARNOVO20",
+      "title": "Ar-condicionado Gree 27.000 BTUs com R$400 OFF",
+      "discount": "R$ 27000 OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ASPIRAFACIL",
+      "title": "Aspirador de água e pó Philco PAS34 com 20% OFF",
+      "discount": "34% OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CASADINHO",
+      "title": "Faça compras com cupom de desconto KaBuM! e economize 8%",
+      "discount": "8% OFF",
+      "expiresAt": "2026-11-07T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CASANINJA10",
+      "title": "Desconto KaBuM!: 10% OFF nos produtos participantes",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "EQUIPA20",
+      "title": "Complete seu arsenal: 20% OFF Em Mouse e Teclado Attack Shark",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-22T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "FDSNO11",
+      "title": "Itens da seleção com 11% de desconto no KaBuM!",
+      "discount": "11% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LOOT15",
+      "title": "Cupom de desconto Kabum oferece 15% OFF em suas compras",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MAGA200",
+      "title": "Tablet Galaxy Tab A11 128GB com R$200 OFF",
+      "discount": "R$ 200 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MAGA300",
+      "title": "Smartphone Galaxy A17 256GB com R$300 de desconto",
+      "discount": "R$ 17 OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MAGALU10",
+      "title": "Itens selecionados com 10% de desconto",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "PERIFERIX20",
+      "title": "Setup turbinado! 20% OFF em mouses, teclados e headsets!",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-30T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "REDCOBRA",
+      "title": "Mouse Redragon Cobra com 25% de desconto",
+      "discount": "25% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SENTINELA",
+      "title": "O cupom KaBum! garante R$100 OFF em seus pedidos",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-11-11T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "STAR100OFF",
+      "title": "Os melhores itens do site com R$ 100 OFF aplicando cupom KaBuM!",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-11-10T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TORRE10",
+      "title": "Aproveite para economizar 10% com cupom KaBuM!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-10T02:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "VOXARA10",
+      "title": "Faça compras com cupom de desconto KaBuM! e economize 10%",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-09T02:59:59.000Z",
+      "sources": [
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ZAFADINHO10",
+      "title": "Aproveite economia de 10% em placa de vídeo com cupom KaBuM!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "200OFF",
+      "title": "Desconto KaBuM!: R$200 OFF na Epson EcoTank L4360",
+      "discount": "R$ 200 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "300OFF",
+      "title": "Notebook Gamer Acer Nitro V16 com R$300 OFF",
+      "discount": "R$ 300 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ARNOVO10",
+      "title": "Split Midea 18.000 BTUs com R$300 de desconto",
+      "discount": "R$ 18000 OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "AUDIO10",
+      "title": "Cupom KaBuM! 10% OFF em itens de Áudio",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "BAMBU450",
+      "title": "Impressora 3D Bambu Lab com R$450 de desconto",
+      "discount": "R$ 450 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "BLACK50",
+      "title": "Ganhe 50% OFF na cadeira gamer Husky Storm 100 nas compras acima de R$3.000",
+      "discount": "50% OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CASADONINJA10",
+      "title": "Aplique o código KaBuM! e aproveite 10% OFF em suas compras",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CASATECH15",
+      "title": "Itens selecionados com 15% de desconto no KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CHROMA12",
+      "title": "Tudo da Razer com 12% OFF no KaBuM!",
+      "discount": "12% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "CUPONATION",
+      "title": "Cadeiras de escritório com 5% OFF usando o nosso código de desconto KaBuM!",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-04T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "DESCONTO15GAB",
+      "title": "Gabinetes selecionados com 15% EXTRA com o código de desconto KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "DESLIZE15",
+      "title": "Mousepads com 15% OFF no código de desconto KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ELITERGB",
+      "title": "Compre Mouse Gamer com 15% OFF",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ENDGAME40",
+      "title": "Mouse Gamer Endgame com 40% de desconto",
+      "discount": "40% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "EPSON10OFF",
+      "title": "Cupom KaBuM! de 10% OFF na Multifuncional Epson EcoTank L5590",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ESQUENTA11DO11",
+      "title": "Cupom KaBuM! com até 60% OFF no Esquenta 11.11",
+      "discount": "60% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "FALANOMIC12",
+      "title": "Microfones com 12% OFF",
+      "discount": "12% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "GOL100",
+      "title": "Cupom KaBuM!: Ganhe R$ 100 OFF em produtos selecionados",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "GOL500",
+      "title": "Cupom KaBuM!: Ganhe R$ 500 OFF em produtos selecionados",
+      "discount": "R$ 500 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "HUSKY10",
+      "title": "Conforto pra game! 10% OFF em cadeiras e mesas gamer!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-30T02:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "HUSKY15",
+      "title": "Código KaBuM com 15% OFF em produtos Husky",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "JBL25",
+      "title": "25% de Desconto em produtos JBL. Oferta válida até o fim do mês",
+      "discount": "25% OFF",
+      "expiresAt": "2027-09-26T05:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "JBL30",
+      "title": "Produtos JBL com 30% de economia aplicando voucher KaBuM!",
+      "discount": "30% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "KABUM10",
+      "title": "10% OFF em produtos participantes da campanha KaBuM10. Somente hoje!",
+      "discount": "10% OFF",
+      "expiresAt": "2027-01-21T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "KITMINI50",
+      "title": "R$50 de economia: use cupom KaBuM!",
+      "discount": "R$ 50 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "KPOWER",
+      "title": "Faça um upgrade com o Intel Core i5-12600K e 15% OFF",
+      "discount": "5% OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LENOVO250",
+      "title": "Cupom KaBuM!: Ganhe R$ 250 OFF no Tablet Lenovo Idea Tab Plus",
+      "discount": "R$ 250 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LENOVO50",
+      "title": "Cupom KaBuM!: Ganhe R$ 50 OFF no Lenovo Tab com MediaTek",
+      "discount": "R$ 50 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LENOVOIDEAPAD3",
+      "title": "Aplique o cupom KaBum! e receba 20% OFF em suas compras",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-30T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "LIQUIDA10",
+      "title": "Liquida KaBuM! com +10% OFF no cupom",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MAG650",
+      "title": "Economize 15% com o cupom KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MAGA100",
+      "title": "Utilize o código KaBuM! e garanta Smartphone Samsung A07 com R$100 OFF",
+      "discount": "R$ 100 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MB15OFF",
+      "title": "Placas-mãe selecionadas com 15% de desconto no KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "MONITOR10OFF",
+      "title": "Cupom KaBuM! 10% de desconto em Monitores selecionados",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "NOTE20OFF",
+      "title": "O cupom KaBum! oferece 20% de desconto em suas compras",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-11T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "PLACAMAE15",
+      "title": "Obtenha desconto de 15% com cupom KaBuM!",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "PRECISAO20",
+      "title": "20% OFF em suas compras aplicando cupom KaBuM!",
+      "discount": "20% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "RECEBA",
+      "title": "Compre com o voucher KaBuM! e garanta 7% OFF",
+      "discount": "7% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "ROBONOPRECINHO",
+      "title": "Robótica no precinho: 18% OFF em robô aspirador e automação!",
+      "discount": "18% OFF",
+      "expiresAt": "2026-11-22T02:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SEUPGRADE",
+      "title": "Economize 10% em Fontes usando código KaBuM!",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SHARKPRO",
+      "title": "20% OFF em Mouse Gamer sem fio Attack Shark",
+      "discount": "20% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SOMPREMIUM",
+      "title": "Soundbars e caixas de som com 12% OFF",
+      "discount": "12% OFF",
+      "expiresAt": "2026-11-13T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "SSDOFF",
+      "title": "Cupom KaBuM! de 5% OFF em SSDs da seleção",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TAB10",
+      "title": "10% OFF em Tablets selecionados com o voucher do KaBuM!",
+      "discount": "10% OFF",
+      "expiresAt": "2027-01-23T02:59:00.000Z",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TACHEGANDO",
+      "title": "Ative o cupom KaBum! para ter 10% OFF em suas compras",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-11T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TELONA200",
+      "title": "TELA GIGANTE: R$ 200 OFF em produtos selecionados no KaBuM! | Cupom TELONA200",
+      "discount": "Frete grátis",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TOMA18",
+      "title": "Memória Husky Impulse 8GB com 18% OFF no KaBuM!",
+      "discount": "18% OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TOMA200",
+      "title": "Placa de Vídeo Asus com R$200 de economia",
+      "discount": "R$ 200 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TOMA500",
+      "title": "Placa de vídeo RTX 5070 Ti MSI Ventus com R$500 OFF",
+      "discount": "R$ 500 OFF",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TOMOU15",
+      "title": "Seleção de Mouse e Mousepad com 15% OFF",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TV10",
+      "title": "Cupom KaBuM! 10% OFF em TVs Samsung",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TV200",
+      "title": "Smart TV TCL 65",
+      "discount": "",
+      "expiresAt": null,
+      "sources": [
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "TV300",
+      "title": "Obtenha desconto de R$300 com cupom KaBuM!",
+      "discount": "R$ 300 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "VALE50",
+      "title": "Cupom KaBuM!: Ganhe R$ 50 OFF na assinatura Microsoft 365 Family",
+      "discount": "50% OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "VEM200",
+      "title": "Cupom KaBuM! de R$200 OFF em produtos selecionados no site!",
+      "discount": "R$ 200 OFF",
+      "expiresAt": "2026-12-31T03:00:00.000Z",
+      "sources": [
+        "cuponeria"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "kabum",
+      "code": "VR500",
+      "title": "Adquira o Meta Quest 3 512GB com R$500 de desconto",
+      "discount": "R$ 3 OFF",
+      "expiresAt": "2026-11-12T23:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
     },
     {
       "store": "magalu",
@@ -4867,6 +5947,614 @@
       "firstSeen": "2026-11-06T16:20:04.270Z"
     },
     {
+      "store": "pichau",
+      "code": "APROVEITA",
+      "title": "Economize 10% em suas compras aplicando o cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-15T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "AQUITEM",
+      "title": "Produtos gamer com 10% de desconto no cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-13T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "CLIENTESTOP",
+      "title": "Economize 10% em seus pedidos usando o código Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "CLIENTEVIP",
+      "title": "Ganhe 10% OFF em seus pedidos com o código exclusivo Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-09T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "COMPRAPREFERIDA",
+      "title": "Itens de informática com 15% de desconto no cupom Pichau",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-09T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "DESCONTOS",
+      "title": "Economize 10% em informática utilizando o cupom PichauPichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-04T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "DESCONTOSEMPRE",
+      "title": "Economize 10% em suas compras online com este cupom",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-04T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "DESCONTOSESPECIAIS",
+      "title": "Obtenha 10% de desconto em sua compra na Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELHORDOML",
+      "title": "Economize R$250 na Pichau utilizando o código exclusivo",
+      "discount": "R$ 250 OFF",
+      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELHORPROMO",
+      "title": "Encontre eletrônicos na Pichau com economia de R$250 OFF",
+      "discount": "R$ 250 OFF",
+      "expiresAt": "2026-11-26T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELIACHAHOJE",
+      "title": "Ofertas exclusivas na Pichau com 10% de desconto para você",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELIPROMO",
+      "title": "Pichau com ofertas especiais de 10% OFF em suas compras",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-04T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELITECH",
+      "title": "Economize 10% em seus pedidos com o cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-21T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "OFERTAHOJE",
+      "title": "Código Pichau oferece 10% de desconto para suas compras",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "OFFHOJE",
+      "title": "Compre itens de informática com 10% de desconto usando o cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-15T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "OFFHOJENOML",
+      "title": "Use o cupom Pichau e ganhe 10% de desconto nas compras",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "PEGAESSAPROMO",
+      "title": "Código Pichau com 8% de desconto em produtos de eletrônicos",
+      "discount": "8% OFF",
+      "expiresAt": "2026-12-04T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "PROMOSML",
+      "title": "Ganhe 10% de desconto em suas compras online",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "SUPERDESCONTO",
+      "title": "Pichau oferece 20% OFF em seus produtos com código promocional",
+      "discount": "20% OFF",
+      "expiresAt": "2026-11-09T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "TECHPROMO",
+      "title": "Receba 10% de desconto em suas compras online na Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-22T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "TOPMELI",
+      "title": "Garanta R$300 OFF em suas compras nesta promoção especial",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "TOPOFERTA",
+      "title": "Obtenha R$300 de desconto em compras com o cupom Pichau",
+      "discount": "R$ 300 OFF",
+      "expiresAt": "2026-11-21T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "VIPNOML",
+      "title": "Itens de informática com 10% de desconto no cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-04T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "VOLTESEMPRE",
+      "title": "Obtenha 10% de desconto em suas compras com o cupom Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-03T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "BOLSOCHEIO",
+      "title": "desconto de 8% em informática com cupom Pichau",
+      "discount": "8% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELIMAIS",
+      "title": "Cupom Pichau: R$100 de desconto para você economizar agora",
+      "discount": "R$ 100 OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "ACHADODODIA",
+      "title": "Cupom Pichau concede 10% OFF",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "BFCHAIRS10OFF",
+      "title": "Ganhe 10% OFF em Cadeiras Gamer na Black Friday Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Restrito à seleção participante",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "BFRK15OFF",
+      "title": "Teclados Mecânicos 15% mais baratos",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido só nos itens desta lista",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "BLACKAMD5",
+      "title": "Processadores AMD com 5% OFF na Black Friday Pichau",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Aplicável apenas aos itens selecionados",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "BLACKINTEL5",
+      "title": "Intel - 5% OFF em processadores da marca",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Aplicável apenas aos itens selecionados",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "COMPRABOA",
+      "title": "Promo Pichau com 10% OFF aplicando cupom",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "CONTROLE5",
+      "title": "Controles de PC com 5% OFF no cupom de desconto Pichau",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido somente nos produtos desta seleção",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "ENERGETICO10",
+      "title": "Energéticos Pichau com 10% de desconto",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Restrito à seleção participante",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "EPO15",
+      "title": "+15% extra em teclados Epomaker",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Elegível apenas para a seleção do link",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "ESPORTES15",
+      "title": "Itens Esportivos com 15% de economia",
+      "discount": "15% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Aplicável apenas aos itens selecionados",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "FAVORITO",
+      "title": "Suas compras com 12% OFF usando cupom Pichau",
+      "discount": "12% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "FF10",
+      "title": "Cadeiras Gamer Pichau com 10% OFF extra",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido somente nos produtos desta seleção",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "FONTE5",
+      "title": "Seleção de Fontes para o seu PC com 5% OFF",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Elegível apenas para a seleção do link",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MAEDABF10",
+      "title": "Placas-mãe com 10% OFF no cupom Pichau Black Friday",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Restrito à seleção participante",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MARVO10OFF",
+      "title": "Marvo - 10% OFF em Periféricos da marca",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Elegível apenas para a seleção do link",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MICROFONE10",
+      "title": "10% de desconto em Microfones ao aplicar o cupom",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido só nos itens desta lista",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MOCHILAS10",
+      "title": "Mochilas com 10% de desconto Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido somente nos produtos desta seleção",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "OFFNOML",
+      "title": "10% de economia usando código Pichau",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "PRUMO10OFF",
+      "title": "Hardware com 10% OFF no cupom Pichau Black Friday!",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Válido apenas nos itens com o selo do cupom",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "PRUMO5OFF",
+      "title": "Hardware e Monitores com +5% OFF na Pichau",
+      "discount": "5% OFF",
+      "expiresAt": "2026-12-02T02:59:59.000Z",
+      "terms": "Válido apenas nos itens com o selo desse cupom.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "SKRP10",
+      "title": "10% de desconto em Cadeira Gamer Pichau Omega S Skorpion",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido somente no item selecionado.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "SUPERPRUMOHYPERX",
+      "title": "Tudo da Hyper X com +20% extra",
+      "discount": "20% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Válido só nos itens desta lista",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "WEBCAM10",
+      "title": "Aproveite 10% de economia em Webcams na Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-05T02:59:59.000Z",
+      "terms": "Desconto válido somente em produtos selecionados",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
       "store": "shopee",
       "code": "CUPOM10",
       "title": "R$10 OFF acima de R$89 com cupom Shopee",
@@ -5486,6 +7174,50 @@
         "cuponation"
       ],
       "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "terabyte",
+      "code": "TERAFONTES10",
+      "title": "Aproveite para economizar 10% com cupom TerabyteShop",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "terabyte",
+      "code": "TERAFONTES15",
+      "title": "Compre com código promocional TerabyteShop e economize 15%",
+      "discount": "15% OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "terabyte",
+      "code": "TERAFONTES5",
+      "title": "Use cupom Terabyteshop e tenha desconto de 5%",
+      "discount": "5% OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "terabyte",
+      "code": "WATER3",
+      "title": "Faça compras com cupom de desconto TerabyteShop e economize 5%",
+      "discount": "5% OFF",
+      "expiresAt": null,
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
     }
   ]
 }
