@@ -4,7 +4,7 @@
  * Tiramos scripts, estilos, imagens, blocos de endereço, CEPs/CPFs e valores de campos, para o arquivo ficar pequeno
  * e não levar nada sensível (só sobra a estrutura e os textos visíveis).
  */
-const DROP = '[class*="address" i], [data-testid*="address" i], [class*="endereco" i], [class*="customer" i], [id*="address" i], script, style, noscript, iframe, svg, img, picture, video, link, meta, template, discount-beast-panel, discount-beast-capture';
+const DROP = '[class*="address" i], [data-testid*="address" i], [class*="endereco" i], [class*="customer" i], [id*="address" i], [id*="endereco" i], [class*="shipping-address" i], [data-testid*="customer" i], script, style, noscript, iframe, svg, img, picture, video, link, meta, template, discount-beast-panel, discount-beast-capture';
 
 export function cleanPageHtml(doc: Document = document): string {
   const clone = doc.documentElement.cloneNode(true) as HTMLElement;
@@ -22,8 +22,9 @@ export function cleanPageHtml(doc: Document = document): string {
     .filter((i) => i.getBoundingClientRect().width > 0)
     .map((i) => ({ id: i.id, name: i.name, type: i.type, placeholder: i.placeholder, ...(/cupo|coupon|promo|voucher/i.test(`${i.id} ${i.name} ${i.placeholder}`) ? { value: i.value } : {}) }));
   const header = `<!-- discount-beast capture\nurl: ${location.href}\nat: ${new Date().toISOString()}\nvisibleInputs: ${JSON.stringify(visibleInputs).replaceAll('--', '- -')}\n-->\n`;
-  // Endereços e nome no meio do texto: some com CEPs e CPFs que sobrarem.
-  const html = clone.outerHTML.replace(/\b\d{5}-?\d{3}\b/g, '[CEP]').replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[CPF]');
+  // Endereços e nome no meio do texto: some com CEPs, CPFs, e-mails e telefones que sobrarem.
+  const html = clone.outerHTML.replace(/\b\d{5}-?\d{3}\b/g, '[CEP]').replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[CPF]')
+    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]').replace(/\(?\b\d{2}\)?\s?9?\d{4}-?\d{4}\b/g, '[TEL]');
   return header + html;
 }
 
