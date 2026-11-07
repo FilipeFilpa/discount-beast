@@ -84,7 +84,7 @@ export const RETRY_REJECTED_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
  *    mais com o carrinho (`score`); empate mantém a ordem recebida. Um código que "existe mas não
  *    vale para estes itens" num carrinho diferente conta como nunca testado (com um bônus: ele existe);
  * 3. códigos recusados há mais de 3 dias (podem ter voltado), também pela nota.
- * Recusados recentemente (e 'ineligible' recente neste mesmo carrinho) ficam de fora,
+ * Recusados recentemente (e 'ineligible' recente neste mesmo carrinho) ficam de fora (menos os seus),
  * assim como os de nota abaixo de `minScore`. No máximo `max` códigos.
  */
 export function orderCandidates(
@@ -100,12 +100,14 @@ export function orderCandidates(
   const worked = codes
     .filter((c) => history[c]?.status === 'worked')
     .sort((a, b) => (history[b]?.saving ?? 0) - (history[a]?.saving ?? 0));
-  const fresh = codes.filter((c) => !history[c] || elsewhere(history[c]!));
+  const mine = new Set(keepFirst);
+  // Os seus códigos ("Meus cupons", Pelando, sugeridos pela loja) sempre entram, mesmo recusados há pouco:
+  // você acabou de pedir para testar.
+  const fresh = codes.filter((c) => !history[c] || elsewhere(history[c]!) || (mine.has(c) && history[c]!.status !== 'worked'));
   const retry = codes.filter((c) => {
     const past = history[c];
-    return past && past.status !== 'worked' && !elsewhere(past) && now - past.at >= RETRY_REJECTED_AFTER_MS;
+    return past && past.status !== 'worked' && !mine.has(c) && !elsewhere(past) && now - past.at >= RETRY_REJECTED_AFTER_MS;
   });
-  const mine = new Set(keepFirst);
   const notes = new Map(codes.map((c) => [c, score(c) + (history[c] && elsewhere(history[c]!) ? 2 : 0)]));
   const byScore = (list: string[]) => {
     const pinned = keepFirst.filter((c) => list.includes(c));

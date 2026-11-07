@@ -82,3 +82,9 @@ test('Meus cupons vêm antes dos públicos, sem repetir', () => {
   assert.deepEqual(codes, ['MEU10', 'ACHADOS', 'PROMOBIT']);
   assert.deepEqual(orderCandidates(codes, {}), ['MEU10', 'ACHADOS', 'PROMOBIT']);
 });
+
+test('Meus cupons entram mesmo se foram recusados há pouco', () => {
+  const now = Date.now();
+  const history = { MEU200: { status: 'rejected' as TryStatus, at: now - 60_000 }, PUB: { status: 'rejected' as TryStatus, at: now - 60_000 } };
+  assert.deepEqual(orderCandidates(['MEU200', 'PUB', 'NOVO'], history, now, undefined, { keepFirst: ['MEU200'] }), ['MEU200', 'NOVO']);
+});
