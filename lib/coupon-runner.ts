@@ -52,6 +52,8 @@ export interface CartAdapter {
   close(): Promise<void>;
   /** Produtos do carrinho (nome, vendedor, selos), para escolher os cupons que combinam. */
   items?(): CartItem[];
+  /** Códigos que a própria loja sugere para este carrinho (ex.: chips da Pichau). Vão para o começo da fila. */
+  suggested?(): string[];
 }
 
 export interface RunReport {
