@@ -18,7 +18,7 @@ export default defineContentScript({
     // KaBuM!: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
     let host: HTMLElement | null = null;
     setInterval(() => {
-      const inCart = /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout/.test(location.pathname);
+      const inCart = /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
       if (inCart && !host) host = createButton();
       if (host) host.hidden = !inCart;
     }, 1500);
