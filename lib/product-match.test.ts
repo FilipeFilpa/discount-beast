@@ -166,3 +166,10 @@ test('informática: celular e monitor', () => {
   assert.ok(matchScore(lg, hit('Monitor Gamer LG UltraGear 27GS60F-B 27 Pol IPS Full HD 180Hz 1ms')).score >= MATCH_MIN);
   assert.ok(matchScore(lg, hit('Monitor Gamer LG UltraGear 24GS60F-B 24 Pol IPS Full HD 180Hz')).score < MATCH_MIN);
 });
+
+test('marca "Outros" no cadastro conta como sem marca (PS5 na KaBuM!)', () => {
+  const ps5: PageProduct = { name: 'Console Playstation 5 Slim Digital 825GB', brand: 'Outros', gtin: null, sku: null, price: 3999, url: 'u' };
+  assert.equal(searchQuery(ps5), 'console playstation 5 slim digital 825gb');
+  assert.ok(matchScore(ps5, hit('Console Sony Playstation 5 Slim Digital 825gb Ps5 Lacrado')).score >= MATCH_MIN);
+  assert.ok(matchScore(ps5, hit('Consola Sony Playstation 5 Slim Digital 1tb Ssd 4k 825gb')).score < MATCH_MIN);
+});

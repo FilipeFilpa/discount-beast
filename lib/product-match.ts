@@ -173,7 +173,7 @@ interface Profile {
 }
 
 function profile(title: string, brand: string | null): Profile {
-  const brandWords = new Set(brand ? words(brand) : []);
+  const brandWords = new Set(words(realBrand(brand)));
   // "Tam 42", "Tamanho M", "Nº 40": a palavra depois é tamanho.
   const sizeless = (list: string[]) => list.filter((w, i) => !/^(tam|tamanho|n|no|numero)$/.test(list[i - 1] ?? ''));
   const category = tokens(title).find((w) => CATEGORIES.includes(w)) ?? null;
@@ -208,10 +208,17 @@ function profile(title: string, brand: string | null): Profile {
   };
 }
 
+/** Marca "de mentira" que algumas lojas põem no cadastro ("Outros", "Genérico"): é como não ter marca. */
+const FAKE_BRANDS = /^(outros?|outras?|generic[oa]?|sem marca|diversos|variados|nao informado|n a|na|none|other|others|unbranded|marca)$/;
+function realBrand(brand: string | null): string {
+  const b = brand ? normalize(brand) : '';
+  return FAKE_BRANDS.test(b) ? '' : b;
+}
+
 /** Texto para buscar nas outras lojas: tipo + marca + modelo (sem cor, tamanho e público). */
 export function searchQuery(product: Pick<PageProduct, 'name' | 'brand'>): string {
   const p = profile(product.name, product.brand);
-  const brand = product.brand ? normalize(product.brand) : '';
+  const brand = realBrand(product.brand);
   // Informática: sem as especificações ("8gb", "gddr6"), que deixam a busca restrita demais. A capacidade fica.
   const model = p.model.filter((w) => !p.codes.includes(w) && !(p.tech && isSpec(w) && !/^\d+(\.\d+)?(gb|tb)$/.test(w))).slice(0, 5);
   return [p.category, brand, ...model].filter(Boolean).join(' ');
@@ -232,7 +239,7 @@ export function matchScore(product: PageProduct, hit: Pick<SearchHit, 'title' | 
   const sku = product.sku ? normalize(product.sku) : '';
   if (sku.length >= 5 && /\d/.test(sku) && haystack.split(' ').includes(sku)) return { score: 1, why: 'mesmo código do modelo' };
 
-  const brand = product.brand ? normalize(product.brand) : '';
+  const brand = realBrand(product.brand);
   const hitWords = words(hit.title);
   // Na loja da própria marca (adidas.com.br) o título não repete a marca: vale o endereço também.
   if (brand && !haystack.includes(brand)) return { score: 0, why: 'outra marca' };
