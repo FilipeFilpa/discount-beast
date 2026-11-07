@@ -1,3 +1,4 @@
+import type { StoreId } from '../../lib/stores.ts';
 import { cleanCode, discountFrom, toIso } from '../util.ts';
 import type { RawCoupon, Source } from './types.ts';
 
@@ -11,7 +12,8 @@ interface CuponeriaOffer {
   expirationDate?: string | null;
 }
 
-const SLUGS = {
+// Loja sem página neste site fica de fora (conferido em 07/11/2026).
+const SLUGS: Partial<Record<StoreId, string>> = {
   adidas: 'adidas',
   netshoes: 'netshoes',
   centauro: 'centauro',
@@ -20,7 +22,9 @@ const SLUGS = {
   magalu: 'magazine-luiza',
   aliexpress: 'aliexpress',
   shopee: 'shopee',
-} as const;
+  kabum: 'kabum',
+  terabyte: 'terabyte',
+};
 
 /** Tira das regras as frases-padrão sobre cashback, que não ajudam a saber onde o cupom vale. */
 function shortRules(rules: string): string {

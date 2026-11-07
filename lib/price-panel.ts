@@ -3,7 +3,7 @@ import type { ComparePricesMessage, ComparePricesResponse } from './messages';
 import type { PriceReport } from './price-compare';
 import { downloadText } from './page-capture';
 import { formatBRL } from './price';
-import { PRICE_SOURCES } from './price-search';
+import { sourcesFrom } from './price-search';
 import { productFromJsonLd, type PageProduct } from './product-match';
 import type { StoreId } from './stores';
 
@@ -105,7 +105,7 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
   const msg = root.querySelector<HTMLParagraphElement>('.msg')!;
   const list = root.querySelector<HTMLUListElement>('.list')!;
   const go = root.querySelector<HTMLButtonElement>('.go')!;
-  const others = PRICE_SOURCES.filter((s) => s.id !== store).map((s) => s.name);
+  const others = sourcesFrom(store).map((s) => s.name);
   const here = () => product.price;
   msg.textContent = `${product.name}${here() !== null ? ` · aqui ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
 

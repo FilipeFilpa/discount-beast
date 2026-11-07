@@ -1,6 +1,6 @@
 # Discount Beast
 
-Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, Mercado Livre, adidas, Netshoes, Centauro, Magalu, AliExpress e Shopee.
+Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, Mercado Livre, adidas, Netshoes, Centauro, Magalu, AliExpress, Shopee, KaBuM!, Pichau e Terabyte.
 
 ## Status
 
@@ -10,7 +10,7 @@ Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, M
 - [x] Meus cupons: cole seus códigos pessoais no popup
 - [x] Testar cupons também na Netshoes e na Centauro
 - [x] Comparar preço: adidas, Netshoes, Centauro, Mercado Livre, Amazon e Magalu
-- [ ] Comparar preço também na Amazon e no Magalu
+- [x] Informática: cupons e comparador na KaBuM!, Pichau e Terabyte
 
 ## Como instalar no seu Chrome
 
@@ -47,12 +47,14 @@ Recebeu um código por e-mail, app ou adiClub? Abra o popup, escolha a loja em *
 
 ### Comparar preço
 
-1. Abra a página de um produto na adidas, Netshoes ou Centauro.
+1. Abra a página de um produto na adidas, Netshoes, Centauro, KaBuM!, Pichau ou Terabyte.
 2. O cartão **Comparar preço** aparece no canto de baixo, à esquerda.
-3. Clique em **Comparar preço**. A extensão abre a busca das outras lojas (incluindo Mercado Livre, Amazon e Magalu) em abas de fundo, lê os resultados e fecha as abas. Leva uns 15 segundos.
+3. Clique em **Comparar preço**. A extensão abre a busca das outras lojas do mesmo tipo (esporte: adidas, Netshoes, Centauro; informática: KaBuM!, Pichau, Terabyte) e também do Mercado Livre, Amazon e Magalu em abas de fundo, lê os resultados e fecha as abas. Leva uns 15 segundos.
 4. O cartão mostra o preço do mesmo modelo em cada loja, sem frete. Passe o mouse no nome do item para ver por que ele foi considerado o mesmo produto.
 
 Como decide que é o mesmo produto: pelo EAN ou código do modelo, quando aparece; senão, a marca tem de ser a mesma, o tipo (tênis, camisa...) e o público (masculino/feminino) não podem ser diferentes, e as palavras do modelo têm de bater. Cor e tamanho não contam.
+
+Em informática a regra é mais rígida, porque cada versão tem outro preço: o código de peça (ex.: `DUAL-RTX4060-O8G`), o número do modelo (RTX 4060 x 4070), a versão (4060 x 4060 Ti, 5600 x 5600X) e a capacidade (SSD 1TB x 500GB) têm de ser os mesmos.
 
 Não usa servidor nem API paga: a busca é feita pelo seu próprio Chrome, como se você pesquisasse.
 

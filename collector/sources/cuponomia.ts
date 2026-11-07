@@ -1,7 +1,9 @@
+import type { StoreId } from '../../lib/stores.ts';
 import { attr, cleanCode, decodeHtml, discountFrom, toIso } from '../util.ts';
 import type { RawCoupon, Source } from './types.ts';
 
-const SLUGS = {
+// Loja sem página neste site fica de fora (conferido em 07/11/2026).
+const SLUGS: Partial<Record<StoreId, string>> = {
   adidas: 'adidas',
   netshoes: 'netshoes',
   centauro: 'centauro',
@@ -10,7 +12,9 @@ const SLUGS = {
   magalu: 'magazine-luiza',
   aliexpress: 'aliexpress',
   shopee: 'shopee',
-} as const;
+  kabum: 'kabum',
+  pichau: 'pichau',
+};
 
 /**
  * Cuponomia lista cada oferta num <li class="item ..." data-type="code" data-store-slug="...">.

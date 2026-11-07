@@ -1,8 +1,10 @@
+import type { StoreId } from '../../lib/stores.ts';
 import { cleanCode, discountFrom, toIso } from '../util.ts';
 import type { RawCoupon, Source } from './types.ts';
 
 /** Endereço da página de cada loja na Cuponation (cada loja tem um padrão diferente). */
-const PAGES = {
+// Loja sem página neste site fica de fora (conferido em 07/11/2026).
+const PAGES: Partial<Record<StoreId, string>> = {
   adidas: 'codigo-promocional-adidas',
   netshoes: 'cupom-desconto-netshoes',
   centauro: 'cupom-centauro',
@@ -11,7 +13,9 @@ const PAGES = {
   magalu: 'cupom-desconto-magazine-luiza',
   aliexpress: 'cupom-de-desconto-aliexpress',
   shopee: 'cupom-shopee',
-} as const;
+  kabum: 'cupom-desconto-kabum',
+  pichau: 'cupom-desconto-pichau',
+};
 
 /** Lê o texto de um campo "nome":"valor" dentro de um pedaço de JSON. */
 function field(chunk: string, name: string): string | null {
