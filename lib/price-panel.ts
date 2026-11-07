@@ -173,15 +173,21 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
     root.querySelector('.diag')?.remove();
     const empty = reports.filter((r) => r.snapshot);
     if (empty.length) {
-      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: 'Salvar diagnóstico das lojas sem resultado' });
+      // O Chrome só deixa baixar 1 arquivo por clique (os outros são bloqueados sem aviso):
+      // cada clique salva o diagnóstico de uma loja.
+      let next = 0;
+      const label = () => (next < empty.length ? `Salvar diagnóstico: ${empty[next]!.storeName} (${next + 1} de ${empty.length})` : `${empty.length} arquivo(s) salvo(s) em Downloads.`);
+      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: label() });
       diag.style.cssText = 'margin-top:8px;background:#6b7280;font-size:12px;padding:7px';
       diag.addEventListener('click', () => {
-        for (const r of empty) {
-          const s = r.snapshot!;
-          const header = `<!-- discount-beast price search\nstore: ${r.store}\nsearch: ${r.searchUrl}\nurl: ${s.url}\ntitle: ${s.title.replaceAll('--', '- -')}\n-->\n`;
-          downloadText(`discount-beast-busca-${r.store}.html`, header + s.html);
-        }
-        diag.textContent = `${empty.length} arquivo(s) salvo(s) em Downloads.`;
+        const r = empty[next];
+        if (!r) return;
+        const s = r.snapshot!;
+        const header = `<!-- discount-beast price search\nstore: ${r.store}\nsearch: ${r.searchUrl}\nurl: ${s.url}\ntitle: ${s.title.replaceAll('--', '- -')}\n-->\n`;
+        downloadText(`discount-beast-busca-${r.store}.html`, header + s.html);
+        next++;
+        diag.textContent = label();
+        diag.disabled = next >= empty.length;
       });
       go.after(diag);
     }
