@@ -6,7 +6,7 @@ export interface Store {
   domains: string[];
 }
 
-export type StoreId = 'amazon' | 'mercadolivre' | 'adidas' | 'netshoes' | 'centauro' | 'magalu' | 'aliexpress' | 'shopee';
+export type StoreId = 'amazon' | 'mercadolivre' | 'adidas' | 'netshoes' | 'centauro' | 'magalu' | 'aliexpress' | 'shopee' | 'kabum' | 'pichau' | 'terabyte';
 
 export const STORES: Store[] = [
   { id: 'amazon', name: 'Amazon', domains: ['amazon.com.br'] },
@@ -18,6 +18,10 @@ export const STORES: Store[] = [
   // AliExpress em português fica em pt.aliexpress.com (coberto por *.aliexpress.com).
   { id: 'aliexpress', name: 'AliExpress', domains: ['aliexpress.com'] },
   { id: 'shopee', name: 'Shopee', domains: ['shopee.com.br'] },
+  // Informática
+  { id: 'kabum', name: 'KaBuM!', domains: ['kabum.com.br'] },
+  { id: 'pichau', name: 'Pichau', domains: ['pichau.com.br'] },
+  { id: 'terabyte', name: 'Terabyte', domains: ['terabyteshop.com.br'] },
 ];
 
 /** Padrões de URL usados no manifest para injetar o content script. */

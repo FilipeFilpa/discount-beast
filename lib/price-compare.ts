@@ -2,7 +2,7 @@ import { browser } from 'wxt/browser';
 import { bestMatch, matchScore, MATCH_MIN, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
 import { hitsFromNextData } from './next-data';
 import { hitsFromPolycards } from './polycards';
-import { extractSearchHits, fetchPageText, fetchProductPrice, PRICE_SOURCES, snapshotSearchPage, type PriceSource } from './price-search';
+import { extractSearchHits, fetchPageText, fetchProductPrice, snapshotSearchPage, sourcesFrom, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
 
 /** O que o cartão mostra para cada loja. */
@@ -25,10 +25,10 @@ const RESULTS_TIMEOUT_MS = 12_000;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-/** Busca o produto em todas as outras lojas ao mesmo tempo. */
+/** Busca o produto nas outras lojas do mesmo tipo (e nas que vendem de tudo) ao mesmo tempo. */
 export async function comparePrices(product: PageProduct, from: StoreId): Promise<PriceReport[]> {
   const query = searchQuery(product);
-  const sources = PRICE_SOURCES.filter((s) => s.id !== from);
+  const sources = sourcesFrom(from);
   return Promise.all(sources.map((source) => searchStore(source, query, product)));
 }
 

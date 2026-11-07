@@ -12,7 +12,14 @@ export interface PriceSource {
   searchUrl: (query: string) => string;
   /** Links que são página de produto (para não pegar banner, categoria etc.). */
   productLink: RegExp;
+  /**
+   * Que tipo de loja é. Numa página de esporte (adidas) não adianta buscar na Kabum, e vice-versa:
+   * cada página busca nas lojas do mesmo grupo + nas lojas que vendem de tudo ('geral').
+   */
+  group: PriceGroup;
 }
+
+export type PriceGroup = 'esporte' | 'informatica' | 'geral';
 
 const slug = (q: string) => encodeURIComponent(q.trim().replace(/\s+/g, '-'));
 const plus = (q: string) => encodeURIComponent(q.trim()).replace(/%20/g, '+');
@@ -20,6 +27,7 @@ const plus = (q: string) => encodeURIComponent(q.trim()).replace(/%20/g, '+');
 export const PRICE_SOURCES: PriceSource[] = [
   {
     id: 'adidas',
+    group: 'esporte',
     name: 'adidas',
     searchUrl: (q) => `https://www.adidas.com.br/search?q=${plus(q)}`,
     // ex.: /tenis-duramo-sl/IE7262.html
@@ -27,6 +35,7 @@ export const PRICE_SOURCES: PriceSource[] = [
   },
   {
     id: 'netshoes',
+    group: 'esporte',
     name: 'Netshoes',
     searchUrl: (q) => `https://www.netshoes.com.br/busca?nsCat=Natural&q=${plus(q)}`,
     // ex.: /p/tenis-adidas-adizero-drive-rc-masculino-FBA-86EP-492 (o final é o código do produto)
@@ -34,6 +43,7 @@ export const PRICE_SOURCES: PriceSource[] = [
   },
   {
     id: 'centauro',
+    group: 'esporte',
     name: 'Centauro',
     searchUrl: (q) => `https://www.centauro.com.br/busca/${slug(q)}`,
     // ex.: /tenis-adidas-duramo-sl-masculino-984307.html
@@ -41,6 +51,7 @@ export const PRICE_SOURCES: PriceSource[] = [
   },
   {
     id: 'mercadolivre',
+    group: 'geral',
     name: 'Mercado Livre',
     searchUrl: (q) => `https://lista.mercadolivre.com.br/${slug(q)}`,
     // ex.: produto.mercadolivre.com.br/MLB-123..., mercadolivre.com.br/.../p/MLB123 ou .../up/MLBU123
@@ -48,6 +59,7 @@ export const PRICE_SOURCES: PriceSource[] = [
   },
   {
     id: 'amazon',
+    group: 'geral',
     name: 'Amazon',
     searchUrl: (q) => `https://www.amazon.com.br/s?k=${plus(q)}`,
     // ex.: /Tenis-Adidas-Adizero-Masculino/dp/B0CXYZ1234 ou /gp/product/B0CXYZ1234 (o código é o ASIN)
@@ -55,10 +67,37 @@ export const PRICE_SOURCES: PriceSource[] = [
   },
   {
     id: 'magalu',
+    group: 'geral',
     name: 'Magalu',
     searchUrl: (q) => `https://www.magazineluiza.com.br/busca/${plus(q)}/`,
     // ex.: /tenis-adidas-adizero-drive-rc-masculino/p/jk6bd8a1e0/es/tnis/
     productLink: /magazineluiza\.com\.br\/[^?#]*\/p\/[a-z0-9]{6,}/i,
+  },
+  {
+    id: 'kabum',
+    group: 'informatica',
+    name: 'KaBuM!',
+    searchUrl: (q) => `https://www.kabum.com.br/busca/${slug(q)}`,
+    // ex.: /produto/520369/placa-de-video-rtx-4060-asus-dual-... (o número é o código do produto)
+    productLink: /kabum\.com\.br\/produto\/\d{3,}/i,
+  },
+  {
+    id: 'pichau',
+    group: 'informatica',
+    name: 'Pichau',
+    searchUrl: (q) => `https://www.pichau.com.br/search?q=${plus(q)}`,
+    // A Pichau não tem código no endereço: o produto é /<nome-comprido-com-hifens> direto na raiz,
+    // ex.: /placa-de-video-asus-geforce-rtx-4060-dual-oc-8gb-gddr6-128-bit-dual-rtx4060-o8g
+    // (categorias têm barra: /hardware/placa-de-video).
+    productLink: /pichau\.com\.br\/[a-z0-9]+(?:-[a-z0-9]+){3,}\/?(?:[?#]|$)/i,
+  },
+  {
+    id: 'terabyte',
+    group: 'informatica',
+    name: 'Terabyte',
+    searchUrl: (q) => `https://www.terabyteshop.com.br/busca?str=${plus(q)}`,
+    // ex.: /produto/26043/placa-de-video-asus-dual-geforce-rtx-4060-...
+    productLink: /terabyteshop\.com\.br\/produto\/\d{3,}/i,
   },
 ];
 
@@ -67,6 +106,15 @@ export const PRICE_STORES: StoreId[] = PRICE_SOURCES.map((s) => s.id);
 export function sourceFor(id: StoreId): PriceSource | undefined {
   return PRICE_SOURCES.find((s) => s.id === id);
 }
+
+/** Onde buscar a partir de uma página desta loja: o mesmo grupo + as lojas de tudo (Amazon, ML, Magalu). */
+export function sourcesFrom(from: StoreId): PriceSource[] {
+  const group = sourceFor(from)?.group ?? 'geral';
+  return PRICE_SOURCES.filter((s) => s.id !== from && (group === 'geral' || s.group === group || s.group === 'geral'));
+}
+
+/** Lojas onde o cartão "Comparar preço" aparece na página do produto. */
+export const PRICE_PANEL_DOMAINS = ['adidas.com.br', 'netshoes.com.br', 'centauro.com.br', 'kabum.com.br', 'pichau.com.br', 'terabyteshop.com.br'];
 
 /**
  * Lê os resultados da página de busca. Esta função roda DENTRO da aba da loja

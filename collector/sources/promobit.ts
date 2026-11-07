@@ -21,6 +21,9 @@ const SLUGS = {
   magalu: 'magazine-luiza',
   aliexpress: 'aliexpress',
   shopee: 'shopee',
+  kabum: 'kabum',
+  pichau: 'pichau',
+  terabyte: 'terabyteshop',
 } as const;
 
 /**

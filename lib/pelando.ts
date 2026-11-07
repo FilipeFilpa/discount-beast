@@ -17,6 +17,9 @@ const STORE_SLUGS: Record<StoreId, string[]> = {
   magalu: ['magazine-luiza', 'magalu', 'magazineluiza'],
   aliexpress: ['aliexpress'],
   shopee: ['shopee'],
+  kabum: ['kabum'],
+  pichau: ['pichau'],
+  terabyte: ['terabyte', 'terabyteshop', 'terabyte-shop'],
 };
 
 /** Descobre a loja pela URL da página de cupons. Ex.: "/cupons-de-descontos/adidas" → "adidas". */

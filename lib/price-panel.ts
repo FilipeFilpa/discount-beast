@@ -3,7 +3,7 @@ import type { ComparePricesMessage, ComparePricesResponse } from './messages';
 import type { PriceReport } from './price-compare';
 import { downloadText } from './page-capture';
 import { formatBRL } from './price';
-import { PRICE_SOURCES } from './price-search';
+import { sourcesFrom } from './price-search';
 import { productFromJsonLd, type PageProduct } from './product-match';
 import type { StoreId } from './stores';
 
@@ -105,7 +105,7 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
   const msg = root.querySelector<HTMLParagraphElement>('.msg')!;
   const list = root.querySelector<HTMLUListElement>('.list')!;
   const go = root.querySelector<HTMLButtonElement>('.go')!;
-  const others = PRICE_SOURCES.filter((s) => s.id !== store).map((s) => s.name);
+  const others = sourcesFrom(store).map((s) => s.name);
   const here = () => product.price;
   msg.textContent = `${product.name}${here() !== null ? ` · aqui ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
 
@@ -173,15 +173,21 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
     root.querySelector('.diag')?.remove();
     const empty = reports.filter((r) => r.snapshot);
     if (empty.length) {
-      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: 'Salvar diagnóstico das lojas sem resultado' });
+      // O Chrome só deixa baixar 1 arquivo por clique (os outros são bloqueados sem aviso):
+      // cada clique salva o diagnóstico de uma loja.
+      let next = 0;
+      const label = () => (next < empty.length ? `Salvar diagnóstico: ${empty[next]!.storeName} (${next + 1} de ${empty.length})` : `${empty.length} arquivo(s) salvo(s) em Downloads.`);
+      const diag = Object.assign(document.createElement('button'), { className: 'diag', textContent: label() });
       diag.style.cssText = 'margin-top:8px;background:#6b7280;font-size:12px;padding:7px';
       diag.addEventListener('click', () => {
-        for (const r of empty) {
-          const s = r.snapshot!;
-          const header = `<!-- discount-beast price search\nstore: ${r.store}\nsearch: ${r.searchUrl}\nurl: ${s.url}\ntitle: ${s.title.replaceAll('--', '- -')}\n-->\n`;
-          downloadText(`discount-beast-busca-${r.store}.html`, header + s.html);
-        }
-        diag.textContent = `${empty.length} arquivo(s) salvo(s) em Downloads.`;
+        const r = empty[next];
+        if (!r) return;
+        const s = r.snapshot!;
+        const header = `<!-- discount-beast price search\nstore: ${r.store}\nsearch: ${r.searchUrl}\nurl: ${s.url}\ntitle: ${s.title.replaceAll('--', '- -')}\n-->\n`;
+        downloadText(`discount-beast-busca-${r.store}.html`, header + s.html);
+        next++;
+        diag.textContent = label();
+        diag.disabled = next >= empty.length;
       });
       go.after(diag);
     }
