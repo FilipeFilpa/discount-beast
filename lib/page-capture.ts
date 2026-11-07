@@ -9,6 +9,11 @@ const DROP = '[class*="address" i], [data-testid*="address" i], [class*="enderec
 export function cleanPageHtml(doc: Document = document): string {
   const clone = doc.documentElement.cloneNode(true) as HTMLElement;
   clone.querySelectorAll(DROP).forEach((el) => el.remove());
+  // Comentários HTML: a Terabyte deixa o bloco antigo de entrega (com o endereço) comentado na página.
+  const comments = document.createTreeWalker(clone, NodeFilter.SHOW_COMMENT);
+  const dead: Node[] = [];
+  for (let node = comments.nextNode(); node; node = comments.nextNode()) dead.push(node);
+  dead.forEach((node) => node.parentNode?.removeChild(node));
   for (const el of clone.querySelectorAll('*')) {
     for (const attr of [...el.attributes]) {
       const name = attr.name.toLowerCase();
@@ -24,7 +29,10 @@ export function cleanPageHtml(doc: Document = document): string {
   const header = `<!-- discount-beast capture\nurl: ${location.href}\nat: ${new Date().toISOString()}\nvisibleInputs: ${JSON.stringify(visibleInputs).replaceAll('--', '- -')}\n-->\n`;
   // Endereços e nome no meio do texto: some com CEPs, CPFs, e-mails e telefones que sobrarem.
   const html = clone.outerHTML.replace(/\b\d{5}-?\d{3}\b/g, '[CEP]').replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[CPF]')
-    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]').replace(/\(?\b\d{2}\)?\s?9?\d{4}-?\d{4}\b/g, '[TEL]');
+    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]')
+    // "Olá, FULANO" no topo do site e linhas de endereço ("Rua X 30 / BL 13 AP 403") que sobrarem.
+    .replace(/(Ol[áa],?\s+)[^<]{1,40}/gi, '$1[NOME]')
+    .replace(/\b(Rua|R\.|Avenida|Av\.|Travessa|Tv\.|Alameda|Al\.|Estrada|Rodovia|Pra[çc]a|Largo|Servid[ãa]o)\s+[^<]{3,140}/g, '[ENDERECO]').replace(/\(?\b\d{2}\)?\s?9?\d{4}-?\d{4}\b/g, '[TEL]');
   return header + html;
 }
 
