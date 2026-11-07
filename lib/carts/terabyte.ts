@@ -73,6 +73,8 @@ async function openAccordion(): Promise<void> {
 }
 
 let lastWorked: string | null = null;
+/** A Terabyte disse "Cupom já está aplicado!" sem mostrar cupom nenhum (precisa recarregar a página). */
+let staleSession = false;
 
 export const terabyteCart: CartAdapter = {
   appliedCode() {
@@ -105,9 +107,16 @@ export const terabyteCart: CartAdapter = {
       if (!alert) return null;
       const text = (alert.querySelector('p')?.textContent ?? alert.textContent ?? '').trim();
       console.info('[Discount Beast] Terabyte recusou', code, '→', text);
+      // "Cupom já está aplicado!" sem cupom na tela: o site ficou com o cupom guardado de antes.
+      // Não é recusa do código; recarregar a página resolve.
+      if (/j[áa] est[áa] aplicad/i.test(text)) { staleSession = true; return 'unknown'; }
       return TERABYTE.ineligibleText.test(text) && !/inv[áa]lid/i.test(text) ? 'ineligible' : 'rejected';
     }, 12_000);
     await closeAlert();
+    if (staleSession) {
+      staleSession = false;
+      throw new Error(`A Terabyte diz que o ${code} "já está aplicado", mas ele não aparece na página. Recarregue a página (F5) e teste de novo.`);
+    }
     if (outcome) return outcome;
     if (!hasCoupon() && readTerabyteTotal() === before) {
       console.info('[Discount Beast] Terabyte: sem mudança depois de', code, '(tratado como recusado)');

@@ -84,7 +84,7 @@ export const RETRY_REJECTED_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
  *    mais com o carrinho (`score`); empate mantém a ordem recebida. Um código que "existe mas não
  *    vale para estes itens" num carrinho diferente conta como nunca testado (com um bônus: ele existe);
  * 3. códigos recusados há mais de 3 dias (podem ter voltado), também pela nota.
- * Recusados recentemente (e 'ineligible' recente neste mesmo carrinho) ficam de fora,
+ * Recusados recentemente (e 'ineligible' recente neste mesmo carrinho) ficam de fora (menos os seus),
  * assim como os de nota abaixo de `minScore`. No máximo `max` códigos.
  */
 export function orderCandidates(
@@ -100,12 +100,14 @@ export function orderCandidates(
   const worked = codes
     .filter((c) => history[c]?.status === 'worked')
     .sort((a, b) => (history[b]?.saving ?? 0) - (history[a]?.saving ?? 0));
-  const fresh = codes.filter((c) => !history[c] || elsewhere(history[c]!));
+  const mine = new Set(keepFirst);
+  // Os seus códigos ("Meus cupons", Pelando, sugeridos pela loja) sempre entram, mesmo recusados há pouco:
+  // você acabou de pedir para testar.
+  const fresh = codes.filter((c) => !history[c] || elsewhere(history[c]!) || (mine.has(c) && history[c]!.status !== 'worked'));
   const retry = codes.filter((c) => {
     const past = history[c];
-    return past && past.status !== 'worked' && !elsewhere(past) && now - past.at >= RETRY_REJECTED_AFTER_MS;
+    return past && past.status !== 'worked' && !mine.has(c) && !elsewhere(past) && now - past.at >= RETRY_REJECTED_AFTER_MS;
   });
-  const mine = new Set(keepFirst);
   const notes = new Map(codes.map((c) => [c, score(c) + (history[c] && elsewhere(history[c]!) ? 2 : 0)]));
   const byScore = (list: string[]) => {
     const pinned = keepFirst.filter((c) => list.includes(c));
@@ -120,56 +122,146 @@ export function orderCandidates(
 }
 
 /**
+ * Onde o teste está, para continuar depois que a loja recarrega a página
+ * (a Terabyte recarrega ao aplicar ou tirar um cupom, e isso mata o script no meio).
+ */
+export interface RunState {
+  codes: string[];
+  /** Índice do código da vez. */
+  i: number;
+  phase: 'start' | 'removeInitial' | 'apply' | 'check' | 'remove' | 'final' | 'finalCheck' | 'done';
+  baseline?: number;
+  results: TryResult[];
+  /** Resposta do apply() quando a página NÃO recarregou. */
+  status?: TryStatus;
+  best?: TryResult | null;
+  finalTotal?: number | null;
+}
+
+export interface Checkpoint {
+  /** Estado salvo de uma rodada interrompida (ou undefined para começar do zero). */
+  state?: RunState;
+  /** Chamado ANTES de cada clique que pode recarregar a página. */
+  save(state: RunState): void;
+}
+
+/**
  * Testa um código de cada vez: aplica, anota o Total, tira e passa para o próximo.
  * No fim aplica de novo o que deixou o Total mais baixo.
+ * Com `checkpoint`, o progresso fica salvo e a rodada continua se a página recarregar.
  */
 export async function findBestCoupon(
   cart: CartAdapter,
   candidates: string[],
   onProgress: (p: Progress) => void = () => {},
+  checkpoint?: Checkpoint,
 ): Promise<RunReport> {
-  const codes = [...candidates];
+  const st: RunState = checkpoint?.state ?? { codes: [...candidates], i: 0, phase: 'start', results: [] };
+  const save = () => checkpoint?.save(st);
+  const gone = () => waitUntil(() => cart.appliedCode() === null, 6000);
 
-  // Se já tinha um cupom no carrinho, ele entra na disputa e sai para medirmos o Total "puro".
-  const already = cart.appliedCode();
-  let before = await cart.total();
-  if (already) {
-    if (!codes.includes(already)) codes.unshift(already);
-    await cart.remove();
-    before = await cart.total(before ?? undefined);
-  }
-  if (before === null) throw new Error('Não encontrei o Total do carrinho.');
-  const baseline = before;
-
-  const results: TryResult[] = [];
-  for (const [i, code] of codes.entries()) {
-    onProgress({ index: i + 1, count: codes.length, code });
-    const status = await cart.apply(code);
-    if (status !== 'worked') {
-      results.push({ code, status });
-      // Sem resposta clara, mas algum cupom ficou aplicado? Tira antes do próximo.
-      if (cart.appliedCode()) await cart.remove();
-      continue;
+  for (let guard = 0; guard < 500 && st.phase !== 'done'; guard++) {
+    switch (st.phase) {
+      case 'start': {
+        // Se já tinha um cupom no carrinho, ele entra na disputa e sai para medirmos o Total "puro".
+        const already = cart.appliedCode();
+        if (already) {
+          if (!st.codes.includes(already)) st.codes.unshift(already);
+          st.phase = 'removeInitial';
+          save();
+          await cart.remove();
+        } else {
+          st.baseline = (await cart.total()) ?? undefined;
+          if (st.baseline === undefined) throw new Error('Não encontrei o Total do carrinho.');
+          st.phase = 'apply';
+          save();
+        }
+        break;
+      }
+      case 'removeInitial': {
+        await gone();
+        st.baseline = (await cart.total()) ?? undefined;
+        if (st.baseline === undefined) throw new Error('Não encontrei o Total do carrinho.');
+        st.phase = 'apply';
+        save();
+        break;
+      }
+      case 'apply': {
+        if (st.i >= st.codes.length) { st.phase = 'final'; break; }
+        const code = st.codes[st.i]!;
+        onProgress({ index: st.i + 1, count: st.codes.length, code });
+        st.phase = 'check';
+        st.status = undefined;
+        save();
+        st.status = await cart.apply(code);
+        break;
+      }
+      case 'check': {
+        const code = st.codes[st.i]!;
+        const baseline = st.baseline!;
+        // Sem st.status = a página recarregou no meio do apply(): olha se o código ficou aplicado.
+        const status = st.status ?? ((await waitUntil(() => cart.appliedCode() === code, 5000)) ? 'worked' : 'unknown');
+        if (status === 'worked') {
+          const total = (await cart.total(st.status ? baseline : undefined)) ?? baseline;
+          st.results.push({ code, status, total, saving: round(baseline - total) });
+        } else {
+          st.results.push({ code, status });
+        }
+        st.status = undefined;
+        // Sem resposta clara, mas algum cupom ficou aplicado? Tira antes do próximo.
+        if (cart.appliedCode()) {
+          st.phase = 'remove';
+          save();
+          await cart.remove();
+        } else {
+          st.i++;
+          st.phase = 'apply';
+          save();
+        }
+        break;
+      }
+      case 'remove': {
+        await gone();
+        await cart.total();
+        st.i++;
+        st.phase = 'apply';
+        save();
+        break;
+      }
+      case 'final': {
+        await cart.close();
+        st.best =
+          st.results
+            .filter((r) => r.status === 'worked' && (r.saving ?? 0) > 0)
+            .sort((a, b) => (a.total ?? Infinity) - (b.total ?? Infinity))[0] ?? null;
+        st.finalTotal = st.baseline ?? null;
+        if (!st.best) { st.phase = 'done'; save(); break; }
+        onProgress({ index: st.codes.length, count: st.codes.length, code: st.best.code });
+        st.phase = 'finalCheck';
+        st.status = undefined;
+        save();
+        st.status = await cart.apply(st.best.code);
+        break;
+      }
+      case 'finalCheck': {
+        const worked = st.status === 'worked' || (await waitUntil(() => cart.appliedCode() === st.best?.code, 5000));
+        st.finalTotal = worked ? await cart.total(st.status ? st.baseline : undefined) : await cart.total();
+        st.phase = 'done';
+        save();
+        break;
+      }
     }
-    const total = (await cart.total(baseline)) ?? baseline;
-    results.push({ code, status, total, saving: round(baseline - total) });
-    await cart.remove();
-    await cart.total(total);
   }
-  await cart.close();
+  return { baseline: st.baseline!, results: st.results, best: st.best ?? null, finalTotal: st.finalTotal ?? null };
+}
 
-  const best =
-    results
-      .filter((r) => r.status === 'worked' && (r.saving ?? 0) > 0)
-      .sort((a, b) => (a.total ?? Infinity) - (b.total ?? Infinity))[0] ?? null;
-
-  let finalTotal: number | null = baseline;
-  if (best) {
-    onProgress({ index: codes.length, count: codes.length, code: best.code });
-    const status = await cart.apply(best.code);
-    finalTotal = status === 'worked' ? await cart.total(baseline) : await cart.total();
+async function waitUntil(check: () => boolean, timeoutMs: number): Promise<boolean> {
+  const end = Date.now() + timeoutMs;
+  while (Date.now() < end) {
+    if (check()) return true;
+    await new Promise((r) => setTimeout(r, 200));
   }
-  return { baseline, results, best, finalTotal };
+  return check();
 }
 
 const round = (n: number) => Math.round(n * 100) / 100;
