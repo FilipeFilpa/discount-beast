@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { findBestCoupon, orderCandidates, type CartAdapter, type TryStatus } from './coupon-runner.ts';
+import { findBestCoupon, orderCandidates, type CartAdapter, type RunState, type TryStatus } from './coupon-runner.ts';
 import { mergeCodes, parseCodes } from './codes.ts';
 import { parseBRL } from './price.ts';
 
@@ -87,4 +87,29 @@ test('Meus cupons entram mesmo se foram recusados há pouco', () => {
   const now = Date.now();
   const history = { MEU200: { status: 'rejected' as TryStatus, at: now - 60_000 }, PUB: { status: 'rejected' as TryStatus, at: now - 60_000 } };
   assert.deepEqual(orderCandidates(['MEU200', 'PUB', 'NOVO'], history, now, undefined, { keepFirst: ['MEU200'] }), ['MEU200', 'NOVO']);
+});
+
+test('findBestCoupon continua depois que a página recarrega no meio', async () => {
+  // Loja que "recarrega" ao aplicar/tirar: o apply/remove muda o carrinho e o script morre (lança Reload).
+  class Reload extends Error {}
+  const prices: Record<string, number> = { A: 900, B: 800 };
+  let applied: string | null = null;
+  const cart: CartAdapter = {
+    appliedCode: () => applied,
+    total: async () => (applied ? prices[applied]! : 1000),
+    apply: async (code) => { if (!prices[code]) return 'rejected'; applied = code; throw new Reload(); },
+    remove: async () => { applied = null; throw new Reload(); },
+    close: async () => {},
+  };
+  let saved: RunState | undefined;
+  const save = (s: RunState) => { saved = JSON.parse(JSON.stringify(s)) as RunState; };
+  let report;
+  for (let loads = 0; loads < 20 && !report; loads++) {
+    try { report = await findBestCoupon(cart, ['A', 'X', 'B'], () => {}, { state: saved, save }); } catch (e) { if (!(e instanceof Reload)) throw e; }
+  }
+  assert.ok(report);
+  assert.deepEqual(report.results.map((r) => [r.code, r.status, r.saving]), [['A', 'worked', 100], ['X', 'rejected', undefined], ['B', 'worked', 200]]);
+  assert.equal(report.best?.code, 'B');
+  assert.equal(report.finalTotal, 800);
+  assert.equal(applied, 'B');
 });

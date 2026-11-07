@@ -2,7 +2,7 @@ import { browser } from 'wxt/browser';
 import { mergeCodes } from './codes';
 import { getCouponHistory, saveCouponResults } from './coupon-history';
 import { cartKey, describeCart, profileCart, scoreCoupon, SKIP_BELOW, type CartInfo } from './coupon-match';
-import { findBestCoupon, orderCandidates, type CartAdapter, type RunReport } from './coupon-runner';
+import { findBestCoupon, orderCandidates, type CartAdapter, type RunReport, type RunState } from './coupon-runner';
 import { couponsFor, getCouponFeed } from './coupon-store';
 import { getMyCoupons } from './my-coupons';
 import { getPelandoCoupons } from './pelando-coupons';
@@ -74,6 +74,8 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
 
   let candidates: string[] = [];
   let key = '';
+  /** true enquanto um teste interrompido por recarga continua: o load() inicial não mexe no cartão. */
+  let resuming = false;
   /** Lê o carrinho (produtos + Total) e põe os cupons que combinam com ele na frente. */
   const load = async (updateMessage = true) => {
     const mine = await getMyCoupons(store);
@@ -84,6 +86,7 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     const suggested = cart.suggested?.() ?? [];
     const personal = mergeCodes(suggested, mergeCodes(mine, pelando));
     const codes = mergeCodes(personal, coupons.map((c) => c.code));
+    if (resuming) return;
     const info: CartInfo = { items: cart.items?.() ?? [], subtotal: await cart.total() };
     const profile = profileCart(info, storeName);
     const byCode = new Map(coupons.map((c) => [c.code, c]));
@@ -119,27 +122,56 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     if (area === 'local' && (changes.myCoupons || changes.pelandoCoupons) && !panel.busy) load().catch(() => {});
   });
 
-  go.addEventListener('click', async () => {
+  // Lojas que recarregam a página ao aplicar/tirar cupom (Terabyte): o teste fica salvo na aba
+  // (sessionStorage) e continua sozinho quando a página volta.
+  const runKey = `discount-beast-run-${store}`;
+  const saveRun = (state: RunState) => {
+    try { sessionStorage.setItem(runKey, JSON.stringify({ state, key, at: Date.now() })); } catch { /* sem sessionStorage */ }
+  };
+  const clearRun = () => { try { sessionStorage.removeItem(runKey); } catch { /* idem */ } };
+  const savedRun = (): { state: RunState; key: string } | null => {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(runKey) ?? 'null') as { state: RunState; key: string; at: number } | null;
+      // Só continua se a página voltou logo (uma recarga leva segundos, não minutos).
+      return saved && Date.now() - saved.at < 3 * 60_000 && saved.state?.phase !== 'done' ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const run = async (resume: { state: RunState; key: string } | null) => {
     panel.busy = true;
     go.disabled = true;
     list.hidden = true;
     try {
-      // A página pode ter mudado desde que o cartão abriu (produto novo, quantidade): lê de novo.
-      await load(false);
+      if (resume) {
+        resuming = true;
+        key = resume.key;
+        msg.textContent = 'A página recarregou; continuando o teste…';
+      } else {
+        // A página pode ter mudado desde que o cartão abriu (produto novo, quantidade): lê de novo.
+        await load(false);
+      }
       const report = await findBestCoupon(cart, candidates, ({ index, count, code }) => {
         msg.textContent = `Testando ${index} de ${count}: ${code}…`;
-      });
+      }, { state: resume?.state, save: saveRun });
+      clearRun();
       await saveCouponResults(store, report.results, key);
       showReport(report);
     } catch (error) {
+      clearRun();
       console.warn('[Discount Beast]', error);
       msg.textContent = `Parei: ${(error as Error).message} A ${storeName} pode ter mudado a página.`;
     } finally {
+      resuming = false;
       panel.busy = false;
       go.textContent = 'Testar de novo';
       await load(false).catch(() => {});
     }
-  });
+  };
+  go.addEventListener('click', () => { clearRun(); void run(null); });
+  const pending = savedRun();
+  if (pending) void run(pending);
 
   function showReport({ best, baseline, finalTotal, results }: RunReport) {
     msg.innerHTML = '';
