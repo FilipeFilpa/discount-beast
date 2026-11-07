@@ -144,6 +144,14 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
       const m = (amount.textContent ?? '').match(/R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/);
       if (m) return [Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`)];
     }
+    // Magalu: o preço "valendo" (Pix/à vista) fica em [data-testid="price-value"]. Usa só ele, para não
+    // confundir com o selo de cupom do cartão ("R$ 20 OFF").
+    for (const amount of card.querySelectorAll('[data-testid="price-value"]')) {
+      if (struck(amount, card)) continue;
+      const m = (amount.textContent ?? '').match(/R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/);
+      if (m) prices.push(Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`));
+    }
+    if (prices.length) return prices;
     const walker = doc.createTreeWalker(card, NodeFilter.SHOW_TEXT);
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
       const el = node.parentElement;
@@ -155,6 +163,8 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
         if (/\d+\s*x\s*(de\s*)?$/i.test(before)) continue;
         // Frete não conta ("R$ 19,90 de frete", "Entrega R$ 9,90").
         const after = text.slice((m.index ?? 0) + m[0].length, (m.index ?? 0) + m[0].length + 14);
+        // Selo de cupom/desconto ("R$ 20 OFF", "R$ 30 de desconto", "cupom de R$ 15") também não é preço.
+        if (/^\s*(off\b|de\s+(desconto|cashback|volta)|a menos)/i.test(after) || /(cupom|desconto|economi[sz]e|cashback)[^\d]*$/i.test(text.slice(0, m.index).slice(-24))) continue;
         if (/^\s*(de\s+)?(frete|entrega)/i.test(after) || /(frete|entrega)[^\d]*$/i.test(text.slice(0, m.index).slice(-24))) continue;
         if (struck(el, card) || installment(el, card)) continue;
         const value = Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`);

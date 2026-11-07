@@ -156,7 +156,8 @@ export interface BestMatch extends SearchHit {
 export function bestMatch(product: PageProduct, hits: SearchHit[]): BestMatch | null {
   const matches = hits
     .map((hit) => ({ ...hit, ...matchScore(product, hit) }))
-    .filter((m) => m.score >= MATCH_MIN && m.price > 0);
+    // Preço menor que 1/4 do daqui quase sempre é leitura errada (selo de cupom, parcela, frete), não oferta.
+    .filter((m) => m.score >= MATCH_MIN && m.price > 0 && !(product.price && m.price < product.price / 4));
   if (matches.length === 0) return null;
   // Entre os que batem, fica o mais barato; empate → o de nota maior.
   matches.sort((x, y) => x.price - y.price || y.score - x.score);
