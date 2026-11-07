@@ -13,7 +13,9 @@ import { clickLikeAPerson, isVisible, readPriceByLabel, sleep, stableValue, type
  * e o resumo ganha a linha "BLACKAMD5  -R$ 61,76". O Total à vista no Pix é o primeiro `[class*=price_vista]`.
  * A Pichau também mostra "Cupons disponíveis para este carrinho" (chips com aria-label "Aplicar cupom X"):
  * esses vão para o começo da fila.
- * AINDA NÃO VISTO: a mensagem de código recusado (provavelmente um aviso flutuante que some sozinho).
+ * Código recusado (captura de 07/11/2026): abre uma janela MUI (`.MuiDialog-root [role=dialog]`)
+ * "Ocorreu um erro no seu carrinho!" / "Cupom inválido. Verifique o código e tente novamente." com botão OK.
+ * Ela trava a página até alguém clicar em OK, então o testador lê a mensagem e fecha.
  */
 export const PICHAU = {
   sectionTitle: /^cupom de desconto$/i,
@@ -23,6 +25,8 @@ export const PICHAU = {
   totalPix: '[data-cy="cart-summary"] [class*="price_vista"]',
   suggested: '[aria-label^="Aplicar cupom "]',
   items: 'table[aria-label="cart list"] [class*="productName"]',
+  /** Janela de erro do carrinho (o chat "Pru da Pichau" também é role=dialog, mas não fica dentro de .MuiDialog-root). */
+  errorDialog: '.MuiDialog-root [role="dialog"]',
   /** Avisos flutuantes comuns em sites MUI (Snackbar, notistack, Toastify). */
   toast: '[role="alert"], .MuiSnackbar-root, .MuiAlert-message, #notistack-snackbar, .Toastify__toast, [class*="snackbar" i], [class*="toast" i]',
   errorText: /inv[áa]lid|expirad|n[ãa]o (encontrad|existe|[ée] v[áa]lid|permitid|aplic|pode)|j[áa] (foi )?utilizad|erro|indispon/i,
@@ -84,8 +88,28 @@ export function readPichauItems(): CartItem[] {
   return [...new Set(names)].map((name) => ({ name, seller: 'Pichau' }));
 }
 
-/** Aviso de erro flutuante, se houver (só os que apareceram depois do clique contam). */
+/** Janela de erro aberta (ex.: "Cupom inválido. Verifique o código e tente novamente."). */
+function errorDialog(): HTMLElement | null {
+  return [...document.querySelectorAll<HTMLElement>(PICHAU.errorDialog)].find(isVisible) ?? null;
+}
+
+/** Clica no OK da janela de erro e espera ela sumir. */
+async function closeErrorDialog(): Promise<void> {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const dialog = errorDialog();
+    if (!dialog) return;
+    const ok = [...dialog.querySelectorAll<HTMLElement>('button')].find((b) => /^(ok|fechar|entendi)$/i.test((b.textContent ?? '').trim()))
+      ?? dialog.querySelector<HTMLElement>('.MuiDialogActions-root button');
+    if (ok) clickLikeAPerson(ok);
+    else document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await waitFor(() => !errorDialog(), 3000);
+  }
+}
+
+/** Mensagem de erro, se houver (só as que apareceram depois do clique contam). */
 function errorToast(ignore: Set<Element>): HTMLElement | null {
+  const dialog = errorDialog();
+  if (dialog) return dialog.querySelector<HTMLElement>('.MuiDialogContent-root, #alert-dialog-description') ?? dialog;
   for (const el of document.querySelectorAll<HTMLElement>(PICHAU.toast)) {
     if (ignore.has(el) || !isVisible(el)) continue;
     if (el.closest('discount-beast-panel, discount-beast-capture')) continue;
@@ -114,6 +138,7 @@ export const pichauCart: CartAdapter = {
     const field = input();
     if (!section || !field) throw new Error('Não achei o campo "Cupom de desconto" na Pichau.');
     if (hasCoupon()) throw new Error('Já tem um cupom aplicado na Pichau.');
+    await closeErrorDialog();
     const before = readPichauTotal();
     const oldToasts = new Set<Element>(document.querySelectorAll(PICHAU.toast));
     const oldHelper = section.querySelector('.MuiFormHelperText-root');
@@ -131,9 +156,13 @@ export const pichauCart: CartAdapter = {
       if (!err) return null;
       const text = err.textContent ?? '';
       console.info('[Discount Beast] Pichau recusou', code, '→', text.trim());
+      void closeErrorDialog();
       return PICHAU.ineligibleText.test(text) && !/inv[áa]lid/i.test(text) ? 'ineligible' : 'rejected';
     }, 12_000);
-    if (outcome) return outcome;
+    if (outcome) {
+      await closeErrorDialog();
+      return outcome;
+    }
     // Nada mudou em 12 s: o campo continua livre e o Total igual → a Pichau não aceitou.
     // (o aviso de erro dela pode ter sumido antes de a gente ver)
     if (!hasCoupon() && readPichauTotal() === before) {
@@ -163,6 +192,7 @@ export const pichauCart: CartAdapter = {
   suggested: readPichauSuggested,
 
   async close() {
-    // O campo fica no resumo do carrinho, sem janela.
+    // O campo fica no resumo do carrinho; só fecha a janela de erro, se ficou aberta.
+    await closeErrorDialog();
   },
 };
