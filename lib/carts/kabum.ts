@@ -41,22 +41,37 @@ export function readKabumTotal(): number | null {
 }
 
 /**
- * No /carrinho: salva os nomes dos produtos (links para /produto/...) para usar depois no /endereco.
- * É um palpite de seletor; se não achar nada, o testador só não ordena por compatibilidade.
+ * No /carrinho: salva nome e vendedor de cada produto para usar depois no /endereco.
+ * HTML do carrinho (07/11/2026): cada vendedor tem "Vendido e entregue por: <b>Loja Gazin</b>"
+ * e seus produtos em `#ProductContainer`, com o nome em `a.productName`.
  */
 export function rememberKabumItems(): void {
   if (!/^\/carrinho/.test(location.pathname)) return;
-  const names = [...document.querySelectorAll<HTMLAnchorElement>('main a[href*="/produto/"]')]
-    .map((a) => (a.textContent ?? '').replace(/\s+/g, ' ').trim())
-    .filter((n) => n.length > 10);
-  if (!names.length) return;
-  try { sessionStorage.setItem(KABUM.itemsKey, JSON.stringify([...new Set(names)])); } catch { /* sem sessionStorage */ }
+  const items: CartItem[] = [];
+  for (const sellerTag of document.querySelectorAll('#sellersContainer .sellerName')) {
+    const seller = sellerTag.querySelector('b')?.textContent?.trim();
+    const group = sellerTag.parentElement;
+    for (const link of group?.querySelectorAll('a.productName') ?? []) {
+      const name = (link.textContent ?? '').replace(/\s+/g, ' ').trim();
+      if (name) items.push(seller ? { name, seller } : { name });
+    }
+  }
+  // Plano B, se a KaBuM! mudar o HTML: qualquer link de produto com texto.
+  if (!items.length) {
+    for (const a of document.querySelectorAll<HTMLAnchorElement>('main a[href*="/produto/"]')) {
+      const name = (a.textContent ?? '').replace(/\s+/g, ' ').trim();
+      if (name.length > 10 && !items.some((i) => i.name === name)) items.push({ name });
+    }
+  }
+  if (!items.length) return;
+  try { sessionStorage.setItem(KABUM.itemsKey, JSON.stringify(items)); } catch { /* sem sessionStorage */ }
 }
 
 export function readKabumItems(): CartItem[] {
   try {
-    const names = JSON.parse(sessionStorage.getItem(KABUM.itemsKey) ?? '[]') as unknown;
-    return Array.isArray(names) ? names.filter((n): n is string => typeof n === 'string').map((name) => ({ name })) : [];
+    const saved = JSON.parse(sessionStorage.getItem(KABUM.itemsKey) ?? '[]') as unknown;
+    if (!Array.isArray(saved)) return [];
+    return saved.filter((i): i is CartItem => typeof i?.name === 'string').map((i) => (typeof i.seller === 'string' ? { name: i.name, seller: i.seller } : { name: i.name }));
   } catch {
     return [];
   }
