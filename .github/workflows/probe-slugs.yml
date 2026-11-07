@@ -1,0 +1,26 @@
+# TEMPORÁRIO: descobre os endereços certos das páginas de cupom (apagar antes do merge).
+name: Probe slugs
+on:
+  push:
+    paths: ['.github/workflows/probe-slugs.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36'
+          for u in \
+            https://www.cuponomia.com.br/desconto/kabum https://www.cuponomia.com.br/desconto/pichau https://www.cuponomia.com.br/desconto/terabyteshop https://www.cuponomia.com.br/desconto/terabyte \
+            https://www.meliuz.com.br/desconto/cupom-kabum https://www.meliuz.com.br/desconto/cupom-pichau https://www.meliuz.com.br/desconto/cupom-terabyteshop https://www.meliuz.com.br/desconto/cupom-terabyte \
+            https://www.promobit.com.br/cupons/loja/kabum/ https://www.promobit.com.br/cupons/loja/pichau/ https://www.promobit.com.br/cupons/loja/terabyteshop/ https://www.promobit.com.br/cupons/loja/terabyte/ https://www.promobit.com.br/cupons/loja/terabyte-shop/ \
+            https://www.cuponation.com.br/cupom-desconto-kabum https://www.cuponation.com.br/cupom-kabum https://www.cuponation.com.br/cupom-pichau https://www.cuponation.com.br/cupom-desconto-pichau https://www.cuponation.com.br/cupom-terabyteshop https://www.cuponation.com.br/cupom-terabyte https://www.cuponation.com.br/cupom-desconto-terabyteshop \
+            https://www.cuponeria.com.br/cupom-desconto/kabum https://www.cuponeria.com.br/cupom-desconto/pichau https://www.cuponeria.com.br/cupom-desconto/terabyteshop https://www.cuponeria.com.br/cupom-desconto/terabyte ; do
+            body=$(curl -sL -m 20 -A "$UA" -w '\n%{http_code} %{url_effective}' "$u")
+            last=$(echo "$body" | tail -1)
+            n1=$(echo "$body" | grep -o 'data-offer-code="[^"]' | wc -l)
+            n2=$(echo "$body" | grep -o 'js-itemCode' | wc -l)
+            n3=$(echo "$body" | grep -o '"couponCode":"[^"]' | wc -l)
+            n4=$(echo "$body" | grep -o 'voucherTypeName' | wc -l)
+            n5=$(echo "$body" | grep -o '"code":"[^"]' | wc -l)
+            echo "$u => $last meliuz=$n1 cuponomia=$n2 promobit=$n3 cuponation=$n4 code=$n5"
+          done
