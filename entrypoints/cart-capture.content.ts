@@ -23,7 +23,7 @@ export default defineContentScript({
     setInterval(() => {
       const loose = /pichau|terabyteshop/.test(location.hostname);
       const inCart = loose
-        ? /cart|carrinho|checkout|pagamento|sacola|endereco/i.test(location.pathname)
+        ? /cart|carrinho|checkout|pagamento|sacola|endereco|formaspagamento/i.test(location.pathname)
         : /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
       if (inCart && !host) host = createButton();
       if (host) host.hidden = !inCart;
