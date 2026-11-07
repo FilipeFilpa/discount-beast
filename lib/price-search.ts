@@ -46,6 +46,20 @@ export const PRICE_SOURCES: PriceSource[] = [
     // ex.: produto.mercadolivre.com.br/MLB-123..., mercadolivre.com.br/.../p/MLB123 ou .../up/MLBU123
     productLink: /mercadolivre\.com\.br\/[^?#]*MLBU?-?\d{6,}/i,
   },
+  {
+    id: 'amazon',
+    name: 'Amazon',
+    searchUrl: (q) => `https://www.amazon.com.br/s?k=${plus(q)}`,
+    // ex.: /Tenis-Adidas-Adizero-Masculino/dp/B0CXYZ1234 ou /gp/product/B0CXYZ1234 (o código é o ASIN)
+    productLink: /amazon\.com\.br\/(?:[^?#]*\/)?(?:dp|gp\/product)\/[A-Z0-9]{10}/i,
+  },
+  {
+    id: 'magalu',
+    name: 'Magalu',
+    searchUrl: (q) => `https://www.magazineluiza.com.br/busca/${plus(q)}/`,
+    // ex.: /tenis-adidas-adizero-drive-rc-masculino/p/jk6bd8a1e0/es/tnis/
+    productLink: /magazineluiza\.com\.br\/[^?#]*\/p\/[a-z0-9]{6,}/i,
+  },
 ];
 
 export const PRICE_STORES: StoreId[] = PRICE_SOURCES.map((s) => s.id);
@@ -70,12 +84,33 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
   const doc = mode === 'fetch' ? new DOMParser().parseFromString(await (await fetch(location.href, { credentials: 'include' })).text(), 'text/html') : document;
   const productLink = mode === 'generic' ? new RegExp(`^https?://[^/]*${location.hostname.replace(/^www\./, '').replace(/\./g, '\\.')}/[^?#]*-[^?#/]*-[^?#/]*-[^?#/]*-`, 'i') : new RegExp(linkPattern, 'i');
   const PRICE = /R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/g;
-  const keyOf = (href: string) => href.split(/[?#]/)[0] ?? href;
+  // Link de anúncio da Amazon (/sspa/click?...url=%2F...%2Fdp%2FB0...) traz o endereço real codificado.
+  const hrefOf = (a: HTMLAnchorElement) => {
+    if (!/\/sspa\/click/.test(a.href)) return a.href;
+    try {
+      const real = new URL(a.href).searchParams.get('url');
+      return real ? new URL(real, location.origin).href : a.href;
+    } catch {
+      return a.href;
+    }
+  };
+  // Amazon: o mesmo produto aparece com vários endereços; o ASIN (10 letras/números) é o que identifica.
+  const asinOf = (href: string) => href.match(/\/(?:dp|gp\/product)\/([A-Z0-9]{10})(?=[/?#]|$)/i)?.[1];
+  const keyOf = (href: string) => {
+    const asin = asinOf(href);
+    return asin ? `asin:${asin.toUpperCase()}` : (href.split(/[?#]/)[0] ?? href);
+  };
+  // Corta o "/ref=sr_1_1?..." mas mantém o nome no endereço (ajuda a conferir a marca).
+  const cleanUrl = (href: string) => href.match(/^https?:\/\/[^?#]*?\/(?:dp|gp\/product)\/[A-Z0-9]{10}/i)?.[0] ?? href;
+  // Cartões que a loja já marca: Amazon (div[data-asin]) e Magalu (o próprio link é o cartão).
+  const CARD = '[data-component-type="s-search-result"][data-asin], [data-asin]:not([data-asin=""]), [data-testid="product-card-container"]';
 
   const struck = (el: Element, stop: Element) => {
     for (let node: Element | null = el; node && node !== stop.parentElement; node = node.parentElement) {
       if (/^(S|DEL|STRIKE)$/.test(node.tagName)) return true;
-      if (/previous|old-?price|list-?price|price-?from|from-?price|original/i.test(String(node.getAttribute('class') ?? ''))) return true;
+      // a-text-price / data-a-strike = "De: R$ 799" na Amazon; price-original = preço antigo na Magalu.
+      if (/previous|old-?price|list-?price|price-?from|from-?price|original|a-text-price/i.test(`${node.getAttribute('class') ?? ''} ${node.getAttribute('data-testid') ?? ''}`)) return true;
+      if (node.getAttribute('data-a-strike') === 'true') return true;
       try {
         if (mode !== 'fetch' && getComputedStyle(node).textDecorationLine.includes('line-through')) return true;
       } catch {
@@ -86,7 +121,7 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
   };
   const installment = (el: Element, stop: Element) => {
     for (let node: Element | null = el; node && node !== stop.parentElement; node = node.parentElement) {
-      if (/installment|parcel/i.test(String(node.getAttribute('class') ?? ''))) return true;
+      if (/installment|parcel/i.test(`${node.getAttribute('class') ?? ''} ${node.getAttribute('data-testid') ?? ''}`)) return true;
     }
     return false;
   };
@@ -102,6 +137,21 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
       if (fraction) prices.push(Number(`${fraction}.${cents}`));
     }
     if (prices.length) return prices;
+    // Amazon: o preço "valendo" vem num <span class="a-offscreen">R$ 599,99</span> dentro de .a-price.
+    // Pega o primeiro (o principal); "Mais opções de compra" (usados, outros vendedores) fica de fora.
+    for (const amount of card.querySelectorAll('.a-price .a-offscreen')) {
+      if (struck(amount, card) || amount.closest('[data-cy="secondary-offer-recipe"]')) continue;
+      const m = (amount.textContent ?? '').match(/R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/);
+      if (m) return [Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`)];
+    }
+    // Magalu: o preço "valendo" (Pix/à vista) fica em [data-testid="price-value"]. Usa só ele, para não
+    // confundir com o selo de cupom do cartão ("R$ 20 OFF").
+    for (const amount of card.querySelectorAll('[data-testid="price-value"]')) {
+      if (struck(amount, card)) continue;
+      const m = (amount.textContent ?? '').match(/R\$\s*(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{2}))?/);
+      if (m) prices.push(Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`));
+    }
+    if (prices.length) return prices;
     const walker = doc.createTreeWalker(card, NodeFilter.SHOW_TEXT);
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
       const el = node.parentElement;
@@ -111,6 +161,11 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
       for (const m of text.matchAll(PRICE)) {
         const before = text.slice(0, m.index).slice(-12);
         if (/\d+\s*x\s*(de\s*)?$/i.test(before)) continue;
+        // Frete não conta ("R$ 19,90 de frete", "Entrega R$ 9,90").
+        const after = text.slice((m.index ?? 0) + m[0].length, (m.index ?? 0) + m[0].length + 14);
+        // Selo de cupom/desconto ("R$ 20 OFF", "R$ 30 de desconto", "cupom de R$ 15") também não é preço.
+        if (/^\s*(off\b|de\s+(desconto|cashback|volta)|a menos)/i.test(after) || /(cupom|desconto|economi[sz]e|cashback)[^\d]*$/i.test(text.slice(0, m.index).slice(-24))) continue;
+        if (/^\s*(de\s+)?(frete|entrega)/i.test(after) || /(frete|entrega)[^\d]*$/i.test(text.slice(0, m.index).slice(-24))) continue;
         if (struck(el, card) || installment(el, card)) continue;
         const value = Number(`${m[1]!.replace(/\./g, '')}.${m[2] ?? '00'}`);
         if (value > 0) prices.push(value);
@@ -119,17 +174,26 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
     return prices;
   };
 
-  const links = [...doc.querySelectorAll<HTMLAnchorElement>('a[href]')].filter((a) => productLink.test(a.href) && !/click1\.|\/mclics\//.test(a.href));
+  const links = [...doc.querySelectorAll<HTMLAnchorElement>('a[href]')].filter((a) => productLink.test(hrefOf(a)) && !/click1\.|\/mclics\//.test(a.href));
   const hits: SearchHit[] = [];
   const seen = new Set<string>();
   for (const link of links) {
-    const key = keyOf(link.href);
+    const href = hrefOf(link);
+    const key = keyOf(href);
     if (seen.has(key)) continue;
     // Sobe até o cartão: o primeiro ancestral com um preço, sem passar para um bloco com outros produtos.
     let card: Element = link;
     let prices: number[] = [];
-    for (let up = 0, node: Element | null = link; node && up < 8; up++, node = node.parentElement) {
-      const others = [...node.querySelectorAll<HTMLAnchorElement>('a[href]')].some((a) => productLink.test(a.href) && keyOf(a.href) !== key);
+    const marked = link.closest(CARD);
+    // Link de outra cor/variação dentro do cartão da Amazon: não é este produto.
+    const cardAsin = marked?.getAttribute('data-asin');
+    if (cardAsin && asinOf(href) && keyOf(href) !== `asin:${cardAsin.toUpperCase()}`) continue;
+    if (marked) {
+      card = marked;
+      prices = pricesIn(marked);
+    }
+    for (let up = 0, node: Element | null = link; !marked && node && up < 8; up++, node = node.parentElement) {
+      const others = [...node.querySelectorAll<HTMLAnchorElement>('a[href]')].some((a) => productLink.test(hrefOf(a)) && keyOf(hrefOf(a)) !== key);
       if (others) break;
       card = node;
       prices = /R\$/.test(node.textContent ?? '') ? pricesIn(node) : [];
@@ -137,15 +201,17 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
     }
     // Sem preço no cartão (a Netshoes só mostra "Confira" numa aba de fundo): entra com preço 0,
     // e o background busca o preço na página do produto se o título bater.
-    const titleEl = card.querySelector('h2, h3, [class*="title" i], [class*="name" i]');
-    const candidates = [link.getAttribute('data-name'), titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), link.textContent, card.querySelector('img[alt]')?.getAttribute('alt')]
+    // Em ordem de preferência. Amazon (Moda) mostra a marca num h2 e o nome em outro: junta os dois.
+    const amazonTitle = [...card.querySelectorAll('[data-cy="title-recipe"] h2')].map((h) => h.textContent?.trim()).filter(Boolean).join(' ');
+    const titleEl = ['[data-testid="product-title"]', 'h2, h3, [class*="title" i], [class*="name" i]'].map((sel) => card.querySelector(sel)).find(Boolean);
+    const candidates = [link.getAttribute('data-name'), amazonTitle, titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), link.textContent, card.querySelector('img[alt]')?.getAttribute('alt')]
       // Rótulos de acessibilidade como "Ir para a página do produto Tênis..." (Centauro).
       .map((t) => (t ?? '').replace(/\s+/g, ' ').trim().replace(/^ir para (a )?(p[aá]gina )?(d[oe] )?(produto )?/i, ''))
       .filter((t) => t.length >= 6 && !/R\$/.test(t));
     const title = candidates[0];
     if (!title) continue;
     seen.add(key);
-    hits.push({ title, price: prices.length ? Math.min(...prices) : 0, url: link.href });
+    hits.push({ title, price: prices.length ? Math.min(...prices) : 0, url: cleanUrl(href) });
     if (hits.length >= max) break;
   }
   return hits;

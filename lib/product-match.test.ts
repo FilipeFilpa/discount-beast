@@ -92,3 +92,12 @@ test('na loja da marca o título não traz a marca, mas o endereço traz', () =>
   assert.ok(matchScore(ns, hit('Tênis Adizero Drive RC W', 699.99, 'https://www.adidas.com.br/tenis-adizero-drive-rc/JR9999.html')).score < MATCH_MIN);
   assert.ok(matchScore(ns, hit('Tênis Adizero Drive RC', 99, 'https://www.mercadolivre.com.br/tenis-generico/up/MLBU1')).score < MATCH_MIN);
 });
+
+test('bestMatch descarta preço absurdo (ex.: selo "R$ 20 OFF" lido como preço)', () => {
+  const page = { name: 'Tênis Adidas Adizero Drive RC Masculino', brand: 'adidas', gtin: null, sku: null, price: 599.99, url: 'https://www.netshoes.com.br/p/x' };
+  const hits = [
+    { title: 'Tênis Adidas Adizero Drive Rc Masculino', price: 20, url: 'https://www.magazineluiza.com.br/a/p/abc123def/' },
+    { title: 'Tênis Adidas Adizero Drive Rc Masculino', price: 579.99, url: 'https://www.magazineluiza.com.br/b/p/abc123deg/' },
+  ];
+  assert.equal(bestMatch(page, hits)?.price, 579.99);
+});
