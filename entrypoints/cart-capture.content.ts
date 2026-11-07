@@ -7,14 +7,18 @@ import { findStoreByHost } from '@/lib/stores';
  * Quando a loja ganhar adaptador (lib/carts/<loja>.ts), tire ela daqui.
  */
 export default defineContentScript({
-  matches: ['https://*.netshoes.com.br/*', 'https://netshoes.com.br/*', 'https://*.centauro.com.br/*', 'https://centauro.com.br/*'],
+  matches: [
+    'https://*.netshoes.com.br/*', 'https://netshoes.com.br/*', 'https://*.centauro.com.br/*', 'https://centauro.com.br/*',
+    'https://*.kabum.com.br/*', 'https://kabum.com.br/*',
+  ],
   runAt: 'document_idle',
   main() {
-    // Agora as duas lojas têm adaptador; o botão fica só no carrinho, para salvar o caso
+    // Netshoes/Centauro já têm adaptador: o botão fica só no carrinho, para salvar o caso
     // "cupom aceito" quando aparecer um código válido (ainda não vimos esse HTML).
+    // KaBuM!: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
     let host: HTMLElement | null = null;
     setInterval(() => {
-      const inCart = /^\/cart|\/checkouts\/carrinho/.test(location.pathname);
+      const inCart = /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout/.test(location.pathname);
       if (inCart && !host) host = createButton();
       if (host) host.hidden = !inCart;
     }, 1500);
@@ -37,7 +41,7 @@ function createButton(): HTMLElement {
     </style>
     <div class="card">
       <button class="x" title="Fechar">×</button>
-      <p><strong>🦁 Discount Beast</strong><br>Se um cupom for aceito, clique abaixo e mande o arquivo para o Claude.</p>
+      <p><strong>🦁 Discount Beast</strong><br>Salve o carrinho (sem cupom, com cupom recusado e com cupom aceito) e mande os arquivos para o Claude.</p>
       <button class="go">Salvar carrinho para o Discount Beast</button>
       <p class="msg" style="margin:8px 0 0"></p>
     </div>`;
