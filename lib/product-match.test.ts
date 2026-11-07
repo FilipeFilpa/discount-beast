@@ -173,3 +173,10 @@ test('marca "Outros" no cadastro conta como sem marca (PS5 na KaBuM!)', () => {
   assert.ok(matchScore(ps5, hit('Console Sony Playstation 5 Slim Digital 825gb Ps5 Lacrado')).score >= MATCH_MIN);
   assert.ok(matchScore(ps5, hit('Consola Sony Playstation 5 Slim Digital 1tb Ssd 4k 825gb')).score < MATCH_MIN);
 });
+
+test('quantidade de controles/jogos não é número do modelo', () => {
+  const ps5: PageProduct = { name: 'Console Playstation 5 Slim Digital 825gb SSD 1 Controle Dualsense', brand: 'Outros', gtin: null, sku: null, price: 3899, url: 'u' };
+  assert.ok(matchScore(ps5, hit('Console Playstation 5 Slim Digital 825gb Branco')).score >= MATCH_MIN);
+  assert.ok(matchScore(ps5, hit('Console Playstation 5 Slim Ps5 Digital Sony+9 Jogos Gta V')).score >= MATCH_MIN);
+  assert.ok(matchScore(ps5, hit('Console Playstation 4 Slim 1TB')).score < MATCH_MIN);
+});

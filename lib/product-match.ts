@@ -64,7 +64,7 @@ const NOISE = new Set([
 ]);
 
 /** Informática: nome do chip e marketing que umas lojas põem no título e outras não. */
-const TECH_NOISE = new Set(['nvidia', 'geforce', 'radeon', 'dlss', 'ray', 'tracing', 'rgb', 'argb', 'fsr', 'reflex', 'led', 'processamento', 'video', 'leitura', 'gravacao', 'escrita', 'velocidade', 's', 'ate', 'max', 'camera', 'dupla', 'tripla', 'tela', 'display', 'cache']);
+const TECH_NOISE = new Set(['nvidia', 'geforce', 'radeon', 'dlss', 'ray', 'tracing', 'rgb', 'argb', 'fsr', 'reflex', 'led', 'processamento', 'video', 'leitura', 'gravacao', 'escrita', 'velocidade', 's', 'ate', 'max', 'camera', 'dupla', 'tripla', 'tela', 'display', 'cache', 'dualsense', 'edicao']);
 
 /** Minúsculas, sem acento, só letras e números. */
 export function normalize(text: string): string {
@@ -90,13 +90,15 @@ function isSize(word: string): boolean {
 const UNITS = new Set([
   'gb', 'tb', 'mb', 'kb', 'mhz', 'ghz', 'hz', 'bit', 'bits', 'mm', 'cm', 'pol', 'polegadas', 'nucleos', 'core', 'cores',
   'thread', 'threads', 'rpm', 'ms', 'watts', 'mah', 'mp', 'dpi', 'fps',
+  // Quantidade de acessórios/brindes: "1 Controle", "+9 Jogos", "12 Meses de garantia".
+  'controle', 'controles', 'jogo', 'jogos', 'meses', 'unidade', 'unidades', 'un', 'pecas',
 ]);
 /** Palavra antes de um número que faz dele uma especificação: "PCIe 4.0", "M.2", "USB 3.2", "DDR 4". */
 const SPEC_PREFIX = new Set(['tela', 'pcie', 'usb', 'm', 'ddr', 'gddr', 'wifi', 'wi', 'hdmi', 'sata', 'gen', 'dp', 'bluetooth', 'android', 'ios', 'windows']);
 /** Especificação técnica: ajuda a comparar, mas não é o "nome" do modelo. */
 function isSpec(word: string): boolean {
   return (
-    /^\d+(\.\d+)?(gb|tb|mb|kb|mhz|ghz|hz|bit|bits|mm|cm|pol|polegadas|nucleos|core|cores|thread|threads|rpm|ms|w|watts|v|mah|mp|dpi|fps|k|p)$/.test(word) ||
+    /^\d+(\.\d+)?(gb|tb|mb|kb|mhz|ghz|hz|bit|bits|mm|cm|pol|polegadas|nucleos|core|cores|thread|threads|rpm|ms|w|watts|v|mah|mp|dpi|fps|k|p|controles?|jogos?|meses|unidades?|un|pecas)$/.test(word) ||
     /^(lp)?g?ddr\d+x?$/.test(word) ||
     /^(tela|pcie|usb|m|ddr|gddr|wifi|wi|hdmi|sata|gen|dp|bluetooth|android|ios|windows)\d+(\.\d+)?$/.test(word) ||
     /^\d+x\d+(gb|mb)?$/.test(word) ||
