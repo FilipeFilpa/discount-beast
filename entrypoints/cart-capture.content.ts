@@ -11,6 +11,7 @@ export default defineContentScript({
     'https://*.netshoes.com.br/*', 'https://netshoes.com.br/*', 'https://*.centauro.com.br/*', 'https://centauro.com.br/*',
     'https://*.kabum.com.br/*', 'https://kabum.com.br/*',
     'https://*.pichau.com.br/*', 'https://pichau.com.br/*', 'https://*.terabyteshop.com.br/*', 'https://terabyteshop.com.br/*',
+    'https://*.magazineluiza.com.br/*', 'https://*.magalu.com/*',
   ],
   runAt: 'document_idle',
   main() {
@@ -19,11 +20,12 @@ export default defineContentScript({
     // KaBuM!: o botão serve para salvar o caso "cupom aceito".
     // Pichau/Terabyte: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
     // Nelas ainda não sabemos a URL exata do carrinho, então aceitamos qualquer caminho com carrinho/cart/checkout.
+    // Magalu: a sacola mora num subdomínio próprio (sacola.magazineluiza.com.br), com rotas no "#".
     let host: HTMLElement | null = null;
     setInterval(() => {
-      const loose = /pichau|terabyteshop/.test(location.hostname);
-      const inCart = loose
-        ? /cart|carrinho|checkout|pagamento|sacola|endereco|formaspagamento/i.test(location.pathname)
+      const loose = /pichau|terabyteshop|magazineluiza|magalu/.test(location.hostname);
+      const inCart = /^(sacola|carrinho|checkout)\./.test(location.hostname) ? true : loose
+        ? /cart|carrinho|checkout|pagamento|sacola|endereco|formaspagamento/i.test(location.pathname + location.hash)
         : /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
       if (inCart && !host) host = createButton();
       if (host) host.hidden = !inCart;
