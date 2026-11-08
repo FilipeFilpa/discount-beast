@@ -2,7 +2,7 @@ import { browser } from 'wxt/browser';
 import { bestMatch, matchScore, MATCH_MIN, searchQuery, type BestMatch, type PageProduct, type SearchHit } from './product-match';
 import { hitsFromNextData } from './next-data';
 import { hitsFromPolycards } from './polycards';
-import { extractSearchHits, fetchPageText, fetchProductPrice, snapshotSearchPage, sourcesFrom, type PriceSource } from './price-search';
+import { extractSearchHits, fetchPageText, fetchProductPrice, snapshotSearchPage, sourceFor, sourcesFrom, type PriceSource } from './price-search';
 import type { StoreId } from './stores';
 
 /** O que o cartão mostra para cada loja. */
@@ -25,21 +25,30 @@ const RESULTS_TIMEOUT_MS = 12_000;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-/** Busca o produto nas outras lojas do mesmo tipo (e nas que vendem de tudo) ao mesmo tempo. */
-export async function comparePrices(product: PageProduct, from: StoreId): Promise<PriceReport[]> {
-  const query = searchQuery(product);
-  const sources = sourcesFrom(from, product.name);
-  return Promise.all(sources.map((source) => searchStore(source, query, product)));
+export interface CompareOptions {
+  /** Busca também na loja de origem (o alerta de preço quer saber se ela mesma baixou). */
+  includeSelf?: boolean;
+  /** Janela onde abrir as abas de fundo (o alerta usa uma janela minimizada, para não atrapalhar). */
+  windowId?: number;
 }
 
-async function searchStore(source: PriceSource, query: string, product: PageProduct): Promise<PriceReport> {
+/** Busca o produto nas outras lojas do mesmo tipo (e nas que vendem de tudo) ao mesmo tempo. */
+export async function comparePrices(product: PageProduct, from: StoreId, options: CompareOptions = {}): Promise<PriceReport[]> {
+  const query = searchQuery(product);
+  const sources = sourcesFrom(from, product.name);
+  const self = options.includeSelf ? sourceFor(from) : undefined;
+  if (self) sources.unshift(self);
+  return Promise.all(sources.map((source) => searchStore(source, query, product, options.windowId)));
+}
+
+async function searchStore(source: PriceSource, query: string, product: PageProduct, windowId?: number): Promise<PriceReport> {
   const searchUrl = source.searchUrl(query);
   const report: PriceReport = { store: source.id, storeName: source.name, searchUrl, match: null, hits: 0 };
   let tabId: number | undefined;
   try {
     // Aba de fundo (não rouba o foco). É uma visita normal do seu Chrome.
     // Abre em branco e só depois navega: assim o teste automático (Playwright) consegue acompanhar a aba.
-    const tab = await browser.tabs.create({ url: 'about:blank', active: false });
+    const tab = await browser.tabs.create({ url: 'about:blank', active: false, ...(windowId !== undefined && { windowId }) });
     tabId = tab.id;
     if (tabId === undefined) throw new Error('não consegui abrir a aba');
     await sleep(300);

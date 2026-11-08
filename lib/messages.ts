@@ -16,5 +16,19 @@ export interface ComparePricesMessage {
   product: PageProduct;
 }
 
-export type Message = StoreVisitMessage | ComparePricesMessage;
+/** Cartão de preço: "Avisar quando baixar" (o background guarda e confere uma vez, em silêncio). */
+export interface WatchAddMessage {
+  type: 'watch-add';
+  from: StoreId;
+  product: PageProduct;
+  /** Resultado do "Comparar preço", se você já clicou. */
+  reports?: PriceReport[];
+}
+
+/** Popup: "Conferir agora". */
+export interface WatchCheckNowMessage {
+  type: 'watch-check-now';
+}
+
+export type Message = StoreVisitMessage | ComparePricesMessage | WatchAddMessage | WatchCheckNowMessage;
 export type ComparePricesResponse = PriceReport[];
