@@ -2,6 +2,8 @@ import { couponsFor, getCouponFeed } from '@/lib/coupon-store';
 import type { Coupon } from '@/lib/coupons';
 import { addMyCoupons, exportMyCoupons, getMyCoupons, importMyCoupons, removeMyCoupon } from '@/lib/my-coupons';
 import { getPelandoCoupons } from '@/lib/pelando-coupons';
+import { formatBRL } from '@/lib/price';
+import { getWatches, isWatchChange, removeWatch, type Watch } from '@/lib/price-watch';
 import { findStoreByHost, STORES, type StoreId } from '@/lib/stores';
 
 const statusEl = document.querySelector<HTMLParagraphElement>('#status')!;
@@ -17,6 +19,11 @@ const backupCopyEl = document.querySelector<HTMLButtonElement>('#backup-copy')!;
 const backupInputEl = document.querySelector<HTMLTextAreaElement>('#backup-input')!;
 const backupImportEl = document.querySelector<HTMLButtonElement>('#backup-import')!;
 const backupMsgEl = document.querySelector<HTMLParagraphElement>('#backup-msg')!;
+
+const watchTitleEl = document.querySelector<HTMLHeadingElement>('#watch-title')!;
+const watchMsgEl = document.querySelector<HTMLParagraphElement>('#watch-msg')!;
+const watchListEl = document.querySelector<HTMLUListElement>('#watch-list')!;
+const watchNowEl = document.querySelector<HTMLButtonElement>('#watch-now')!;
 
 /** Lojas onde a extensão já testa cupons sozinha no carrinho. */
 const AUTO_TEST: StoreId[] = ['amazon', 'adidas', 'netshoes', 'centauro', 'kabum', 'pichau', 'terabyte', 'magalu', 'mercadolivre'];
@@ -96,6 +103,68 @@ function setupMine(current: StoreId | undefined) {
   return renderMine();
 }
 
+/** "há 3 h", "há 2 dias". */
+function ago(at: number): string {
+  const min = Math.round((Date.now() - at) / 60_000);
+  if (min < 60) return `há ${Math.max(min, 1)} min`;
+  const h = Math.round(min / 60);
+  return h < 48 ? `há ${h} h` : `há ${Math.round(h / 24)} dias`;
+}
+
+function watchItem(watch: Watch): HTMLLIElement {
+  const li = document.createElement('li');
+  li.className = 'watch-item';
+  const text = Object.assign(document.createElement('div'), { className: 'text' });
+  const best = watch.low;
+  const link = Object.assign(document.createElement('a'), { href: best?.url ?? watch.product.url, target: '_blank', textContent: watch.product.name, title: watch.product.name });
+  const low = Object.assign(document.createElement('div'), {
+    className: 'low',
+    textContent: best ? `Menor visto: ${formatBRL(best.price)} na ${best.storeName}` : 'Ainda sem preço',
+  });
+  const now = watch.last ? `agora ${formatBRL(watch.last.price)} na ${watch.last.storeName} · ` : '';
+  const meta = Object.assign(document.createElement('div'), {
+    className: 'meta',
+    textContent: watch.lastCheckAt ? `${now}conferido ${ago(watch.lastCheckAt)}${watch.lastError ? ' (erro)' : ''}` : 'conferindo pela primeira vez…',
+  });
+  text.append(link, low, meta);
+  const remove = Object.assign(document.createElement('button'), { className: 'remove', textContent: '×', title: 'Parar de avisar' });
+  remove.addEventListener('click', async () => {
+    await removeWatch(watch.id);
+    await renderWatches();
+  });
+  li.append(text, remove);
+  return li;
+}
+
+/** "Vigiando preços": produtos marcados no cartão "Comparar preço". */
+async function renderWatches() {
+  const watches = await getWatches();
+  watchTitleEl.textContent = `Vigiando preços (${watches.length})`;
+  watchNowEl.hidden = !watches.length;
+  if (!watchNowEl.disabled) {
+    watchMsgEl.textContent = watches.length
+      ? 'Confiro todas as lojas a cada 6 h (com o Chrome aberto) e aviso quando baixar do menor preço visto.'
+      : 'Na página de um produto, clique em "🔔 Avisar quando baixar" no cartão de preço.';
+  }
+  watchListEl.replaceChildren(...watches.map(watchItem));
+}
+
+function setupWatches() {
+  watchNowEl.addEventListener('click', async () => {
+    watchNowEl.disabled = true;
+    watchMsgEl.textContent = 'Conferindo numa janela minimizada… (uns 20 s por produto; pode fechar o popup)';
+    const res = (await browser.runtime.sendMessage({ type: 'watch-check-now' }).catch((e) => ({ error: String(e) }))) as { count?: number; error?: string };
+    watchNowEl.disabled = false;
+    await renderWatches();
+    watchMsgEl.textContent = res?.error ? `Erro: ${res.error}` : `Pronto: ${res?.count ?? 0} produto(s) conferido(s).`;
+  });
+  // A conferência termina em segundo plano: atualiza a lista sozinha.
+  browser.storage.onChanged.addListener((changes, area) => {
+    if (isWatchChange(changes, area)) renderWatches();
+  });
+  return renderWatches();
+}
+
 async function render() {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   const host = tab?.url ? new URL(tab.url).hostname : '';
@@ -115,7 +184,7 @@ async function render() {
     }),
   );
 
-  await setupMine(current?.id);
+  await Promise.all([setupMine(current?.id), setupWatches()]);
 
   if (!current) return;
   couponsTitleEl.hidden = false;

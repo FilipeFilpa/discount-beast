@@ -11,6 +11,7 @@ Extensão pessoal do Chrome que encontra e testa cupons de desconto na Amazon, M
 - [x] Testar cupons também na Netshoes e na Centauro
 - [x] Comparar preço: adidas, Netshoes, Centauro, Mercado Livre, Amazon e Magalu
 - [x] Informática: cupons e comparador na KaBuM!, Pichau e Terabyte
+- [x] Avisar quando o preço baixar (alerta de preço, sincronizado entre computadores)
 
 ## Como instalar no seu Chrome
 
@@ -57,6 +58,14 @@ Como decide que é o mesmo produto: pelo EAN ou código do modelo, quando aparec
 Em informática a regra é mais rígida, porque cada versão tem outro preço: o código de peça (ex.: `DUAL-RTX4060-O8G`), o número do modelo (RTX 4060 x 4070), a versão (4060 x 4060 Ti, 5600 x 5600X) e a capacidade (SSD 1TB x 500GB) têm de ser os mesmos.
 
 Não usa servidor nem API paga: a busca é feita pelo seu próprio Chrome, como se você pesquisasse.
+
+### Avisar quando o preço baixar
+
+1. No cartão **Comparar preço**, clique em **🔔 Avisar quando baixar**. A extensão confere uma vez na hora (em silêncio) para saber o menor preço de hoje em todas as lojas, inclusive a de onde você marcou.
+2. A cada 6 horas ela confere de novo, numa janela minimizada (as abas não aparecem na sua janela). Se algum preço ficar abaixo do menor já visto, aparece um aviso do Chrome; clique nele para abrir o anúncio.
+3. A lista fica no popup em **Vigiando preços** (com **Conferir agora** e × para parar). Ela sincroniza entre os Chromes logados na mesma conta Google, e quem conferiu primeiro avisa: o outro computador não repete o aviso.
+
+Limites: só confere com o Chrome aberto (ao abrir, confere o que ficou mais de 6 h sem conferir). No máximo 30 produtos. Aviso a partir de R$ 0,50 de queda.
 
 ## Como os cupons chegam na extensão
 

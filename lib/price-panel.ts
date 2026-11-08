@@ -1,9 +1,10 @@
 import { browser } from 'wxt/browser';
-import type { ComparePricesMessage, ComparePricesResponse } from './messages';
+import type { ComparePricesMessage, ComparePricesResponse, WatchAddMessage } from './messages';
 import type { PriceReport } from './price-compare';
 import { downloadText } from './page-capture';
 import { formatBRL, parseBRL } from './price';
 import { isProductPageUrl, sourcesFrom } from './price-search';
+import { getWatch, isWatchChange, removeWatch, watchId } from './price-watch';
 import { productFromJsonLd, type PageProduct } from './product-match';
 import { findStoreByHost, type StoreId } from './stores';
 
@@ -144,6 +145,9 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
       li a { color: #2563eb; text-decoration: none; }
       .cheaper { color: #16a34a; font-weight: 600; }
       .pricier { color: #b91c1c; }
+      .watch { margin-top: 8px; background: #fff; color: #2563eb; border: 1px solid #2563eb; }
+      .watch.on { background: #ecfdf5; color: #166534; border-color: #16a34a; }
+      .watch-msg { margin: 6px 0 0; }
       .x { position: absolute; top: 6px; right: 10px; width: auto; padding: 0; background: none; color: #6b7280; font-size: 16px; }
       .min { position: absolute; top: 6px; right: 30px; width: auto; padding: 0; background: none; color: #6b7280; font-size: 16px; }
       .body[hidden] { display: none; }
@@ -158,6 +162,8 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
         <p class="msg"></p>
         <ul class="list" hidden></ul>
         <button class="go">Comparar preço</button>
+        <button class="watch" title="Confere o preço em todas as lojas a cada 6 h (com o Chrome aberto) e avisa quando baixar">🔔 Avisar quando baixar</button>
+        <p class="small watch-msg" hidden></p>
       </div>
     </div>`;
   document.body.append(host);
@@ -169,7 +175,11 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
   const list = root.querySelector<HTMLUListElement>('.list')!;
   const go = root.querySelector<HTMLButtonElement>('.go')!;
   const pick = root.querySelector<HTMLSelectElement>('.pick')!;
+  const watchBtn = root.querySelector<HTMLButtonElement>('.watch')!;
+  const watchMsg = root.querySelector<HTMLParagraphElement>('.watch-msg')!;
   let others: string[] = [];
+  /** Resultado do último "Comparar preço" deste produto (vira o ponto de partida do alerta). */
+  let lastReports: PriceReport[] = [];
   const here = () => product.price;
   const intro = () => {
     others = sourcesFrom(store, product.name).map((s) => s.name);
@@ -177,6 +187,8 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
     root.querySelector('.diag')?.remove();
     go.textContent = 'Comparar preço';
     const code = product.mpn && !product.name.toLowerCase().includes(product.mpn.toLowerCase()) ? ` (${product.mpn})` : '';
+    lastReports = [];
+    renderWatch();
     msg.textContent = `${product.name}${code}${here() !== null ? ` · ${hereLabel} ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
   };
   // Sacola com vários itens: você escolhe qual comparar.
@@ -199,6 +211,7 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
       const message: ComparePricesMessage = { type: 'compare-prices', from: store, product };
       const reports = (await browser.runtime.sendMessage(message)) as ComparePricesResponse | { error: string };
       if (!Array.isArray(reports)) throw new Error(reports?.error ?? 'sem resposta');
+      lastReports = reports;
       show(reports, here());
     } catch (error) {
       console.warn('[Discount Beast]', error);
@@ -208,6 +221,50 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
       pick.disabled = false;
       go.textContent = 'Comparar de novo';
     }
+  });
+
+  /** Botão do alerta: mostra se este produto já está na lista "Vigiando". */
+  async function renderWatch() {
+    const watch = await getWatch(watchId(product.url)).catch(() => null);
+    watchBtn.classList.toggle('on', Boolean(watch));
+    watchBtn.textContent = watch ? '🔕 Parar de avisar' : '🔔 Avisar quando baixar';
+    watchMsg.hidden = !watch;
+    if (watch) {
+      const low = watch.low ? `Menor preço visto: ${formatBRL(watch.low.price)} na ${watch.low.storeName}.` : '';
+      watchMsg.textContent = `Vigiando. ${low} Aviso quando baixar disso (confiro a cada 6 h, com o Chrome aberto).`;
+    }
+  }
+  // A primeira conferência termina em segundo plano (ou o outro computador mudou a lista): atualiza o texto.
+  const onStorage = (changes: Record<string, unknown>, area: string) => {
+    if (!host.isConnected) return browser.storage.onChanged.removeListener(onStorage);
+    if (isWatchChange(changes, area)) renderWatch();
+  };
+  browser.storage.onChanged.addListener(onStorage);
+
+  watchBtn.addEventListener('click', async () => {
+    watchBtn.disabled = true;
+    let note = '';
+    try {
+      const id = watchId(product.url);
+      if (await getWatch(id)) {
+        await removeWatch(id);
+      } else {
+        // Sem a cópia da página (snapshot): a mensagem fica leve.
+        const reports = lastReports.map(({ snapshot: _skip, ...r }) => r);
+        const message: WatchAddMessage = { type: 'watch-add', from: store, product, reports };
+        const res = (await browser.runtime.sendMessage(message)) as { ok?: boolean; error?: string } | undefined;
+        if (!res?.ok) throw new Error(res?.error ?? 'sem resposta');
+        note = 'Marcado! Agora confiro o preço de hoje em todas as lojas, numa janela minimizada (uns 20 segundos).';
+      }
+    } catch (error) {
+      note = `Não consegui: ${(error as Error).message}`;
+    }
+    await renderWatch();
+    if (note) {
+      watchMsg.hidden = false;
+      watchMsg.textContent = note;
+    }
+    watchBtn.disabled = false;
   });
 
   function show(reports: PriceReport[], price: number | null) {

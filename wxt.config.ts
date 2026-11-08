@@ -5,8 +5,8 @@ export default defineConfig({
   manifest: {
     name: 'Discount Beast',
     description: 'Encontra e testa cupons de desconto nas lojas que você mais usa.',
-    // scripting: ler a página de busca das outras lojas no comparador de preços.
-    permissions: ['storage', 'alarms', 'scripting'],
+    // scripting: ler a página de busca das outras lojas no comparador de preços. notifications: aviso de queda de preço.
+    permissions: ['storage', 'alarms', 'scripting', 'notifications'],
     // Permite ao popup ler a URL da aba e ao comparador ler as buscas das lojas suportadas.
     host_permissions: STORE_MATCHES,
     // Chave pública só para fixar o ID da extensão (hepdplopbcjbpbkghblccdinkjfjfldh) em todo computador.
