@@ -1,7 +1,7 @@
 /**
  * Coletor de cupons públicos do Discount Beast.
  *
- * Roda no GitHub Actions (.github/workflows/collect-coupons.yml) 2x por dia:
+ * Roda no GitHub Actions (.github/workflows/collect-coupons.yml) a cada 3 h:
  * 1. Abre a página de cupons de cada loja em cada site (Promobit, Méliuz, Cuponomia, Cuponation, Cuponeria).
  * 2. Junta tudo, tira repetidos e vencidos.
  * 3. Salva em data/coupons.json, que a extensão baixa.

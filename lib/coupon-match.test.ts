@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { cartKey, parseRules, profileCart, scoreCoupon, SKIP_BELOW, sourceBonus } from './coupon-match.ts';
+import { cartKey, parseRules, profileCart, scoreCoupon, SKIP_BELOW, sourceBonus, codeDate } from './coupon-match.ts';
 import { orderCandidates } from './coupon-runner.ts';
 
 // Carrinhos salvos pelo Filipe em 06/11/2026 (o mesmo tênis nas duas lojas).
@@ -111,4 +111,15 @@ test('site de cupons que mais acerta sobe', () => {
   for (const c of ['A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5']) h[c] = { status: 'rejected' };
   const b = sourceBonus(coupons, h);
   assert.ok(b.get('NOVO')! > b.get('NOVO2')!);
+});
+
+test('código com data no fim só vale no dia', () => {
+  const now = new Date('2026-11-08T17:00:00Z');
+  assert.equal(codeDate('LOJAS0811', now), 'today');
+  assert.equal(codeDate('TODOSITE0711', now), 'past');
+  assert.equal(codeDate('FRETE1000', now), null);
+  assert.equal(codeDate('BLACK2025', now), null);
+  assert.equal(codeDate('ESQUENTA15', now), null);
+  // 02:00 UTC do dia 09 = 23:00 do dia 08 em Brasília.
+  assert.equal(codeDate('LOJAS0811', new Date('2026-11-09T02:00:00Z')), 'today');
 });

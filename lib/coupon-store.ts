@@ -2,8 +2,8 @@ import { browser } from 'wxt/browser';
 import { COUPONS_URL, type Coupon, type CouponFeed } from './coupons';
 import type { StoreId } from './stores';
 
-/** De quanto em quanto tempo a extensão baixa a lista de novo. O coletor roda 2x por dia. */
-export const REFRESH_MINUTES = 6 * 60;
+/** De quanto em quanto tempo a extensão baixa a lista de novo. O coletor roda a cada 3 h. */
+export const REFRESH_MINUTES = 3 * 60;
 
 interface Saved {
   couponFeed?: CouponFeed;

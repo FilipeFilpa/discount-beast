@@ -4,8 +4,8 @@ name: Coletar cupons
 
 on:
   schedule:
-    # Horário em UTC: 09:00 e 21:00 UTC = 06:00 e 18:00 em Brasília.
-    - cron: '0 9,21 * * *'
+    # A cada 3 horas (UTC). Cupons do Mercado Livre duram pouco.
+    - cron: '0 */3 * * *'
   # Botão "Run workflow" na aba Actions, para rodar na hora.
   workflow_dispatch:
   # Roda também quando o código do coletor muda, para testar a mudança.
