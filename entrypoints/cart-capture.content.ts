@@ -55,18 +55,36 @@ function createButton(): HTMLElement {
       <button class="x" title="Fechar">×</button>
       <p><strong>🦁 Discount Beast</strong><br>Salve o carrinho (sem cupom, com cupom recusado e com cupom aceito) e mande os arquivos para o Claude.</p>
       <button class="go">Salvar carrinho para o Discount Beast</button>
+      <button class="later" style="margin-top:6px;background:#475569">Salvar daqui a 5 s (para abrir a janela de cupom)</button>
       <p class="msg" style="margin:8px 0 0"></p>
     </div>`;
   document.body.append(host);
   root.querySelector('.x')!.addEventListener('click', () => host.remove());
   const msg = root.querySelector<HTMLParagraphElement>('.msg')!;
   let count = 0;
-  root.querySelector('.go')!.addEventListener('click', () => {
+  const save = () => {
     count += 1;
     const time = new Date().toTimeString().slice(0, 8).replaceAll(':', '');
     downloadText(`discount-beast-${store?.id ?? 'loja'}-${count}-${time}.html`, capturePage());
     msg.textContent = `Arquivo ${count} salvo em Downloads. Mande para o Claude.`;
+  };
+  root.querySelector('.go')!.addEventListener('click', save);
+  // Janelas de cupom (Mercado Livre, Magalu) fecham com qualquer clique fora delas. Este botão
+  // espera 5 s: dá tempo de clicar nele, abrir a janela e deixar ela aberta na hora de salvar.
+  let timer = 0;
+  root.querySelector('.later')!.addEventListener('click', () => {
+    clearInterval(timer);
+    let left = 5;
+    msg.textContent = `Abra a janela de cupom agora. Salvando em ${left} s...`;
+    timer = window.setInterval(() => {
+      left -= 1;
+      if (left > 0) { msg.textContent = `Abra a janela de cupom agora. Salvando em ${left} s...`; return; }
+      clearInterval(timer);
+      save();
+    }, 1000);
   });
+  // Cliques no cartão não chegam à página, para não fechar a janela aberta (quando o site deixa).
+  for (const type of ['pointerdown', 'mousedown', 'mouseup', 'click', 'touchstart']) host.addEventListener(type, (e) => e.stopPropagation());
   return host;
 }
 
