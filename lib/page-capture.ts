@@ -32,7 +32,7 @@ export function cleanPageHtml(doc: Document = document): string {
     .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]')
     // "Olá, FULANO" no topo do site e linhas de endereço ("Rua X 30 / BL 13 AP 403") que sobrarem.
     .replace(/(Ol[áa],?\s+)[^<]{1,40}/gi, '$1[NOME]')
-    .replace(/\b(Rua|R\.|Avenida|Av\.|Travessa|Tv\.|Alameda|Al\.|Estrada|Rodovia|Pra[çc]a|Largo|Servid[ãa]o)\s+[^<]{3,140}/g, '[ENDERECO]').replace(/\(?\b\d{2}\)?\s?9?\d{4}-?\d{4}\b/g, '[TEL]');
+    .replace(/\b(Rua|R\.|Avenida|Av\.|Travessa|Tv\.|Alameda|Al\.|Estrada|Rodovia|Pra[çc]a|Largo|Servid[ãa]o)\s+[^<"]{3,140}/g, '[ENDERECO]').replace(/\(?\b\d{2}\)?\s?9?\d{4}-?\d{4}\b/g, '[TEL]');
   return header + html;
 }
 
