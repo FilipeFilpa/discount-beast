@@ -19,13 +19,20 @@ export const AMAZON_COUPON = {
   main: '#centerCol, #ppd, #apex_desktop, #corePriceDisplay_desktop_feature_div, #dp-container, #rightCol',
 } as const;
 
-const COUPON = /\bcupo(m|ns)\b|\bcoupon/i;
+// "Resgatar" + "Código: DEVOLTA1000" (promoção Prime vista no iPhone, 08/11/2026) também conta, mesmo sem a palavra "cupom".
+const COUPON = /\bcupo(m|ns)\b|\bcoupon|\bc[óo]digo\b|\bresgatar\b/i;
+/** Botão de ação de cupom/promoção (texto exato). */
+const ACTION_BUTTON = /^(aplicar( cupom)?|resgatar( cupom)?|apply|clip coupon)$/i;
 const APPLY = /\b(aplicar|resgatar|apply|clip)\b/i;
-const APPLIED = /\b(aplicado|resgatado|applied|clipped)\b/i;
+// "Utilizado" (com ✓) é o que a promoção "Resgatar" mostra depois do clique (visto no Chrome do Filipe, 08/11/2026).
+const APPLIED = /\b(aplicado|resgatado|utilizado|applied|clipped)\b/i;
 /** Botões que nunca clicamos, mesmo perto do cupom. */
 const NEVER = /carrinho|comprar|assin|subscri|garantia|prote[çc][ãa]o|cart\b|buy\b/i;
 
-const text = (el: Element | null | undefined) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+// Só o texto VISÍVEL (innerText): a Amazon deixa escondido na página o estado "✓ Utilizado" do botão Resgatar,
+// e com textContent a extensão achava que o cupom já estava usado (visto no relógio Invicta, 08/11/2026).
+const text = (el: Element | null | undefined) =>
+  ((el instanceof HTMLElement ? el.innerText : el?.textContent) ?? '').replace(/\s+/g, ' ').trim();
 
 export interface CouponOffer {
   /** O que clicar: a caixinha ou o botão "Aplicar". */
@@ -55,8 +62,28 @@ function couponBlocks(doc: Document): HTMLElement[] {
   const main = [...doc.querySelectorAll<HTMLElement>(AMAZON_COUPON.main)];
   const blocks = [...doc.querySelectorAll<HTMLElement>(AMAZON_COUPON.blocks)]
     .filter((b) => isVisible(b) && COUPON.test(text(b)) && (!main.length || main.some((m) => m.contains(b))));
+  // Plano B: botão "Resgatar"/"Aplicar" em qualquer lugar do produto principal, com o bloco de texto em volta
+  // (sobe até achar um pai que fale de desconto). Não sabemos o id do bloco da promoção "Exclusivo Prime".
+  for (const button of doc.querySelectorAll<HTMLElement>('button, .a-button, a, input[type="submit"]')) {
+    const label = text(button) || (button as HTMLInputElement).value || '';
+    if (!ACTION_BUTTON.test(label) || !isVisible(button) || (main.length && !main.some((m) => m.contains(button)))) continue;
+    let block: HTMLElement | null = button.parentElement;
+    for (let up = 0; block && up < 5; up++, block = block.parentElement) {
+      const t = text(block);
+      if (t.length > 600) { block = null; break; }
+      if (t !== label && /off|desconto|c[óo]digo|cupom|R\$|%/i.test(t)) break;
+    }
+    if (block && !blocks.some((b) => b.contains(block!))) blocks.push(block);
+  }
   // Fica só com o bloco mais de fora (os seletores se sobrepõem).
   return blocks.filter((b) => !blocks.some((o) => o !== b && o.contains(b)));
+}
+
+/** Código escrito no bloco ("Código: DEVOLTA1000", "Salve o cupom R$40 : IWZKJIIDSVSQ"), para guardar em "Meus cupons".
+ * Só MAIÚSCULAS/números: "Cupom: Aplicar..." não vira o código APLICAR. */
+export function promoCodes(doc: Document = document): string[] {
+  const codes = couponBlocks(doc).flatMap((b) => [...text(b).matchAll(/(?:[Cc][óo]digo|[Cc]upom[^:]{0,25}):\s*([A-Z0-9][A-Z0-9_-]{3,24})\b/g)].map((m) => m[1]!));
+  return [...new Set(codes)];
 }
 
 /** Há texto de cupom no produto principal? (serve para saber se vale salvar a página quando não conseguimos clicar). */
