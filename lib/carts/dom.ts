@@ -42,10 +42,14 @@ export function findByText(pattern: RegExp, root: Node = document.body): HTMLEle
  */
 export function typeInto(input: HTMLInputElement, value: string): void {
   input.focus();
-  const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+  // Campo dentro de iframe (Mercado Livre): usa o HTMLInputElement da janela do próprio campo.
+  const view = input.ownerDocument.defaultView as (Window & typeof globalThis) | null;
+  const proto = view?.HTMLInputElement?.prototype ?? HTMLInputElement.prototype;
+  const setter = Object.getOwnPropertyDescriptor(proto, 'value')?.set;
   setter?.call(input, value);
-  input.dispatchEvent(new Event('input', { bubbles: true }));
-  input.dispatchEvent(new Event('change', { bubbles: true }));
+  const EventCtor = view?.Event ?? Event;
+  input.dispatchEvent(new EventCtor('input', { bubbles: true }));
+  input.dispatchEvent(new EventCtor('change', { bubbles: true }));
 }
 
 /**
