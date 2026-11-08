@@ -269,7 +269,14 @@ export async function extractSearchHits(linkPattern: string, max = 24, mode: 'li
     // Em ordem de preferência. Amazon (Moda) mostra a marca num h2 e o nome em outro: junta os dois.
     const amazonTitle = [...card.querySelectorAll('[data-cy="title-recipe"] h2')].map((h) => h.textContent?.trim()).filter(Boolean).join(' ');
     const titleEl = ['[data-testid="product-title"]', 'h2, h3, [class*="title" i], [class*="name" i]'].map((sel) => card.querySelector(sel)).find(Boolean);
-    const candidates = [link.getAttribute('data-name'), amazonTitle, titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), link.textContent, card.querySelector('img[alt]')?.getAttribute('alt')]
+    // KaBuM! (layout de 2026-11): o nome fica num <span> sem "name"/"title" na classe e o link inteiro é o cartão
+    // (com preço dentro). Aí vale o maior texto "folha" do cartão sem R$, antes da imagem (cujo alt pode ser um selo).
+    const longestText = [...card.querySelectorAll('span, p, h4, div')]
+      .filter((el) => el.children.length === 0)
+      .map((el) => (el.textContent ?? '').trim())
+      .filter((t) => t.length >= 15 && !/R\$/.test(t))
+      .sort((a, b) => b.length - a.length)[0];
+    const candidates = [link.getAttribute('data-name'), amazonTitle, titleEl?.textContent, link.getAttribute('title'), link.getAttribute('aria-label'), link.textContent, longestText, card.querySelector('img[alt]')?.getAttribute('alt')]
       // Rótulos de acessibilidade como "Ir para a página do produto Tênis..." (Centauro).
       .map((t) => (t ?? '').replace(/\s+/g, ' ').trim().replace(/^ir para (a )?(p[aá]gina )?(d[oe] )?(produto )?/i, ''))
       .filter((t) => t.length >= 6 && !/R\$/.test(t));
