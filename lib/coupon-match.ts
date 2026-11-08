@@ -98,15 +98,32 @@ const BRANDS: { name: string; words: RegExp; code?: RegExp }[] = [
  */
 type CategoryKind = 'type' | 'theme' | 'audience';
 const CATEGORIES: { name: string; kind: CategoryKind; words: RegExp; code?: RegExp }[] = [
-  { name: 'tênis', kind: 'type', words: /\b(tenis|calcados?|pisante|sapatenis)\b/, code: /^TENIS|TENNIS|CALCADO/ },
+  { name: 'tênis', kind: 'type', words: /\b(tenis|calcados?|pisante|sapatenis|moda)\b/, code: /^TENIS|TENNIS|CALCADO/ },
   { name: 'corrida', kind: 'theme', words: /\b(corrida|running|maratona|adizero|pegasus|supernova)\b/, code: /CORRIDA|RUN|MARATONA/ },
   { name: 'futebol', kind: 'theme', words: /\b(futebol|chuteira|society|futsal|bola)\b/, code: /^FUT|GOLACO|FUTEBOL/ },
   { name: 'suplementos', kind: 'type', words: /\b(suplementos?|creatina|whey|proteina|bcaa|pre-treino)\b/, code: /SUPLE|CREATINA|WHEY/ },
-  { name: 'roupas', kind: 'type', words: /\b(camisetas?|camisas?|blusas?|blusao|jaquetas?|calcas?|moletom|bermudas?|shorts?|leggings?|regata|vestuario|roupas?|agasalho|casaco|top)\b/, code: /VEST|CAMISETA|ROUPA/ },
+  { name: 'roupas', kind: 'type', words: /\b(moda|camisetas?|camisas?|blusas?|blusao|jaquetas?|calcas?|moletom|bermudas?|shorts?|leggings?|regata|vestuario|roupas?|agasalho|casaco|top)\b/, code: /VEST|CAMISETA|ROUPA/ },
   { name: 'infantil', kind: 'audience', words: /\b(infantil|kids|juvenil|crianca|bebe|menino|menina)\b/, code: /KIDS|INFANTIL/ },
   { name: 'botas', kind: 'type', words: /\bbotas?\b/, code: /^BOTA/ },
   { name: 'meias', kind: 'type', words: /\b(meias?)\b/ },
   { name: 'perfumes', kind: 'type', words: /\b(perfumes?|fragrancias?|colonia)\b/, code: /PERFUME/ },
+  // Tipos comuns na Amazon, Mercado Livre e Magalu.
+  { name: 'cama e banho', kind: 'type', words: /\b(cama e banho|lencois|lencol|toalhas?|edredom|travesseiros?|colchao|colchoes)\b/, code: /CAMAEBANHO|^CAMA/ },
+  { name: 'cozinha', kind: 'type', words: /\b(cozinha|panelas?|utensilios|termicos?|garrafas?|copos?|potes?|talheres|frigideiras?)\b/, code: /COZINHA|P[A4]NELA|TERMICO/ },
+  { name: 'eletroportáteis', kind: 'type', words: /\b(eletroportateis|eletroportatil|air ?fryer|fritadeira|liquidificador|cafeteira|ventiladore?s?|aspirador|batedeira|sanduicheira|ferro de passar)\b/, code: /ELETROPORT|VENTILA/ },
+  { name: 'eletrodomésticos', kind: 'type', words: /\b(eletrodomesticos?|geladeira|refrigerador|fogao|lava ?louc?as|lavadora|maquina de lavar|micro-?ondas|freezer|ar[- ]condicionado)\b/, code: /ELETRODOM|LINHABRANCA/ },
+  { name: 'eletrônicos', kind: 'type', words: /\b(eletronicos?|smartphones?|celulares?|iphone|galaxy|notebooks?|laptop|tablets?|ipad|smart ?tv|televisao|televisor|tv|monitor(es)?|fones?|headset|caixa de som|soundbar|informatica|computador|ssd|placa de video|processador|tech)\b/, code: /^TECH|ELETRONIC|CELULAR|SMARTPHONE|INFORMATICA/ },
+  { name: 'games', kind: 'type', words: /\b(games?|videogames?|playstation|ps5|xbox|nintendo|switch|console)\b/, code: /GAME|^PS5|XBOX/ },
+  { name: 'pet', kind: 'type', words: /\b(pet ?shop|pets?|racao|cachorros?|caes|gatos?|areia sanitaria)\b/, code: /PET/ },
+  { name: 'mercado', kind: 'type', words: /\b(mercado|supermercado|alimentos|bebidas|cervejas?|vinhos?|chocolates?|biscoitos?|mercearia)\b/, code: /MERCADO|BEBIDA|ALIMENTO/ },
+  { name: 'beleza', kind: 'type', words: /\b(beleza|maquiagem|skin ?care|dermocosmeticos?|shampoo|condicionador|cabelos?|hidratante|cosmeticos?)\b/, code: /BELEZA|BEAUTY|MAKE/ },
+  { name: 'livros', kind: 'type', words: /\b(livros?|ebooks?|hq|mangas?)\b/, code: /LIVRO|BOOK/ },
+  { name: 'brinquedos', kind: 'type', words: /\b(brinquedos?|lego|bonecas?|pelucias?|quebra-cabeca)\b/, code: /BRINQUEDO|TOY/ },
+  { name: 'ferramentas', kind: 'type', words: /\b(ferramentas?|reforma|construcao|furadeiras?|parafusadeiras?)\b/, code: /FERRAMENTA|REFORMA/ },
+  { name: 'móveis e decoração', kind: 'type', words: /\b(moveis|movel|decoracao|sofas?|cadeiras?|mesas?|estantes?|tapetes?|cortinas?)\b/, code: /MOVEIS|DECOR/ },
+  { name: 'relógios', kind: 'type', words: /\b(relogios?|smartwatch|smartwatches)\b/, code: /RELOGIO/ },
+  { name: 'música', kind: 'type', words: /\b(vinil|discos?|instrumentos? musica(is|l)|violao|guitarra)\b/, code: /MUSIC|VINIL/ },
+  { name: 'automotivo', kind: 'type', words: /\b(automotivos?|pneus?|carro|moto)\b/, code: /AUTO|PNEU/ },
   { name: 'basquete', kind: 'theme', words: /\b(basquete|nba)\b/, code: /BASQUETE/ },
   { name: 'ciclismo', kind: 'theme', words: /\b(bike|bicicleta|ciclismo)\b/, code: /BIKE/ },
   { name: 'motorsport', kind: 'theme', words: /\b(motorsport|ferrari|f1|formula)\b/, code: /TURBO/ },
@@ -165,14 +182,21 @@ export interface CartProfile {
   allStoreSeller: boolean;
   itemCount: number;
   subtotal: number | null;
+  /** Todo produto do carrinho teve o tipo reconhecido (tênis, panela...): dá para pular cupom de outro tipo. */
+  allTyped: boolean;
+  /** Todo produto teve a marca reconhecida: dá para pular cupom de outra marca. */
+  allBranded: boolean;
 }
 
 export function profileCart(cart: CartInfo, storeName = ''): CartProfile {
   const brands = new Set<string>();
   const categories = new Set<string>();
   const genders = new Set<string>();
+  let typed = 0, branded = 0;
   for (const item of cart.items) {
     const name = normalize(item.name);
+    if (BRANDS.some((b) => b.words.test(name))) branded++;
+    if (CATEGORIES.some((c) => c.kind === 'type' && c.words.test(name))) typed++;
     for (const b of BRANDS) if (b.words.test(name)) brands.add(b.name);
     for (const c of CATEGORIES) if (c.words.test(name)) categories.add(c.name);
     for (const g of GENDER) if (g.words.test(name)) genders.add(g.name);
@@ -189,6 +213,8 @@ export function profileCart(cart: CartInfo, storeName = ''): CartProfile {
     allStoreSeller: sellers.length > 0 && sellers.length === cart.items.length && sellers.every(isStore),
     itemCount: cart.items.length,
     subtotal: cart.subtotal,
+    allTyped: cart.items.length > 0 && typed === cart.items.length,
+    allBranded: cart.items.length > 0 && branded === cart.items.length,
   };
 }
 
@@ -228,12 +254,18 @@ export function scoreCoupon(coupon: CouponText, cart: CartProfile): CouponScore 
   if (audienceHit.length) { score += 3; why.push(audienceHit.join(', ')); }
   if (knowItems) {
     // Pede uma marca, um tipo de produto ou um público que o carrinho não tem: provavelmente não serve.
+    const wrongBrand = r.brands.length > 0 && !brandHit.length;
+    const wrongType = asks('type').length > 0 && !typeHit.length;
+    const wrongAudience = asks('audience').length > 0 && !audienceHit.length;
     const missing = [
-      ...(r.brands.length && !brandHit.length ? r.brands : []),
-      ...(asks('type').length && !typeHit.length ? asks('type') : []),
-      ...(asks('audience').length && !audienceHit.length ? asks('audience') : []),
+      ...(wrongBrand ? r.brands : []),
+      ...(wrongType ? asks('type') : []),
+      ...(wrongAudience ? asks('audience') : []),
     ];
-    if (missing.length) { score -= 8; why.push(`só ${missing.join(', ')}`); }
+    // Pulamos de vez quando temos certeza: reconhecemos a marca/o tipo de TODOS os produtos e nenhum bate.
+    // Infantil quase sempre aparece no nome do produto. Senão, só joga para trás.
+    const sure = (wrongBrand && cart.allBranded) || (wrongType && cart.allTyped) || wrongAudience;
+    if (missing.length) { score -= sure ? 20 : 8; why.push(`só ${missing.join(', ')}`); }
     // Esporte que não achamos no nome do produto: pesa menos (o nome nem sempre diz "corrida").
     else if (asks('theme').length && !themeHit.length) { score -= 3; why.push(`só ${asks('theme').join(', ')}`); }
   }
@@ -253,15 +285,18 @@ export function scoreCoupon(coupon: CouponText, cart: CartProfile): CouponScore 
   else if (r.selection && !targeted && !why.includes('selo no produto')) score -= 1;
 
   if (r.appOnly) { score -= 30; why.push('só no app'); }
-  if (r.membersOnly) { score -= 6; why.push('só assinantes'); }
+  // Filipe é Prime e Meli+ (08/11/2026): cupom de assinante não é penalizado, só anotado.
+  if (r.membersOnly) why.push('assinantes');
   if (r.birthday) { score -= 6; why.push('aniversário'); }
-  if (r.firstPurchase) { score -= 2; why.push('primeira compra'); }
+  // Filipe já comprou nessas lojas: cupom de primeira compra não serve.
+  if (r.firstPurchase) { score -= 30; why.push('só primeira compra'); }
   if (r.needsMany && knowItems && cart.itemCount < 2) { score -= 8; why.push('precisa de 2+ peças'); }
   if (r.storeSellerOnly === true && cart.hasPartnerSeller) { score -= 5; why.push('só vendidos pela loja'); }
   if (r.storeSellerOnly === false && cart.allStoreSeller) { score -= 10; why.push('só lojas parceiras'); }
 
   // Aparece em vários sites de cupom: um pouco mais confiável.
-  score += Math.min(2, Math.max(0, (coupon.sources?.length ?? 1) - 1)) * 0.5;
+  // (com 95% de recusas, um código em 3+ sites é bem mais provável de estar vivo)
+  score += Math.min(3, Math.max(0, (coupon.sources?.length ?? 1) - 1));
   return { score, why };
 }
 
@@ -281,4 +316,35 @@ export function cartKey(cart: CartInfo): string {
   let h = 0;
   for (const ch of text) h = (h * 31 + ch.charCodeAt(0)) | 0;
   return (h >>> 0).toString(36);
+}
+
+/**
+ * Quanto cada site de cupons acerta, pelo seu histórico nesta loja: um código do site que mais acerta
+ * sobe na fila. Só conta um site depois de 5 códigos testados (antes disso, nota 0).
+ */
+export function sourceBonus(
+  coupons: { code: string; sources: string[] }[],
+  history: Record<string, { status: string }>,
+): Map<string, number> {
+  const stats = new Map<string, { tried: number; worked: number }>();
+  for (const c of coupons) {
+    const past = history[c.code];
+    if (!past || past.status === 'unknown') continue;
+    for (const s of c.sources) {
+      const st = stats.get(s) ?? { tried: 0, worked: 0 };
+      st.tried++;
+      if (past.status === 'worked') st.worked++;
+      stats.set(s, st);
+    }
+  }
+  const bonus = new Map<string, number>();
+  for (const c of coupons) {
+    const notes = c.sources
+      .map((s) => stats.get(s))
+      .filter((st): st is { tried: number; worked: number } => !!st && st.tried >= 5)
+      // taxa de acerto suavizada (como se cada site começasse com 1 de 10), comparada com 10%
+      .map((st) => Math.max(-2, Math.min(4, ((st.worked + 1) / (st.tried + 10) - 0.1) * 20)));
+    if (notes.length) bonus.set(c.code, Math.round(Math.max(...notes) * 10) / 10);
+  }
+  return bonus;
 }
