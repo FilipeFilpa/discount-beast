@@ -23,8 +23,10 @@ export default defineContentScript({
       const asin = location.pathname.match(ASIN)?.[1]?.toUpperCase();
       if (!asin || busy || seen.has(asin)) return;
       if (asin !== lastAsin) { lastAsin = asin; firstSeenAt = Date.now(); }
-      const applied = couponAlreadyApplied();
-      const offer = applied ? null : findCouponOffer();
+      // Primeiro procura algo para clicar; "já ativado" só quando não há nada a fazer
+      // (uma página pode ter uma promoção já usada e outra com "Resgatar").
+      const offer = findCouponOffer();
+      const applied = offer ? null : couponAlreadyApplied();
       // Código escrito na promoção ("Código: DEVOLTA1000"): vai para "Meus cupons" da Amazon,
       // para o testador da página de pagamento tentar primeiro.
       const kept = (applied || offer) ? await keepCodes() : '';
@@ -44,7 +46,9 @@ export default defineContentScript({
       seen.add(asin);
       const ok = await clipCoupon(offer);
       busy = false;
-      if (ok) toast(`Cupom${offer.amount ? ` de ${offer.amount}` : ''} ativado ✓ O desconto entra no fechamento do pedido.${kept}`);
+      const next = /pr[óo]xima compra/i.test(offer.label);
+      if (ok && next) toast(`Promoção${offer.amount ? ` de ${offer.amount}` : ''} resgatada ✓ Vale na sua próxima compra.${kept}`);
+      else if (ok) toast(`Cupom${offer.amount ? ` de ${offer.amount}` : ''} ativado ✓ O desconto entra no fechamento do pedido.${kept}`);
       else toast(`Cliquei em “${short(offer.label)}”, mas a Amazon não confirmou. Salve a página e mande para o Claude.${kept}`, { save: true });
     }, 1500);
   },

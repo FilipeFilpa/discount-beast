@@ -29,7 +29,10 @@ const APPLIED = /\b(aplicado|resgatado|utilizado|applied|clipped)\b/i;
 /** Botões que nunca clicamos, mesmo perto do cupom. */
 const NEVER = /carrinho|comprar|assin|subscri|garantia|prote[çc][ãa]o|cart\b|buy\b/i;
 
-const text = (el: Element | null | undefined) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+// Só o texto VISÍVEL (innerText): a Amazon deixa escondido na página o estado "✓ Utilizado" do botão Resgatar,
+// e com textContent a extensão achava que o cupom já estava usado (visto no relógio Invicta, 08/11/2026).
+const text = (el: Element | null | undefined) =>
+  ((el instanceof HTMLElement ? el.innerText : el?.textContent) ?? '').replace(/\s+/g, ' ').trim();
 
 export interface CouponOffer {
   /** O que clicar: a caixinha ou o botão "Aplicar". */
@@ -76,9 +79,10 @@ function couponBlocks(doc: Document): HTMLElement[] {
   return blocks.filter((b) => !blocks.some((o) => o !== b && o.contains(b)));
 }
 
-/** Código escrito no bloco de cupom ("Código: DEVOLTA1000"), para guardar em "Meus cupons". */
+/** Código escrito no bloco ("Código: DEVOLTA1000", "Salve o cupom R$40 : IWZKJIIDSVSQ"), para guardar em "Meus cupons".
+ * Só MAIÚSCULAS/números: "Cupom: Aplicar..." não vira o código APLICAR. */
 export function promoCodes(doc: Document = document): string[] {
-  const codes = couponBlocks(doc).flatMap((b) => [...text(b).matchAll(/c[óo]digo:?\s*([A-Z0-9][A-Z0-9_-]{3,24})\b/gi)].map((m) => m[1]!.toUpperCase()));
+  const codes = couponBlocks(doc).flatMap((b) => [...text(b).matchAll(/(?:[Cc][óo]digo|[Cc]upom[^:]{0,25}):\s*([A-Z0-9][A-Z0-9_-]{3,24})\b/g)].map((m) => m[1]!));
   return [...new Set(codes)];
 }
 
