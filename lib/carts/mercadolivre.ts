@@ -65,7 +65,14 @@ export function readMercadoLivreTotal(): number | null {
 }
 
 export function readMercadoLivreItems(): CartItem[] {
-  const names = [...document.querySelectorAll(ML.itemTitle)].map((el) => (el.textContent ?? '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  // Só os produtos marcados entram na compra (e no cupom): desmarcados ficam de fora do perfil do carrinho.
+  const names = [...document.querySelectorAll(ML.itemTitle)]
+    .filter((el) => {
+      const box = el.closest('.cl-item-card')?.querySelector<HTMLInputElement>('.poly-card__checkbox input[type=checkbox]');
+      return !box || box.checked;
+    })
+    .map((el) => (el.textContent ?? '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
   return [...new Set(names)].map((name) => ({ name }));
 }
 
