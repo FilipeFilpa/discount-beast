@@ -12,6 +12,7 @@ export default defineContentScript({
     'https://*.kabum.com.br/*', 'https://kabum.com.br/*',
     'https://*.pichau.com.br/*', 'https://pichau.com.br/*', 'https://*.terabyteshop.com.br/*', 'https://terabyteshop.com.br/*',
     'https://*.magazineluiza.com.br/*', 'https://*.magalu.com/*',
+    'https://*.mercadolivre.com.br/*',
   ],
   runAt: 'document_idle',
   main() {
@@ -21,10 +22,13 @@ export default defineContentScript({
     // Pichau/Terabyte: ainda sem adaptador; o botão serve para descobrir os seletores do carrinho.
     // Nelas ainda não sabemos a URL exata do carrinho, então aceitamos qualquer caminho com carrinho/cart/checkout.
     // Magalu: a sacola mora num subdomínio próprio (sacola.magazineluiza.com.br), com rotas no "#".
+    // Mercado Livre: carrinho em www.mercadolivre.com.br/gz/cart/v2; o campo de cupom fica numa janela
+    // com iframe (/cupons/cart), que também vai no arquivo salvo (ver capturePage).
     let host: HTMLElement | null = null;
     setInterval(() => {
       const loose = /pichau|terabyteshop|magazineluiza|magalu/.test(location.hostname);
-      const inCart = /^(sacola|carrinho|checkout)\./.test(location.hostname) ? true : loose
+      const inCart = /mercadolivre/.test(location.hostname) ? /^\/gz\/cart|^\/cart|^\/gz\/checkout/.test(location.pathname)
+        : /^(sacola|carrinho|checkout)\./.test(location.hostname) ? true : loose
         ? /cart|carrinho|checkout|pagamento|sacola|endereco|formaspagamento/i.test(location.pathname + location.hash)
         : /^\/cart|\/checkouts\/carrinho|^\/carrinho|^\/pagamento|^\/checkout|^\/endereco/.test(location.pathname);
       if (inCart && !host) host = createButton();
@@ -60,8 +64,24 @@ function createButton(): HTMLElement {
   root.querySelector('.go')!.addEventListener('click', () => {
     count += 1;
     const time = new Date().toTimeString().slice(0, 8).replaceAll(':', '');
-    downloadText(`discount-beast-${store?.id ?? 'loja'}-${count}-${time}.html`, cleanPageHtml());
+    downloadText(`discount-beast-${store?.id ?? 'loja'}-${count}-${time}.html`, capturePage());
     msg.textContent = `Arquivo ${count} salvo em Downloads. Mande para o Claude.`;
   });
   return host;
+}
+
+/**
+ * Página + janelas em iframe do mesmo site (no Mercado Livre o campo "Inserir código do cupom"
+ * abre /cupons/cart dentro de um iframe). Cada iframe vai no fim do arquivo, limpo do mesmo jeito.
+ */
+function capturePage(): string {
+  let html = cleanPageHtml();
+  for (const frame of document.querySelectorAll('iframe')) {
+    if (frame.getBoundingClientRect().width === 0) continue;
+    let doc: Document | null = null;
+    try { doc = frame.contentDocument; } catch { /* outro domínio: o navegador não deixa ler */ }
+    if (!doc?.documentElement) continue;
+    html += `\n<!-- discount-beast iframe: ${frame.title || frame.src} -->\n${cleanPageHtml(doc)}`;
+  }
+  return html;
 }

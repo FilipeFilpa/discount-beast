@@ -10,7 +10,7 @@ export function cleanPageHtml(doc: Document = document): string {
   const clone = doc.documentElement.cloneNode(true) as HTMLElement;
   clone.querySelectorAll(DROP).forEach((el) => el.remove());
   // Comentários HTML: a Terabyte deixa o bloco antigo de entrega (com o endereço) comentado na página.
-  const comments = document.createTreeWalker(clone, NodeFilter.SHOW_COMMENT);
+  const comments = doc.createTreeWalker(clone, NodeFilter.SHOW_COMMENT);
   const dead: Node[] = [];
   for (let node = comments.nextNode(); node; node = comments.nextNode()) dead.push(node);
   dead.forEach((node) => node.parentNode?.removeChild(node));
@@ -26,7 +26,7 @@ export function cleanPageHtml(doc: Document = document): string {
   const visibleInputs = [...doc.querySelectorAll<HTMLInputElement>('input')]
     .filter((i) => i.getBoundingClientRect().width > 0)
     .map((i) => ({ id: i.id, name: i.name, type: i.type, placeholder: i.placeholder, ...(/cupo|coupon|promo|voucher/i.test(`${i.id} ${i.name} ${i.placeholder}`) ? { value: i.value } : {}) }));
-  const header = `<!-- discount-beast capture\nurl: ${location.href}\nat: ${new Date().toISOString()}\nvisibleInputs: ${JSON.stringify(visibleInputs).replaceAll('--', '- -')}\n-->\n`;
+  const header = `<!-- discount-beast capture\nurl: ${doc.location?.href ?? location.href}\nat: ${new Date().toISOString()}\nvisibleInputs: ${JSON.stringify(visibleInputs).replaceAll('--', '- -')}\n-->\n`;
   // Endereços e nome no meio do texto: some com CEPs, CPFs, e-mails e telefones que sobrarem.
   const html = clone.outerHTML.replace(/\b\d{5}-?\d{3}\b/g, '[CEP]').replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[CPF]')
     .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[EMAIL]')
