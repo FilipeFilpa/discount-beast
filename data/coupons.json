@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T00:11:17.249Z",
+  "updatedAt": "2026-11-08T15:47:01.020Z",
   "coupons": [
     {
       "store": "adidas",
@@ -353,7 +353,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV08",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 4.069",
+      "title": "Compre com código promocional Aliexpress e economize R$ 4.069",
       "discount": "R$ 4069 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -2746,18 +2746,6 @@
     },
     {
       "store": "kabum",
-      "code": "NINJAFC",
-      "title": "Jogo EA Sports FC 26 com 60% OFF",
-      "discount": "60% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponation",
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-07T02:33:59.796Z"
-    },
-    {
-      "store": "kabum",
       "code": "PERIFERIX20",
       "title": "Setup turbinado! 20% OFF em mouses, teclados e headsets!",
       "discount": "20% OFF",
@@ -2807,7 +2795,7 @@
     {
       "store": "kabum",
       "code": "STAR100OFF",
-      "title": "Os melhores itens do site com R$ 100 OFF aplicando cupom KaBuM!",
+      "title": "A chance de economizar R$ 100 em compras na KaBuM!",
       "discount": "R$ 100 OFF",
       "expiresAt": "2026-11-10T02:59:59.000Z",
       "sources": [
@@ -4379,26 +4367,11 @@
       "discount": "30% OFF",
       "expiresAt": "2027-01-01T02:59:59.000Z",
       "sources": [
-        "cuponation",
         "cuponomia",
         "meliuz",
         "promobit"
       ],
-      "firstSeen": "2026-11-06T13:53:47.593Z",
-      "terms": "Válido em compras a partir de R$1, desconto limitado a R$500."
-    },
-    {
-      "store": "mercadolivre",
-      "code": "AMIGOVIP",
-      "title": "Cupom Mercado Livre: 10% OFF acima de R$ 149 (até R$ 200) em Eletrônicos",
-      "discount": "10% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-07T15:23:58.509Z"
+      "firstSeen": "2026-11-06T13:53:47.593Z"
     },
     {
       "store": "mercadolivre",
@@ -4416,60 +4389,6 @@
     },
     {
       "store": "mercadolivre",
-      "code": "CORREAGORA",
-      "title": "Cupom Mercado Livre: 15% OFF em todo o site",
-      "discount": "15% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponation",
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-07T00:37:07.927Z",
-      "terms": "Válido apenas em compras a partir de R$99. Limitado a R$80."
-    },
-    {
-      "store": "mercadolivre",
-      "code": "CUPOMPRAAUTO",
-      "title": "Cupom Mercado Livre: 18% OFF acima de R$ 99 (até R$ 60) em Automotivo",
-      "discount": "18% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-07T15:23:58.509Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "CUPOMPRACONSTRU",
-      "title": "Cupom Mercado Livre: 15% OFF acima de R$ 79 (até R$ 60) em Ferramentas e Construção",
-      "discount": "15% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-07T15:23:58.509Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "MELIOFERTAS",
-      "title": "Cupom Mercado Livre: 10% OFF no site inteiro",
-      "discount": "10% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponation",
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-07T15:23:58.509Z",
-      "terms": "Válido em compras a partir de R$79. Desconto máximo de R$100."
-    },
-    {
-      "store": "mercadolivre",
       "code": "MEUDESCONTO",
       "title": "18% OFF em produtos escolhidos da semana",
       "discount": "18% OFF",
@@ -4481,19 +4400,6 @@
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z",
       "terms": "Válido em compras a partir de R$1, com desconto máximo de R$500."
-    },
-    {
-      "store": "mercadolivre",
-      "code": "MODAAQUI",
-      "title": "Cupom Mercado Livre: 12% OFF acima de R$ 79 (até R$ 60) em Moda",
-      "discount": "12% OFF",
-      "expiresAt": "2026-11-08T02:59:59.000Z",
-      "sources": [
-        "cuponomia",
-        "meliuz",
-        "promobit"
-      ],
-      "firstSeen": "2026-11-07T15:23:58.509Z"
     },
     {
       "store": "mercadolivre",
@@ -4524,9 +4430,57 @@
     },
     {
       "store": "mercadolivre",
+      "code": "AMIGOVIP",
+      "title": "10% de economia em produtos escolhidos",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T15:23:58.509Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "CARRINHOML",
+      "title": "Cupom Mercado Livre com 10% OFF na seleção",
+      "discount": "10% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-08T15:47:01.020Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "CUPOMPRAAUTO",
+      "title": "Peças e acessórios automotivos com 18% OFF",
+      "discount": "18% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T15:23:58.509Z"
+    },
+    {
+      "store": "mercadolivre",
       "code": "CUPOMPRACASA",
       "title": "Decoração e utilidades com 18% de desconto",
       "discount": "18% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T15:23:58.509Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "CUPOMPRACONSTRU",
+      "title": "Construção e reforma com 15% OFF",
+      "discount": "15% OFF",
       "expiresAt": null,
       "sources": [
         "cuponomia",
@@ -4658,6 +4612,18 @@
     },
     {
       "store": "mercadolivre",
+      "code": "MODAAQUI",
+      "title": "Roupas e calçados com 12% de desconto",
+      "discount": "12% OFF",
+      "expiresAt": null,
+      "sources": [
+        "cuponomia",
+        "meliuz"
+      ],
+      "firstSeen": "2026-11-07T15:23:58.509Z"
+    },
+    {
+      "store": "mercadolivre",
       "code": "MODASEMPRE",
       "title": "Moda feminina e masculina com 15% de desconto",
       "discount": "15% OFF",
@@ -4752,19 +4718,6 @@
         "meliuz"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "mercadolivre",
-      "code": "PEGUESEUOFF",
-      "title": "Código promocional Mercado Livre garante desconto de 30%",
-      "discount": "30% OFF",
-      "expiresAt": "2026-12-11T02:59:00.000Z",
-      "sources": [
-        "cuponation",
-        "cuponomia"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z",
-      "terms": "Cupom de 30% de desconto, limitado a R$500,00."
     },
     {
       "store": "mercadolivre",
@@ -4897,6 +4850,17 @@
     },
     {
       "store": "mercadolivre",
+      "code": "HOJECONSTRU",
+      "title": "Cupom Mercado Livre: 15% OFF acima de R$ 79 (até R$ 60) em Ferramentas e Construção",
+      "discount": "15% OFF",
+      "expiresAt": "2026-11-09T02:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-08T15:47:01.020Z"
+    },
+    {
+      "store": "mercadolivre",
       "code": "MELIPROMOBIT",
       "title": "Use cupom Mercado Livre e tenha desconto de 12% OFF",
       "discount": "12% OFF",
@@ -4954,6 +4918,18 @@
     },
     {
       "store": "mercadolivre",
+      "code": "PEGUESEUOFF",
+      "title": "Cupom de desconto Mercado Livre de 30% OFF no seu pedido",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-11T02:59:00.000Z",
+      "terms": "Cupom de 30% de desconto, limitado a R$500,00.",
+      "sources": [
+        "cuponation"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z"
+    },
+    {
+      "store": "mercadolivre",
       "code": "PRESENTINHO",
       "title": "Cupom Mercado Livre de hoje: ative 20% OFF no seu pedido",
       "discount": "20% OFF",
@@ -5008,6 +4984,17 @@
         "cuponation"
       ],
       "firstSeen": "2026-11-06T16:20:04.270Z"
+    },
+    {
+      "store": "mercadolivre",
+      "code": "TAMOSJUNTO",
+      "title": "Cupom Mercado Livre: 10% OFF acima de R$ 149 (até R$ 200) em Eletrônicos",
+      "discount": "10% OFF",
+      "expiresAt": "2026-11-09T02:59:59.000Z",
+      "sources": [
+        "promobit"
+      ],
+      "firstSeen": "2026-11-08T15:47:01.020Z"
     },
     {
       "store": "mercadolivre",
