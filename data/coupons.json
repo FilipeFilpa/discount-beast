@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T15:47:01.020Z",
+  "updatedAt": "2026-11-08T17:47:13.077Z",
   "coupons": [
     {
       "store": "adidas",
@@ -88,7 +88,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA1",
-      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 16 OFF",
+      "title": "Cupom de desconto Aliexpress oferece R$ 16 OFF em suas compras",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -103,7 +103,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA2",
-      "title": "Os melhores itens do site com R$ 32 OFF aplicando cupom Aliexpress",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 32",
       "discount": "R$ 32 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -118,7 +118,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA3",
-      "title": "Cupom de desconto Aliexpress oferece R$ 50 OFF em suas compras",
+      "title": "Aproveite para economizar R$ 50 com cupom Aliexpress",
       "discount": "R$ 50 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -133,7 +133,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA4",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 120",
+      "title": "Cupom Aliexpress concede desconto de R$ 120",
       "discount": "R$ 120 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -148,7 +148,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA5",
-      "title": "Aproveite para economizar R$ 210 com cupom Aliexpress",
+      "title": "Compre com código promocional Aliexpress e economize R$ 210",
       "discount": "R$ 210 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -163,7 +163,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA6",
-      "title": "Economize R$ 2.499 em seus pedidos aplicando cupom Aliexpress",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 2.499",
       "discount": "R$ 2499 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -178,7 +178,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA7",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 2.569",
+      "title": "Cupom de desconto Aliexpress oferece R$ 2.569 OFF em suas compras",
       "discount": "R$ 2569 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -193,7 +193,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA8",
-      "title": "Cupom Aliexpress concede desconto de R$ 580",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 580",
       "discount": "R$ 580 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -238,7 +238,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV02",
-      "title": "Compre com código promocional Aliexpress e economize R$ 32",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 32 OFF",
       "discount": "R$ 32 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -253,7 +253,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV06",
-      "title": "Compre com código promocional Aliexpress e economize R$ 2.909",
+      "title": "Os melhores itens do site com R$ 2.909 OFF aplicando cupom Aliexpress",
       "discount": "R$ 2909 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -283,7 +283,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV01",
-      "title": "Cupom Aliexpress concede desconto de R$ 16",
+      "title": "A chance de economizar R$ 16 em compras na Aliexpress",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -297,7 +297,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV03",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 50",
+      "title": "Os melhores itens do site com R$ 50 OFF aplicando cupom Aliexpress",
       "discount": "R$ 50 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -311,7 +311,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV04",
-      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 1.014 OFF",
+      "title": "Cupom Aliexpress concede desconto de R$ 1.014",
       "discount": "R$ 1014 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -325,7 +325,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV05",
-      "title": "Os melhores itens do site com R$ 1.618 OFF aplicando cupom Aliexpress",
+      "title": "Compre com código promocional Aliexpress e economize R$ 1.618",
       "discount": "R$ 1618 OFF",
       "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
@@ -339,7 +339,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV07",
-      "title": "A chance de economizar R$ 400 em compras na Aliexpress",
+      "title": "Os melhores itens do site com R$ 400 OFF aplicando cupom Aliexpress",
       "discount": "R$ 400 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -407,7 +407,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV09",
-      "title": "Cupom Aliexpress concede desconto de R$ 4.500",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 4.500 OFF",
       "discount": "R$ 4500 OFF",
       "expiresAt": "2026-11-11T02:59:59.000Z",
       "sources": [
@@ -2410,7 +2410,7 @@
     {
       "store": "kabum",
       "code": "FARMOU",
-      "title": "Cupom de desconto KaBuM! oferece 11% OFF em suas compras",
+      "title": "Faça compras com cupom de desconto KaBuM! e economize 11%",
       "discount": "11% OFF",
       "expiresAt": "2026-11-10T02:59:59.000Z",
       "sources": [
@@ -2464,7 +2464,7 @@
     {
       "store": "kabum",
       "code": "ESQUENTA",
-      "title": "Faça compras com cupom de desconto KaBuM! e economize 5%",
+      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 5% OFF",
       "discount": "5% OFF",
       "expiresAt": "2026-11-12T02:59:59.000Z",
       "sources": [
