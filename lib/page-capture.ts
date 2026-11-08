@@ -4,7 +4,7 @@
  * Tiramos scripts, estilos, imagens, blocos de endereço, CEPs/CPFs e valores de campos, para o arquivo ficar pequeno
  * e não levar nada sensível (só sobra a estrutura e os textos visíveis).
  */
-const DROP = '[class*="address" i], [data-testid*="address" i], [class*="endereco" i], [class*="customer" i], [id*="address" i], [id*="endereco" i], [class*="shipping-address" i], [data-testid*="customer" i], script, style, noscript, iframe, svg, img, picture, video, link, meta, template, discount-beast-panel, discount-beast-capture';
+const DROP = '[class*="address" i], [data-testid*="address" i], [class*="endereco" i], [class*="customer" i], [id*="address" i], [id*="endereco" i], [class*="shipping-address" i], [data-testid*="customer" i], script, style, noscript, iframe, svg, img, picture, video, link, meta, template, discount-beast-panel, discount-beast-capture, [class*="username" i], [class*="nav-header-user" i], [class*="cp-send" i], [aria-label*="perfil" i]';
 
 export function cleanPageHtml(doc: Document = document): string {
   const clone = doc.documentElement.cloneNode(true) as HTMLElement;
