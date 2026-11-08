@@ -33,6 +33,6 @@ export interface CouponFeed {
   coupons: Coupon[];
 }
 
-/** Endereço público do JSON que o GitHub Actions atualiza 2x por dia. */
+/** Endereço público do JSON que o GitHub Actions atualiza a cada 3 h. */
 export const COUPONS_URL =
   'https://raw.githubusercontent.com/FilipeFilpa/discount-beast/main/data/coupons.json';

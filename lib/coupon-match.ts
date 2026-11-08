@@ -231,7 +231,7 @@ export interface CouponScore {
  * Nota de 0 (neutro) para cima (combina) ou para baixo (provavelmente não serve).
  * O que pesa mais: marca/categoria batendo com os produtos do carrinho e o valor mínimo.
  */
-export function scoreCoupon(coupon: CouponText, cart: CartProfile): CouponScore {
+export function scoreCoupon(coupon: CouponText, cart: CartProfile, now = new Date()): CouponScore {
   const r = parseRules(coupon);
   const why: string[] = [];
   let score = 0;
@@ -295,6 +295,11 @@ export function scoreCoupon(coupon: CouponText, cart: CartProfile): CouponScore 
   if (r.storeSellerOnly === false && cart.allStoreSeller) { score -= 10; why.push('só lojas parceiras'); }
 
   // Aparece em vários sites de cupom: um pouco mais confiável.
+  // Código com data no fim (LOJAS0811 = 08/11): só vale naquele dia.
+  const day = codeDate(coupon.code, now);
+  if (day === 'today') { score += 3; why.push('de hoje'); }
+  else if (day === 'past') { score -= 30; why.push('só de outro dia'); }
+
   // (com 95% de recusas, um código em 3+ sites é bem mais provável de estar vivo)
   score += Math.min(3, Math.max(0, (coupon.sources?.length ?? 1) - 1));
   return { score, why };
@@ -347,4 +352,23 @@ export function sourceBonus(
     if (notes.length) bonus.set(c.code, Math.round(Math.max(...notes) * 10) / 10);
   }
   return bonus;
+}
+
+/**
+ * Códigos do dia, comuns no Mercado Livre e no Pelando: TODOSITE0811, LOJAS0811 (DDMM no fim).
+ * 'today' = é de hoje; 'past' = de um dia que já passou (até 60 dias atrás); null = sem data.
+ */
+export function codeDate(code: string, now = new Date()): 'today' | 'past' | null {
+  const m = code.toUpperCase().match(/^[A-Z]{3,}[A-Z]*(\d{2})(\d{2})$/);
+  if (!m) return null;
+  const dd = Number(m[1]), mm = Number(m[2]);
+  if (dd < 1 || dd > 31 || mm < 1 || mm > 12) return null;
+  // Hora de Brasília (UTC−3), que é quando o código vira.
+  const br = new Date(now.getTime() - 3 * 3600_000);
+  const today = Date.UTC(br.getUTCFullYear(), br.getUTCMonth(), br.getUTCDate());
+  let date = Date.UTC(br.getUTCFullYear(), mm - 1, dd);
+  if (date > today + 7 * 86400_000) date = Date.UTC(br.getUTCFullYear() - 1, mm - 1, dd); // dezembro visto em janeiro
+  if (date === today) return 'today';
+  if (date < today && today - date <= 60 * 86400_000) return 'past';
+  return null;
 }
