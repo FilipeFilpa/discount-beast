@@ -17,6 +17,8 @@ export interface PageProduct {
   gtin: string | null;
   /** Código do modelo na loja (ex.: "IE7262" na adidas). */
   sku: string | null;
+  /** Código do fabricante (ex.: "QN65QN800DGXZD", da ficha técnica). Opcional. */
+  mpn?: string | null;
   price: number | null;
   url: string;
 }
@@ -32,7 +34,7 @@ export interface SearchHit {
 const TECH_CATEGORIES = [
   'placa', 'processador', 'memoria', 'ssd', 'hdd', 'gabinete', 'fonte', 'cooler', 'monitor', 'notebook', 'computador',
   'teclado', 'mouse', 'headset', 'fone', 'webcam', 'microfone', 'roteador', 'smartphone', 'celular', 'tablet',
-  'console', 'controle', 'cadeira', 'impressora', 'smartwatch', 'pendrive', 'nobreak', 'estabilizador', 'tv',
+  'console', 'controle', 'cadeira', 'impressora', 'smartwatch', 'pendrive', 'nobreak', 'estabilizador', 'tv', 'soundbar', 'projetor',
 ];
 
 const CATEGORIES = [
@@ -217,6 +219,16 @@ function realBrand(brand: string | null): string {
   return FAKE_BRANDS.test(b) ? '' : b;
 }
 
+/**
+ * Que tipo de produto é, pelo título: decide em quais lojas especializadas vale buscar quando a página
+ * é de uma loja que vende de tudo (Magalu, Amazon, Mercado Livre). TV → informática; tênis → esporte.
+ */
+export function productKind(name: string): 'informatica' | 'esporte' | null {
+  const category = tokens(name).find((w) => CATEGORIES.includes(w));
+  if (!category) return null;
+  return TECH_CATEGORIES.includes(category) ? 'informatica' : 'esporte';
+}
+
 /** Texto para buscar nas outras lojas: tipo + marca + modelo (sem cor, tamanho e público). */
 export function searchQuery(product: Pick<PageProduct, 'name' | 'brand'>): string {
   const p = profile(product.name, product.brand);
@@ -224,6 +236,18 @@ export function searchQuery(product: Pick<PageProduct, 'name' | 'brand'>): strin
   // Informática: sem as especificações ("8gb", "gddr6"), que deixam a busca restrita demais. A capacidade fica.
   const model = p.model.filter((w) => !p.codes.includes(w) && !(p.tech && isSpec(w) && !/^\d+(\.\d+)?(gb|tb)$/.test(w))).slice(0, 5);
   return [p.category, brand, ...model].filter(Boolean).join(' ');
+}
+
+/**
+ * Núcleo do código do fabricante, para comparar o mesmo modelo escrito de jeitos diferentes.
+ * Samsung: "QN65QN800DGXZD" (prefixo QN/UN + região GXZD no fim) = "65QN800D" → "65qn800d".
+ */
+export function modelCore(code: string): string {
+  return code
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+    .replace(/^(qn|un|qe|ue)(?=\d{2}[a-z])/, '')
+    .replace(/(gxz[a-z]|xz[a-z])$/, '');
 }
 
 export interface MatchResult {
@@ -250,6 +274,12 @@ export function matchScore(product: PageProduct, hit: Pick<SearchHit, 'title' | 
   const b = profile(hit.title, product.brand);
   if (a.category && b.category && a.category !== b.category && !hitWords.includes(a.category)) return { score: 0, why: `é ${b.category}, não ${a.category}` };
   if (a.gender && b.gender && a.gender !== b.gender && a.gender !== 'u' && b.gender !== 'u') return { score: 0, why: 'outro público (masculino/feminino/infantil)' };
+  // Código do fabricante da ficha técnica (QN65QN800DGXZD) = código no título da outra loja (65QN800D).
+  const mpn = product.mpn ? modelCore(product.mpn) : '';
+  // Só se o resultado for do mesmo tipo: "Controle remoto p/ TV 65QN800D" não é a TV.
+  if (mpn.length >= 6 && (!b.category || b.category === a.category) && haystack.split(' ').some((w) => w.length >= 6 && /\d/.test(w) && /[a-z]/.test(w) && modelCore(w) === mpn)) {
+    return { score: 1, why: 'mesmo código do fabricante' };
+  }
   // RTX 4060 x 4060 Ti, iPhone 15 x 15 Pro: o resto do título pode ser igual, mas é outro produto.
   if (a.variants.join() !== b.variants.join()) return { score: 0.3, why: 'outra versão do modelo' };
   // SSD 1TB x 500GB, notebook 8GB x 16GB.
@@ -390,5 +420,6 @@ function toPageProduct(node: Json, url: string): PageProduct | null {
   const gtin = gtinOf(node) ?? gtinOf(first);
   const sku = str(node.productGroupID) ?? str(node.sku) ?? str(node.mpn) ?? str(first.sku);
   const price = priceOf(node.offers) ?? priceOf(variants.map((v) => v.offers).flat());
-  return { name, brand, gtin: gtin && /^\d{8,14}$/.test(gtin) ? gtin : null, sku, price, url };
+  const mpn = str(node.mpn) ?? str(first.mpn);
+  return { name, brand, gtin: gtin && /^\d{8,14}$/.test(gtin) ? gtin : null, sku, ...(mpn ? { mpn } : {}), price, url };
 }

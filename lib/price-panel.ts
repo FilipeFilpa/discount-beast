@@ -2,41 +2,101 @@ import { browser } from 'wxt/browser';
 import type { ComparePricesMessage, ComparePricesResponse } from './messages';
 import type { PriceReport } from './price-compare';
 import { downloadText } from './page-capture';
-import { formatBRL } from './price';
-import { sourcesFrom } from './price-search';
+import { formatBRL, parseBRL } from './price';
+import { isProductPageUrl, sourcesFrom } from './price-search';
 import { productFromJsonLd, type PageProduct } from './product-match';
-import type { StoreId } from './stores';
+import { findStoreByHost, type StoreId } from './stores';
+
+/** De onde o cartão tira o(s) produto(s): a página de produto ou a sacola. */
+export interface PriceSourcePage {
+  /** Produtos que dá para comparar agora (vazio = esconde o cartão). */
+  read: () => PageProduct[];
+  /** Como chamar o preço daqui no texto: "aqui" ou "na sacola". */
+  here: string;
+}
+
+const PRODUCT_PAGE: PriceSourcePage = {
+  read: () => {
+    // Página de produto apenas (lojas como a Amazon mudam de página sem recarregar: confere sempre).
+    const product = isProductPageUrl(findStoreByHost(location.hostname)?.id ?? 'adidas', location.href) ? readPageProduct() : null;
+    return product ? [product] : [];
+  },
+  here: 'aqui',
+};
 
 /**
- * Cartão "Comparar preço" na página de produto (canto de baixo, à esquerda; o de cupons fica à direita).
+ * Cartão "Comparar preço" na página de produto ou na sacola (canto de baixo, à esquerda; o de cupons fica à direita).
  * Só busca quando você clica no botão.
  */
-export function mountPricePanel(store: StoreId): void {
+export function mountPricePanel(store: StoreId, page: PriceSourcePage = PRODUCT_PAGE): void {
   let panel: { host: HTMLElement; key: string } | null = null;
-  // Lojas como a adidas trocam de produto sem recarregar a página: confere a cada 1,5 s.
+  // Lojas como a adidas trocam de produto sem recarregar a página (e a sacola muda quando você tira um item):
+  // confere a cada 1,5 s.
   setInterval(() => {
-    const product = readPageProduct();
-    const key = product ? `${location.pathname}|${product.name}` : '';
+    const products = page.read();
+    const key = products.length ? `${location.pathname}|${products.map((p) => p.name).join('|')}` : '';
     if (panel && panel.key !== key) {
       panel.host.remove();
       panel = null;
     }
-    if (product && !panel) panel = { host: createPanel(store, product), key };
+    if (products.length && !panel) panel = { host: createPanel(store, products, page.here), key };
   }, 1500);
 }
 
 /** Lê o produto aberto: JSON-LD primeiro, depois as meta tags que as lojas usam para redes sociais. */
 export function readPageProduct(doc: Document = document): PageProduct | null {
+  const product = readBaseProduct(doc);
+  if (!product) return null;
+  // A ficha técnica costuma ter o código completo do fabricante (Magalu: "Referência QN65QN800DGXZD").
+  const fromSpecs = specModelCode(doc);
+  if (fromSpecs && (!product.mpn || fromSpecs.length > product.mpn.length)) product.mpn = fromSpecs;
+  return product;
+}
+
+/**
+ * Procura na ficha técnica uma linha "Referência" / "Modelo" / "Número do modelo" / "Código do fabricante"
+ * e devolve o maior valor que parece código (letras + números, sem espaço).
+ */
+function specModelCode(doc: Document): string | null {
+  const LABEL = /^(refer[êe]ncia|modelo|n[úu]mero (do|de) modelo|c[óo]digo do fabricante|part ?number|mpn)\s*:?$/i;
+  let best: string | null = null;
+  for (const el of doc.querySelectorAll<HTMLElement>('td, th, dt, span, div, p, li, strong, b')) {
+    if (el.children.length > 1) continue;
+    const label = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (!LABEL.test(label)) continue;
+    const valueEl = el.nextElementSibling ?? el.parentElement?.nextElementSibling;
+    const value = (valueEl?.textContent ?? '').replace(/[\s\u200e\u200f]+/g, ' ').trim();
+    if (/^[A-Za-z0-9][A-Za-z0-9/-]{5,29}$/.test(value) && /\d/.test(value) && /[A-Za-z]/.test(value) && (!best || value.length > best.length)) best = value;
+  }
+  return best;
+}
+
+function readBaseProduct(doc: Document): PageProduct | null {
   const blocks = [...doc.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent ?? '');
   const fromLd = productFromJsonLd(blocks, location.href);
   const meta = (name: string) => doc.querySelector<HTMLMetaElement>(`meta[property="${name}"], meta[name="${name}"], meta[itemprop="${name}"]`)?.content ?? null;
   const metaPrice = Number(meta('product:price:amount') ?? meta('og:price:amount') ?? meta('price') ?? NaN);
   if (fromLd) return { ...fromLd, price: fromLd.price ?? (metaPrice > 0 ? metaPrice : visiblePrice(doc)) };
+  const amazon = amazonProduct(doc);
+  if (amazon) return amazon;
   // Sem JSON-LD: só conta como página de produto se a loja disser que é (og:type product) e tiver preço.
   if (!/product/i.test(meta('og:type') ?? '') || !(metaPrice > 0)) return null;
   const name = doc.querySelector('h1')?.textContent?.trim() || meta('og:title');
   if (!name) return null;
   return { name, brand: meta('product:brand') ?? meta('og:brand'), gtin: null, sku: null, price: metaPrice, url: location.href };
+}
+
+/**
+ * A Amazon não põe JSON-LD nem og:type na página do produto: título em #productTitle, preço no bloco
+ * principal (.a-price .a-offscreen, o primeiro é o preço atual) e marca no link "Marca: X" / "Visite a loja X".
+ */
+function amazonProduct(doc: Document): PageProduct | null {
+  const name = doc.querySelector('#productTitle')?.textContent?.replace(/\s+/g, ' ').trim();
+  if (!name) return null;
+  const priceText = doc.querySelector('#corePriceDisplay_desktop_feature_div .a-price .a-offscreen, #corePrice_feature_div .a-price .a-offscreen, #corePrice_desktop .a-price .a-offscreen, #apex_desktop .a-price .a-offscreen')?.textContent ?? '';
+  const byline = doc.querySelector('#bylineInfo')?.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+  const brand = byline.match(/^(?:Marca:|Visite a loja(?: da| do)?)\s*(.+)$/i)?.[1]?.trim() ?? null;
+  return { name, brand, gtin: null, sku: null, price: parseBRL(priceText) ?? visiblePrice(doc), url: location.href };
 }
 
 /**
@@ -62,7 +122,8 @@ function visiblePrice(doc: Document): number | null {
   return best?.value ?? null;
 }
 
-function createPanel(store: StoreId, product: PageProduct): HTMLElement {
+function createPanel(store: StoreId, products: PageProduct[], hereLabel: string): HTMLElement {
+  let product = products[0]!;
   const host = document.createElement('discount-beast-prices');
   const root = host.attachShadow({ mode: 'open' });
   root.innerHTML = `
@@ -86,12 +147,14 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
       .x { position: absolute; top: 6px; right: 10px; width: auto; padding: 0; background: none; color: #6b7280; font-size: 16px; }
       .min { position: absolute; top: 6px; right: 30px; width: auto; padding: 0; background: none; color: #6b7280; font-size: 16px; }
       .body[hidden] { display: none; }
+      select { width: 100%; margin: 0 0 8px; padding: 6px; border: 1px solid #d1d5db; border-radius: 8px; font: 13px system-ui, sans-serif; }
     </style>
     <div class="card">
       <button class="x" title="Fechar">×</button>
       <button class="min" title="Minimizar">–</button>
       <h1>🦁 Comparar preço</h1>
       <div class="body">
+        <select class="pick" hidden title="Qual item da sacola comparar"></select>
         <p class="msg"></p>
         <ul class="list" hidden></ul>
         <button class="go">Comparar preço</button>
@@ -105,12 +168,31 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
   const msg = root.querySelector<HTMLParagraphElement>('.msg')!;
   const list = root.querySelector<HTMLUListElement>('.list')!;
   const go = root.querySelector<HTMLButtonElement>('.go')!;
-  const others = sourcesFrom(store).map((s) => s.name);
+  const pick = root.querySelector<HTMLSelectElement>('.pick')!;
+  let others: string[] = [];
   const here = () => product.price;
-  msg.textContent = `${product.name}${here() !== null ? ` · aqui ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
+  const intro = () => {
+    others = sourcesFrom(store, product.name).map((s) => s.name);
+    list.hidden = true;
+    root.querySelector('.diag')?.remove();
+    go.textContent = 'Comparar preço';
+    const code = product.mpn && !product.name.toLowerCase().includes(product.mpn.toLowerCase()) ? ` (${product.mpn})` : '';
+    msg.textContent = `${product.name}${code}${here() !== null ? ` · ${hereLabel} ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
+  };
+  // Sacola com vários itens: você escolhe qual comparar.
+  if (products.length > 1) {
+    pick.replaceChildren(...products.map((p, i) => Object.assign(document.createElement('option'), { value: String(i), textContent: p.name })));
+    pick.hidden = false;
+    pick.addEventListener('change', () => {
+      product = products[Number(pick.value)] ?? product;
+      intro();
+    });
+  }
+  intro();
 
   go.addEventListener('click', async () => {
     go.disabled = true;
+    pick.disabled = true;
     list.hidden = true;
     msg.textContent = `Procurando em ${others.join(', ')}… Abro e fecho umas abas de fundo, leva uns 15 segundos.`;
     try {
@@ -123,6 +205,7 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
       msg.textContent = `Não consegui comparar: ${(error as Error).message}`;
     } finally {
       go.disabled = false;
+      pick.disabled = false;
       go.textContent = 'Comparar de novo';
     }
   });
@@ -136,9 +219,9 @@ function createPanel(store: StoreId, product: PageProduct): HTMLElement {
     else if (best.match!.price < price) {
       const strong = document.createElement('strong');
       strong.textContent = `${best.storeName}: ${formatBRL(best.match!.price)}`;
-      msg.append('Menor preço: ', strong, ` (${formatBRL(price - best.match!.price)} a menos que aqui).`);
+      msg.append('Menor preço: ', strong, ` (${formatBRL(price - best.match!.price)} a menos que ${hereLabel}).`);
     } else if (best.match!.price === price) msg.textContent = `Mesmo preço na ${best.storeName} (${formatBRL(price)}). Nenhuma loja está mais barata.`;
-    else msg.textContent = `Aqui já é o menor preço (${formatBRL(price)}).`;
+    else msg.textContent = `${hereLabel === 'aqui' ? 'Aqui já é' : 'A sacola já tem'} o menor preço (${formatBRL(price)}).`;
 
     list.replaceChildren(
       ...reports.map((r) => {

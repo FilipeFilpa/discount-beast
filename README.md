@@ -47,9 +47,9 @@ Recebeu um código por e-mail, app ou adiClub? Abra o popup, escolha a loja em *
 
 ### Comparar preço
 
-1. Abra a página de um produto na adidas, Netshoes, Centauro, KaBuM!, Pichau ou Terabyte.
+1. Abra a página de um produto na adidas, Netshoes, Centauro, KaBuM!, Pichau, Terabyte, Magalu, Amazon ou Mercado Livre. Na sacola da Magalu o cartão também aparece (com vários itens, escolha qual comparar).
 2. O cartão **Comparar preço** aparece no canto de baixo, à esquerda.
-3. Clique em **Comparar preço**. A extensão abre a busca das outras lojas do mesmo tipo (esporte: adidas, Netshoes, Centauro; informática: KaBuM!, Pichau, Terabyte) e também do Mercado Livre, Amazon e Magalu em abas de fundo, lê os resultados e fecha as abas. Leva uns 15 segundos.
+3. Clique em **Comparar preço**. A extensão abre a busca das outras lojas do mesmo tipo (esporte: adidas, Netshoes, Centauro; informática: KaBuM!, Pichau, Terabyte) e também do Mercado Livre, Amazon e Magalu em abas de fundo (numa loja de tudo, como Magalu ou Amazon, o tipo vem do produto: uma TV busca também na KaBuM!, Pichau e Terabyte), lê os resultados e fecha as abas. Leva uns 15 segundos.
 4. O cartão mostra o preço do mesmo modelo em cada loja, sem frete. Passe o mouse no nome do item para ver por que ele foi considerado o mesmo produto.
 
 Como decide que é o mesmo produto: pelo EAN ou código do modelo, quando aparece; senão, a marca tem de ser a mesma, o tipo (tênis, camisa...) e o público (masculino/feminino) não podem ser diferentes, e as palavras do modelo têm de bater. Cor e tamanho não contam.
