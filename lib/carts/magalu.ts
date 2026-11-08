@@ -71,12 +71,32 @@ export function readMagaluSuggested(): string[] {
  * diz que há cupom ("1 cupom para você"), abrimos a janela uma vez, lemos os códigos e fechamos.
  */
 export async function peekMagaluSuggested(): Promise<void> {
-  const banner = document.querySelector('[data-testid="coupon-text"]')?.textContent ?? '';
-  if (!/\d+\s+cupo/i.test(banner) || dialog()) { readMagaluSuggested(); return; }
-  if (!(await openDialog())) return;
+  // Abrimos sempre: com cupom já aplicado a faixa diz só "Cupom aplicado", mas a lista e o código
+  // aplicado (que fica no campo) também só aparecem com a janela aberta.
+  const wasOpen = dialog() !== null;
+  if (!wasOpen && !(await openDialog())) return;
   await waitFor(() => readListedCodes().length > 0, 3000);
   readMagaluSuggested();
-  await closeDialog();
+  rememberApplied();
+  if (!wasOpen) await closeDialog();
+}
+
+/** Código que estava aplicado quando a janela foi vista aberta (o campo some do HTML quando ela fecha). */
+let seenApplied: string | null = null;
+
+function rememberApplied(): void {
+  if (!hasCoupon()) { seenApplied = null; return; }
+  const code = listedAppliedCode() ?? input()?.value.trim().toUpperCase();
+  if (code) seenApplied = code;
+}
+
+function listedAppliedCode(): string | null {
+  for (const block of document.querySelectorAll<HTMLElement>(MAGALU.listedCoupon)) {
+    if (!block.querySelector(MAGALU.listedApplied) && !block.querySelector(MAGALU.listedRemove)) continue;
+    const code = /com cupom:\s*([A-Z0-9_-]{3,40})/i.exec(block.querySelector('p')?.textContent ?? '')?.[1];
+    if (code) return code.toUpperCase();
+  }
+  return null;
 }
 
 function readListedCodes(): string[] {
@@ -139,13 +159,8 @@ let lastWorked: string | null = null;
 
 export const magaluCart: CartAdapter = {
   appliedCode() {
-    if (!hasCoupon()) return null;
-    for (const block of document.querySelectorAll<HTMLElement>(MAGALU.listedCoupon)) {
-      if (!block.querySelector(MAGALU.listedApplied) && !block.querySelector(MAGALU.listedRemove)) continue;
-      const code = /com cupom:\s*([A-Z0-9_-]{3,40})/i.exec(block.querySelector('p')?.textContent ?? '')?.[1];
-      if (code) return code.toUpperCase();
-    }
-    return input()?.value.trim() || lastWorked || 'CUPOM';
+    if (!hasCoupon()) { seenApplied = null; return null; }
+    return listedAppliedCode() ?? (input()?.value.trim().toUpperCase() || lastWorked || seenApplied || 'CUPOM');
   },
 
   total(changedFrom) {
