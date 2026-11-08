@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-07T15:23:58.509Z",
+  "updatedAt": "2026-11-08T00:11:17.249Z",
   "coupons": [
     {
       "store": "adidas",
@@ -88,7 +88,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA1",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 16",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 16 OFF",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -103,7 +103,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA2",
-      "title": "Economize R$ 32 em seus pedidos aplicando cupom Aliexpress",
+      "title": "Os melhores itens do site com R$ 32 OFF aplicando cupom Aliexpress",
       "discount": "R$ 32 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -118,7 +118,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA3",
-      "title": "A chance de economizar R$ 50 em compras na Aliexpress",
+      "title": "Cupom de desconto Aliexpress oferece R$ 50 OFF em suas compras",
       "discount": "R$ 50 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -133,7 +133,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA4",
-      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 120 OFF",
+      "title": "Use cupom Aliexpress e tenha desconto de R$ 120",
       "discount": "R$ 120 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -148,7 +148,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA5",
-      "title": "Os melhores itens do site com R$ 210 OFF aplicando cupom Aliexpress",
+      "title": "Aproveite para economizar R$ 210 com cupom Aliexpress",
       "discount": "R$ 210 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -163,9 +163,9 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA6",
-      "title": "Cupom de desconto Aliexpress oferece R$ 300 OFF em suas compras",
-      "discount": "R$ 300 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "Economize R$ 2.499 em seus pedidos aplicando cupom Aliexpress",
+      "discount": "R$ 2499 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -178,9 +178,9 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA7",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 400",
-      "discount": "R$ 400 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 2.569",
+      "discount": "R$ 2569 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -193,7 +193,7 @@
     {
       "store": "aliexpress",
       "code": "AEMEGA8",
-      "title": "Aproveite para economizar R$ 580 com cupom Aliexpress",
+      "title": "Cupom Aliexpress concede desconto de R$ 580",
       "discount": "R$ 580 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -208,7 +208,7 @@
     {
       "store": "aliexpress",
       "code": "AESUPER1",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 540",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 540",
       "discount": "R$ 540 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -223,7 +223,7 @@
     {
       "store": "aliexpress",
       "code": "AESUPER2",
-      "title": "Aproveite para economizar R$ 650 com cupom Aliexpress",
+      "title": "Economize R$ 650 em seus pedidos aplicando cupom Aliexpress",
       "discount": "R$ 650 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -238,7 +238,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV02",
-      "title": "Use cupom Aliexpress e tenha desconto de R$ 32",
+      "title": "Compre com código promocional Aliexpress e economize R$ 32",
       "discount": "R$ 32 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -253,9 +253,9 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV06",
-      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 300",
-      "discount": "R$ 300 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "Compre com código promocional Aliexpress e economize R$ 2.909",
+      "discount": "R$ 2909 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -268,9 +268,9 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV22",
-      "title": "Desconto de R$670 OFF em suas compras com cupom AliExpress",
-      "discount": "R$ 670 OFF",
-      "expiresAt": "2026-11-18T23:59:59.000Z",
+      "title": "Os melhores itens do site com R$ 4.369 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 4369 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -283,7 +283,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV01",
-      "title": "Cupom de desconto Aliexpress oferece R$ 16 OFF em suas compras",
+      "title": "Cupom Aliexpress concede desconto de R$ 16",
       "discount": "R$ 16 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -297,7 +297,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV03",
-      "title": "Aproveite para economizar R$ 50 com cupom Aliexpress",
+      "title": "Faça compras com cupom de desconto Aliexpress e economize R$ 50",
       "discount": "R$ 50 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -311,9 +311,9 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV04",
-      "title": "Cupom Aliexpress concede desconto de R$ 120",
-      "discount": "R$ 120 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "O momento chegou: Aplique cupom Aliexpress e ganhe R$ 1.014 OFF",
+      "discount": "R$ 1014 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -325,9 +325,9 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV05",
-      "title": "Compre com código promocional Aliexpress e economize R$ 210",
-      "discount": "R$ 210 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "Os melhores itens do site com R$ 1.618 OFF aplicando cupom Aliexpress",
+      "discount": "R$ 1618 OFF",
+      "expiresAt": "2026-11-13T02:59:59.000Z",
       "sources": [
         "cuponation",
         "cuponomia",
@@ -339,7 +339,7 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV07",
-      "title": "Economize R$ 400 em seus pedidos aplicando cupom Aliexpress",
+      "title": "A chance de economizar R$ 400 em compras na Aliexpress",
       "discount": "R$ 400 OFF",
       "expiresAt": "2026-11-19T02:59:59.000Z",
       "sources": [
@@ -407,9 +407,9 @@
     {
       "store": "aliexpress",
       "code": "AFFNOV09",
-      "title": "Compre com código promocional Aliexpress e economize R$ 750",
-      "discount": "R$ 750 OFF",
-      "expiresAt": "2026-11-19T02:59:59.000Z",
+      "title": "Cupom Aliexpress concede desconto de R$ 4.500",
+      "discount": "R$ 4500 OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
       "sources": [
         "meliuz",
         "promobit"
@@ -1887,7 +1887,7 @@
     {
       "store": "centauro",
       "code": "TENNIS15",
-      "title": "Cupom Centauro concede desconto de 15%",
+      "title": "Compre com código promocional Centauro e economize 15%",
       "discount": "15% OFF",
       "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
@@ -1902,7 +1902,7 @@
     {
       "store": "centauro",
       "code": "ADIDAS15",
-      "title": "O momento chegou: Aplique cupom Centauro e ganhe 15% OFF",
+      "title": "Economize 15% em seus pedidos aplicando cupom Centauro",
       "discount": "15% OFF",
       "expiresAt": "2026-12-08T02:59:59.000Z",
       "sources": [
@@ -1945,7 +1945,7 @@
     {
       "store": "centauro",
       "code": "BASQUETE15",
-      "title": "Compre com código promocional Centauro e economize 15%",
+      "title": "Faça compras com cupom de desconto Centauro e economize 15%",
       "discount": "15% OFF",
       "expiresAt": "2027-01-23T02:59:00.000Z",
       "sources": [
@@ -2410,7 +2410,7 @@
     {
       "store": "kabum",
       "code": "FARMOU",
-      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 11% OFF",
+      "title": "Cupom de desconto KaBuM! oferece 11% OFF em suas compras",
       "discount": "11% OFF",
       "expiresAt": "2026-11-10T02:59:59.000Z",
       "sources": [
@@ -2464,7 +2464,7 @@
     {
       "store": "kabum",
       "code": "ESQUENTA",
-      "title": "Os melhores itens do site com 5% OFF aplicando cupom KaBuM!",
+      "title": "Faça compras com cupom de desconto KaBuM! e economize 5%",
       "discount": "5% OFF",
       "expiresAt": "2026-11-12T02:59:59.000Z",
       "sources": [
@@ -2795,7 +2795,7 @@
     {
       "store": "kabum",
       "code": "SOFTWARES10",
-      "title": "O momento chegou: Aplique cupom KaBuM! e ganhe 10% OFF",
+      "title": "Use cupom KaBuM! e tenha desconto de 10%",
       "discount": "10% OFF",
       "expiresAt": "2026-12-01T02:59:59.000Z",
       "sources": [
@@ -5134,6 +5134,21 @@
     },
     {
       "store": "netshoes",
+      "code": "NIKE30",
+      "title": "Obtenha 30% de desconto em suas compras com o cupom Netshoes",
+      "discount": "30% OFF",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Válido em produtos Nike dessa seleção."
+    },
+    {
+      "store": "netshoes",
       "code": "PRIMEIRACOMPRA",
       "title": "Desconto especial de 10% válido para a sua primeira compra",
       "discount": "10% OFF",
@@ -5275,20 +5290,6 @@
     },
     {
       "store": "netshoes",
-      "code": "NIKE30",
-      "title": "Cupom de desconto Netshoes com 30%",
-      "discount": "30% OFF",
-      "expiresAt": "2026-11-14T02:59:00.000Z",
-      "sources": [
-        "cuponation",
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z",
-      "terms": "Válido em produtos Nike dessa seleção."
-    },
-    {
-      "store": "netshoes",
       "code": "OFERTANETS",
       "title": "Faça compras com cupom de desconto Netshoes e economize R$ 69,99",
       "discount": "Frete grátis",
@@ -5300,6 +5301,20 @@
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z",
       "terms": "Válido para produtos vendidos e entregues pela Netshoes, exceto itens com selo. Desconto máximo de R$50."
+    },
+    {
+      "store": "netshoes",
+      "code": "PARCEIRONETS",
+      "title": "Cupom Netshoes concede desconto de 5% OFF",
+      "discount": "5% OFF",
+      "expiresAt": "2026-11-11T02:59:59.000Z",
+      "sources": [
+        "cuponation",
+        "cuponomia",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-06T13:53:47.593Z",
+      "terms": "Cupom aplicável para produtos vendidos e entregues por parceiros, exceto selo “Seleção”, desconto máximo de R$15."
     },
     {
       "store": "netshoes",
@@ -5412,18 +5427,6 @@
       "sources": [
         "cuponomia",
         "meliuz"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
-      "code": "PARCEIRONETS",
-      "title": "Cupom Netshoes concede desconto de 5% OFF",
-      "discount": "5% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "promobit"
       ],
       "firstSeen": "2026-11-06T13:53:47.593Z"
     },
@@ -5919,17 +5922,6 @@
     },
     {
       "store": "netshoes",
-      "code": "REBOOK",
-      "title": "Aplique o código e ganhe 20% de desconto",
-      "discount": "20% OFF",
-      "expiresAt": "2026-12-01T23:59:59.000Z",
-      "sources": [
-        "promobit"
-      ],
-      "firstSeen": "2026-11-06T13:53:47.593Z"
-    },
-    {
-      "store": "netshoes",
       "code": "REEBOK20",
       "title": "Reebok - R$20 OFF em roupas da marca",
       "discount": "R$ 20 OFF",
@@ -6045,6 +6037,19 @@
     },
     {
       "store": "pichau",
+      "code": "BOLSOCHEIO",
+      "title": "Itens de informática com 8% de desconto usando o cupom Pichau",
+      "discount": "8% OFF",
+      "expiresAt": "2026-12-06T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
       "code": "CLIENTESTOP",
       "title": "Economize 10% em seus pedidos usando o código Pichau",
       "discount": "10% OFF",
@@ -6123,6 +6128,19 @@
     },
     {
       "store": "pichau",
+      "code": "FAVORITO",
+      "title": "Monte seu PC com 12% OFF usando o cupom exclusivo Pichau",
+      "discount": "12% OFF",
+      "expiresAt": "2026-12-06T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
       "code": "MELHORDOML",
       "title": "Economize R$250 na Pichau utilizando o código exclusivo",
       "discount": "R$ 250 OFF",
@@ -6153,6 +6171,19 @@
       "title": "Ofertas exclusivas na Pichau com 10% de desconto para você",
       "discount": "10% OFF",
       "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "MELIMAIS",
+      "title": "Tenha R$100 de desconto em suas compras com o cupom Pichau",
+      "discount": "R$ 100 OFF",
+      "expiresAt": "2026-12-06T23:59:59.000Z",
       "sources": [
         "cuponomia",
         "meliuz",
@@ -6218,6 +6249,19 @@
       "title": "Use o cupom Pichau e ganhe 10% de desconto nas compras",
       "discount": "10% OFF",
       "expiresAt": "2026-11-18T23:59:59.000Z",
+      "sources": [
+        "cuponomia",
+        "meliuz",
+        "promobit"
+      ],
+      "firstSeen": "2026-11-07T02:33:59.796Z"
+    },
+    {
+      "store": "pichau",
+      "code": "OFFNOML",
+      "title": "Economize 10% em itens de informática com o código Pichau",
+      "discount": "10% OFF",
+      "expiresAt": "2026-12-06T23:59:59.000Z",
       "sources": [
         "cuponomia",
         "meliuz",
@@ -6326,54 +6370,6 @@
         "cuponomia",
         "meliuz",
         "promobit"
-      ],
-      "firstSeen": "2026-11-07T02:33:59.796Z"
-    },
-    {
-      "store": "pichau",
-      "code": "BOLSOCHEIO",
-      "title": "desconto de 8% em informática com cupom Pichau",
-      "discount": "8% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-07T02:33:59.796Z"
-    },
-    {
-      "store": "pichau",
-      "code": "FAVORITO",
-      "title": "Seu PC com 12% OFF na Pichau usando cupom exclusivo",
-      "discount": "12% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-07T02:33:59.796Z"
-    },
-    {
-      "store": "pichau",
-      "code": "MELIMAIS",
-      "title": "Cupom Pichau: R$100 de desconto para você economizar agora",
-      "discount": "R$ 100 OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
-      ],
-      "firstSeen": "2026-11-07T02:33:59.796Z"
-    },
-    {
-      "store": "pichau",
-      "code": "OFFNOML",
-      "title": "Código Pichau: 10% de economia em informática",
-      "discount": "10% OFF",
-      "expiresAt": null,
-      "sources": [
-        "cuponomia",
-        "meliuz"
       ],
       "firstSeen": "2026-11-07T02:33:59.796Z"
     },
