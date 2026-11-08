@@ -1,4 +1,5 @@
-import { clipCoupon, couponAlreadyApplied, findCouponOffer, pageMentionsCoupon } from '@/lib/amazon-coupon';
+import { clipCoupon, couponAlreadyApplied, findCouponOffer, pageMentionsCoupon, promoCodes } from '@/lib/amazon-coupon';
+import { addMyCoupons, getMyCoupons } from '@/lib/my-coupons';
 import { cleanPageHtml, downloadText } from '@/lib/page-capture';
 
 /**
@@ -24,9 +25,12 @@ export default defineContentScript({
       if (asin !== lastAsin) { lastAsin = asin; firstSeenAt = Date.now(); }
       const applied = couponAlreadyApplied();
       const offer = applied ? null : findCouponOffer();
+      // Código escrito na promoção ("Código: DEVOLTA1000"): vai para "Meus cupons" da Amazon,
+      // para o testador da página de pagamento tentar primeiro.
+      const kept = (applied || offer) ? await keepCodes() : '';
       if (applied) {
         seen.add(asin);
-        toast(`Cupom já ativado neste produto: “${short(applied)}”.`);
+        toast(`Cupom já ativado neste produto: “${short(applied)}”.${kept}`);
         return;
       }
       if (!offer) {
@@ -40,11 +44,24 @@ export default defineContentScript({
       seen.add(asin);
       const ok = await clipCoupon(offer);
       busy = false;
-      if (ok) toast(`Cupom${offer.amount ? ` de ${offer.amount}` : ''} ativado ✓ O desconto entra no fechamento do pedido.`);
-      else toast(`Cliquei em “${short(offer.label)}”, mas a Amazon não confirmou. Salve a página e mande para o Claude.`, { save: true });
+      if (ok) toast(`Cupom${offer.amount ? ` de ${offer.amount}` : ''} ativado ✓ O desconto entra no fechamento do pedido.${kept}`);
+      else toast(`Cliquei em “${short(offer.label)}”, mas a Amazon não confirmou. Salve a página e mande para o Claude.${kept}`, { save: true });
     }, 1500);
   },
 });
+
+/** Guarda os códigos novos em "Meus cupons" e devolve a frase para o aviso. */
+async function keepCodes(): Promise<string> {
+  try {
+    const before = await getMyCoupons('amazon');
+    const fresh = promoCodes().filter((c) => !before.includes(c));
+    if (!fresh.length) return '';
+    await addMyCoupons('amazon', fresh.join(' '));
+    return ` Guardei o código ${fresh.join(', ')} em "Meus cupons" para testar no pagamento.`;
+  } catch {
+    return '';
+  }
+}
 
 const short = (s: string) => (s.length > 70 ? `${s.slice(0, 67)}...` : s);
 
