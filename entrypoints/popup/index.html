@@ -16,7 +16,7 @@
       <ul id="coupons"></ul>
       <section id="mine">
         <h2>Meus cupons</h2>
-        <p class="hint">Cole códigos que você recebeu por e-mail, app ou adiClub. Ficam só neste Chrome.</p>
+        <p class="hint">Cole códigos que você recebeu por e-mail, app ou adiClub. Sincronizam entre os Chromes logados na sua conta Google.</p>
         <label class="row">Loja
           <select id="mine-store"></select>
         </label>
@@ -24,6 +24,14 @@
         <button id="mine-add" type="button">Salvar</button>
         <p id="mine-msg" class="hint" aria-live="polite"></p>
         <ul id="mine-list"></ul>
+        <details id="mine-backup">
+          <summary>Backup (levar para outro Chrome)</summary>
+          <p class="hint">Copie o backup num Chrome e cole no outro. Junta com o que já existe, sem apagar nada.</p>
+          <button id="backup-copy" type="button">Copiar backup</button>
+          <textarea id="backup-input" rows="2" placeholder='Cole aqui o backup: {"adidas":["..."]}'></textarea>
+          <button id="backup-import" type="button">Importar</button>
+          <p id="backup-msg" class="hint" aria-live="polite"></p>
+        </details>
       </section>
       <h2>Lojas suportadas</h2>
       <ul id="stores"></ul>

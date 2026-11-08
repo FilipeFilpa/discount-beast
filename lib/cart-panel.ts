@@ -4,7 +4,7 @@ import { getCouponHistory, saveCouponResults } from './coupon-history';
 import { cartKey, describeCart, profileCart, scoreCoupon, SKIP_BELOW, type CartInfo } from './coupon-match';
 import { findBestCoupon, orderCandidates, type CartAdapter, type RunReport, type RunState } from './coupon-runner';
 import { couponsFor, getCouponFeed } from './coupon-store';
-import { getMyCoupons } from './my-coupons';
+import { getMyCoupons, isMyCouponsChange } from './my-coupons';
 import { getPelandoCoupons } from './pelando-coupons';
 import { formatBRL } from './price';
 import type { StoreId } from './stores';
@@ -119,7 +119,7 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
   load().catch(() => (msg.textContent = 'Não consegui carregar a lista de cupons.'));
   // Se você adicionar um código em "Meus cupons" ou abrir o Pelando com o carrinho aberto, a contagem atualiza na hora.
   browser.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && (changes.myCoupons || changes.pelandoCoupons) && !panel.busy) load().catch(() => {});
+    if ((isMyCouponsChange(changes, area) || (area === 'local' && changes.pelandoCoupons)) && !panel.busy) load().catch(() => {});
   });
 
   // Lojas que recarregam a página ao aplicar/tirar cupom (Terabyte): o teste fica salvo na aba
