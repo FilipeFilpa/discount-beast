@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { cartKey, parseRules, profileCart, scoreCoupon, SKIP_BELOW } from './coupon-match.ts';
+import { cartKey, parseRules, profileCart, scoreCoupon, SKIP_BELOW, sourceBonus } from './coupon-match.ts';
 import { orderCandidates } from './coupon-runner.ts';
 
 // Carrinhos salvos pelo Filipe em 06/11/2026 (o mesmo tênis nas duas lojas).
@@ -73,4 +73,42 @@ test('orderCandidates: seus primeiro, depois pela nota; "não vale para estes it
     minScore: -15,
   });
   assert.deepEqual(order, ['MINE', 'HIGH', 'MID', 'ELSE', 'LOW']);
+});
+
+test('"só no app" com outras palavras e "só Prime"', () => {
+  const app = (terms: string, code = 'X10') => parseRules({ code, title: '', terms }).appOnly;
+  assert.equal(app('Aplicável apenas no App Amazon.'), true);
+  assert.equal(app('Válido apenas no Aplicativo Amazon.'), true);
+  assert.equal(app('Esta promoção se aplica somente aos clientes que estão comprando no aplicativo Amazon Shopping'), true);
+  assert.equal(app('', 'YOPRO20APP'), true);
+  assert.equal(app('', 'APPLE10'), false);
+  assert.equal(app('Válido em todo o site.'), false);
+  assert.equal(parseRules({ code: '25MODAPRIME', title: '', terms: 'Disponível somente para quem é Prime.' }).membersOnly, true);
+  assert.equal(parseRules({ code: 'X', title: 'Sua primeiras compra com 20%' }).firstPurchase, true);
+});
+
+test('pula cupom de outro tipo quando reconhece todos os produtos', () => {
+  const tenis = profileCart({ items: [{ name: 'Tênis adidas Duramo SL Masculino' }], subtotal: 400 });
+  const relogio = profileCart({ items: [{ name: 'Relógio Masculino Invicta Pro Diver' }], subtotal: 400 });
+  const panela = { code: 'P4NELAS10', title: 'Panelas com 10% de desconto' };
+  assert.ok(scoreCoupon(panela, tenis).score < SKIP_BELOW);
+  assert.ok(scoreCoupon(panela, relogio).score < SKIP_BELOW);
+  // produto sem tipo reconhecido: só vai para trás, não some
+  const desconhecido = profileCart({ items: [{ name: 'Kit Invicta XYZ' }], subtotal: 400 });
+  assert.ok(scoreCoupon(panela, desconhecido).score >= SKIP_BELOW);
+  assert.ok(scoreCoupon({ code: 'COMPRANOAPP', title: 'R$20 na primeira compra' }, tenis).score < SKIP_BELOW);
+});
+
+test('site de cupons que mais acerta sobe', () => {
+  const coupons = [
+    ...['A1', 'A2', 'A3', 'A4', 'A5'].map((code) => ({ code, sources: ['meliuz'] })),
+    ...['B1', 'B2', 'B3', 'B4', 'B5'].map((code) => ({ code, sources: ['cuponomia'] })),
+    { code: 'NOVO', sources: ['meliuz'] },
+    { code: 'NOVO2', sources: ['cuponomia'] },
+  ];
+  const h: Record<string, { status: string }> = {};
+  for (const c of ['A1', 'A2', 'A3']) h[c] = { status: 'worked' };
+  for (const c of ['A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5']) h[c] = { status: 'rejected' };
+  const b = sourceBonus(coupons, h);
+  assert.ok(b.get('NOVO')! > b.get('NOVO2')!);
 });

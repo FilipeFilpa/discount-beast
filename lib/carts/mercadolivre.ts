@@ -65,7 +65,14 @@ export function readMercadoLivreTotal(): number | null {
 }
 
 export function readMercadoLivreItems(): CartItem[] {
-  const names = [...document.querySelectorAll(ML.itemTitle)].map((el) => (el.textContent ?? '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  // Só os produtos marcados entram na compra (e no cupom): desmarcados ficam de fora do perfil do carrinho.
+  const names = [...document.querySelectorAll(ML.itemTitle)]
+    .filter((el) => {
+      const box = el.closest('.cl-item-card')?.querySelector<HTMLInputElement>('.poly-card__checkbox input[type=checkbox]');
+      return !box || box.checked;
+    })
+    .map((el) => (el.textContent ?? '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
   return [...new Set(names)].map((name) => ({ name }));
 }
 
@@ -91,10 +98,19 @@ const removeButtonIn = (root: ParentNode | null | undefined): HTMLElement | null
 let lastWorked: string | null = null;
 let baseTotal: number | null = null;
 
+/**
+ * Texto da linha "Cupons" antes de testarmos qualquer código. Cupons da sua conta (ativados em /cupons,
+ * ex.: LIQUIDA 30% OFF) já chegam aplicados: "Cupons (1/1 em uso)". Eles não têm botão de tirar e
+ * acumulam com o código digitado, então NÃO contam como "cupom aplicado" para o testador.
+ */
+let initialRow: string | null = null;
+const snapshotRow = () => { if (initialRow === null && lastWorked === null) initialRow = couponRowText(); };
+
 const hasCoupon = () => {
+  if (removeButtonIn(frameDoc()) !== null) return true;
   const row = couponRowText();
-  if (row && !ML.emptyLabel.test(row)) return true;
-  return removeButtonIn(frameDoc()) !== null;
+  if (!row || ML.emptyLabel.test(row)) return false;
+  return initialRow === null ? true : row !== initialRow;
 };
 
 async function openModal(): Promise<Document | null> {
@@ -115,6 +131,7 @@ async function closeModal(): Promise<void> {
 
 export const mercadoLivreCart: CartAdapter = {
   appliedCode() {
+    snapshotRow();
     if (!hasCoupon()) return null;
     const fromRow = couponRowText().match(/\b[A-Z0-9][A-Z0-9_-]{3,22}\b/)?.[0];
     return fromRow ?? lastWorked ?? 'CUPOM';
@@ -125,6 +142,7 @@ export const mercadoLivreCart: CartAdapter = {
   },
 
   async apply(code) {
+    snapshotRow();
     const before = readMercadoLivreTotal();
     if (baseTotal === null) baseTotal = before;
     if (!(await openModal())) throw new Error('Não consegui abrir a janela "Inserir código do cupom" do Mercado Livre.');
