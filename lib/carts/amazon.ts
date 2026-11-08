@@ -31,7 +31,9 @@ export const AMAZON_PAY = {
   item: '.lineitem-title-text',
   /** Linha do resumo que indica desconto de cupom (não confundir com "Pontos Amazon"). */
   promoTerm: /promo|cupo|desconto|vale/i,
-  ineligibleText: /iten|produto|categoria|eleg|n[ãa]o se aplica|n[ãa]o (é|e) v[áa]lid[oa] para|valor m[íi]nimo|compra m[íi]nima/i,
+  // Visto no Chrome do Filipe (08/11/2026): "O cupom de desconto inserido não pode ser aplicado à esta compra."
+  // Parece "existe, mas não vale para este pedido": guardamos como ineligible para tentar de novo em outro pedido.
+  ineligibleText: /esta compra|este pedido|iten|produto|categoria|eleg|n[ãa]o se aplica|n[ãa]o (é|e) v[áa]lid[oa] para|valor m[íi]nimo|compra m[íi]nima/i,
 } as const;
 
 const clean = (s: string | null | undefined) => (s ?? '').replace(/\s+/g, ' ').trim();
