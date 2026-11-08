@@ -121,7 +121,7 @@ const CATEGORIES: { name: string; kind: CategoryKind; words: RegExp; code?: RegE
   { name: 'brinquedos', kind: 'type', words: /\b(brinquedos?|lego|bonecas?|pelucias?|quebra-cabeca)\b/, code: /BRINQUEDO|TOY/ },
   { name: 'ferramentas', kind: 'type', words: /\b(ferramentas?|reforma|construcao|furadeiras?|parafusadeiras?)\b/, code: /FERRAMENTA|REFORMA/ },
   { name: 'móveis e decoração', kind: 'type', words: /\b(moveis|movel|decoracao|sofas?|cadeiras?|mesas?|estantes?|tapetes?|cortinas?)\b/, code: /MOVEIS|DECOR/ },
-  { name: 'relógios', kind: 'type', words: /\b(relogios?|smartwatch|smartwatches)\b/, code: /RELOGIO/ },
+  { name: 'relógios', kind: 'type', words: /\b(relogios?|smartwatch|smartwatches|apple watch|galaxy watch)\b/, code: /RELOGIO/ },
   { name: 'música', kind: 'type', words: /\b(vinil|discos?|instrumentos? musica(is|l)|violao|guitarra)\b/, code: /MUSIC|VINIL/ },
   { name: 'automotivo', kind: 'type', words: /\b(automotivos?|pneus?|carro|moto)\b/, code: /AUTO|PNEU/ },
   { name: 'basquete', kind: 'theme', words: /\b(basquete|nba)\b/, code: /BASQUETE/ },
