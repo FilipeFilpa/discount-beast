@@ -145,6 +145,14 @@ export interface Checkpoint {
   save(state: RunState): void;
 }
 
+export interface RunOptions {
+  /**
+   * Para no primeiro código aceito e deixa ele aplicado (sem tirar nem comparar).
+   * Para lojas onde não dá para tirar o cupom ou que bloqueiam depois de poucas tentativas (Amazon).
+   */
+  stopAtFirstWin?: boolean;
+}
+
 /**
  * Testa um código de cada vez: aplica, anota o Total, tira e passa para o próximo.
  * No fim aplica de novo o que deixou o Total mais baixo.
@@ -155,6 +163,7 @@ export async function findBestCoupon(
   candidates: string[],
   onProgress: (p: Progress) => void = () => {},
   checkpoint?: Checkpoint,
+  options: RunOptions = {},
 ): Promise<RunReport> {
   const st: RunState = checkpoint?.state ?? { codes: [...candidates], i: 0, phase: 'start', results: [] };
   const save = () => checkpoint?.save(st);
@@ -203,7 +212,16 @@ export async function findBestCoupon(
         const status = st.status ?? ((await waitUntil(() => cart.appliedCode() === code, 5000)) ? 'worked' : 'unknown');
         if (status === 'worked') {
           const total = (await cart.total(st.status ? baseline : undefined)) ?? baseline;
-          st.results.push({ code, status, total, saving: round(baseline - total) });
+          const result: TryResult = { code, status, total, saving: round(baseline - total) };
+          st.results.push(result);
+          if (options.stopAtFirstWin) {
+            st.best = (result.saving ?? 0) > 0 ? result : null;
+            st.finalTotal = total;
+            st.status = undefined;
+            st.phase = 'done';
+            save();
+            break;
+          }
         } else {
           st.results.push({ code, status });
         }

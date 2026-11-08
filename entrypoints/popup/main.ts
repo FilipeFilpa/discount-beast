@@ -19,7 +19,7 @@ const backupImportEl = document.querySelector<HTMLButtonElement>('#backup-import
 const backupMsgEl = document.querySelector<HTMLParagraphElement>('#backup-msg')!;
 
 /** Lojas onde a extensão já testa cupons sozinha no carrinho. */
-const AUTO_TEST: StoreId[] = ['adidas', 'netshoes', 'centauro', 'kabum', 'pichau', 'terabyte', 'magalu', 'mercadolivre'];
+const AUTO_TEST: StoreId[] = ['amazon', 'adidas', 'netshoes', 'centauro', 'kabum', 'pichau', 'terabyte', 'magalu', 'mercadolivre'];
 
 /** Uma linha da lista: código (clique para copiar), desconto e descrição. */
 function couponItem(coupon: Coupon): HTMLLIElement {

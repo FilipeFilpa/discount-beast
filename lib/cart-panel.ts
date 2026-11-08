@@ -21,6 +21,10 @@ export interface CartPanelOptions {
   cart: CartAdapter;
   /** A página aberta agora é o carrinho? */
   isCart: () => boolean;
+  /** Quantos códigos testar no máximo (padrão MAX_TRIES). A Amazon bloqueia o campo depois de poucas tentativas. */
+  maxTries?: number;
+  /** Para no primeiro código aceito (lojas onde não sabemos tirar o cupom). */
+  stopAtFirstWin?: boolean;
 }
 
 /** Liga o cartão. Lojas que trocam de página sem recarregar (SPA) são conferidas a cada 1,5 s. */
@@ -38,7 +42,7 @@ interface Panel {
   busy: boolean;
 }
 
-function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
+function createPanel({ store, storeName, cart, maxTries, stopAtFirstWin }: CartPanelOptions): Panel {
   const host = document.createElement('discount-beast-panel');
   // Shadow DOM: o CSS da loja não bagunça o nosso cartão (e vice-versa).
   const root = host.attachShadow({ mode: 'open' });
@@ -92,7 +96,7 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
     const byCode = new Map(coupons.map((c) => [c.code, c]));
     key = cartKey(info);
     const notes = new Map(codes.map((code) => [code, scoreCoupon(byCode.get(code) ?? { code }, profile)]));
-    candidates = orderCandidates(codes, await getCouponHistory(store), Date.now(), undefined, {
+    candidates = orderCandidates(codes, await getCouponHistory(store), Date.now(), maxTries, {
       cartKey: key,
       score: (code) => notes.get(code)?.score ?? 0,
       keepFirst: personal,
@@ -112,8 +116,9 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
       : '';
     const skipped = [...notes.values()].filter((n) => n.score < SKIP_BELOW).length;
     const skippedText = skipped ? ` ${skipped} não servem para este carrinho (valor mínimo, só no app...).` : '';
+    const limit = maxTries !== undefined ? ` A ${storeName} bloqueia o campo depois de poucas tentativas, então testo só os ${maxTries} melhores e paro no primeiro que funcionar.` : '';
     msg.textContent = candidates.length
-      ? `${read}Vou testar ${candidates.length} cupons${yours}, os que combinam com ele primeiro.${skippedText} Leva uns segundos por cupom.`
+      ? `${read}Vou testar ${candidates.length} cupons${yours}, os que combinam com ele primeiro.${skippedText}${limit} Leva uns segundos por cupom.`
       : `${read}Nenhum cupom novo para testar agora.${skippedText}`;
   };
   load().catch(() => (msg.textContent = 'Não consegui carregar a lista de cupons.'));
@@ -154,7 +159,7 @@ function createPanel({ store, storeName, cart }: CartPanelOptions): Panel {
       }
       const report = await findBestCoupon(cart, candidates, ({ index, count, code }) => {
         msg.textContent = `Testando ${index} de ${count}: ${code}…`;
-      }, { state: resume?.state, save: saveRun });
+      }, { state: resume?.state, save: saveRun }, { stopAtFirstWin });
       clearRun();
       await saveCouponResults(store, report.results, key);
       showReport(report);

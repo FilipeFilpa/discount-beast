@@ -113,3 +113,12 @@ test('findBestCoupon continua depois que a página recarrega no meio', async () 
   assert.equal(report.finalTotal, 800);
   assert.equal(applied, 'B');
 });
+
+test('findBestCoupon com stopAtFirstWin para no primeiro aceito e não tira', async () => {
+  const { cart, applied } = fakeCart(1000, { A: 0.1, B: 0.2 });
+  const report = await findBestCoupon(cart, ['X', 'A', 'B'], () => {}, undefined, { stopAtFirstWin: true });
+  assert.deepEqual(report.results.map((r) => r.code), ['X', 'A']);
+  assert.equal(report.best?.code, 'A');
+  assert.equal(report.finalTotal, 900);
+  assert.equal(applied(), 'A');
+});
