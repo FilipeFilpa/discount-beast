@@ -1,6 +1,6 @@
 import { couponsFor, getCouponFeed } from '@/lib/coupon-store';
 import type { Coupon } from '@/lib/coupons';
-import { addMyCoupons, getMyCoupons, removeMyCoupon } from '@/lib/my-coupons';
+import { addMyCoupons, exportMyCoupons, getMyCoupons, importMyCoupons, removeMyCoupon } from '@/lib/my-coupons';
 import { getPelandoCoupons } from '@/lib/pelando-coupons';
 import { findStoreByHost, STORES, type StoreId } from '@/lib/stores';
 
@@ -13,6 +13,10 @@ const mineInputEl = document.querySelector<HTMLTextAreaElement>('#mine-input')!;
 const mineAddEl = document.querySelector<HTMLButtonElement>('#mine-add')!;
 const mineMsgEl = document.querySelector<HTMLParagraphElement>('#mine-msg')!;
 const mineListEl = document.querySelector<HTMLUListElement>('#mine-list')!;
+const backupCopyEl = document.querySelector<HTMLButtonElement>('#backup-copy')!;
+const backupInputEl = document.querySelector<HTMLTextAreaElement>('#backup-input')!;
+const backupImportEl = document.querySelector<HTMLButtonElement>('#backup-import')!;
+const backupMsgEl = document.querySelector<HTMLParagraphElement>('#backup-msg')!;
 
 /** Lojas onde a extensão já testa cupons sozinha no carrinho. */
 const AUTO_TEST: StoreId[] = ['adidas', 'netshoes', 'centauro', 'kabum', 'pichau', 'terabyte', 'magalu', 'mercadolivre'];
@@ -78,6 +82,16 @@ function setupMine(current: StoreId | undefined) {
     const added = after - before;
     mineInputEl.value = '';
     await renderMine(added ? `${added === 1 ? '1 código salvo' : `${added} códigos salvos`}.` : 'Não achei nenhum código novo no texto.');
+  });
+  backupCopyEl.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(await exportMyCoupons());
+    backupMsgEl.textContent = 'Backup copiado. Cole no outro Chrome, aqui mesmo.';
+  });
+  backupImportEl.addEventListener('click', async () => {
+    const added = await importMyCoupons(backupInputEl.value);
+    backupMsgEl.textContent = added === null ? 'Isso não parece um backup do Discount Beast.' : `${added === 1 ? "1 código novo importado" : `${added} códigos novos importados`}.`;
+    if (added !== null) backupInputEl.value = '';
+    await renderMine();
   });
   return renderMine();
 }
