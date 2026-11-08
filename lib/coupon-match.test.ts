@@ -74,3 +74,15 @@ test('orderCandidates: seus primeiro, depois pela nota; "não vale para estes it
   });
   assert.deepEqual(order, ['MINE', 'HIGH', 'MID', 'ELSE', 'LOW']);
 });
+
+test('"só no app" com outras palavras e "só Prime"', () => {
+  const app = (terms: string, code = 'X10') => parseRules({ code, title: '', terms }).appOnly;
+  assert.equal(app('Aplicável apenas no App Amazon.'), true);
+  assert.equal(app('Válido apenas no Aplicativo Amazon.'), true);
+  assert.equal(app('Esta promoção se aplica somente aos clientes que estão comprando no aplicativo Amazon Shopping'), true);
+  assert.equal(app('', 'YOPRO20APP'), true);
+  assert.equal(app('', 'APPLE10'), false);
+  assert.equal(app('Válido em todo o site.'), false);
+  assert.equal(parseRules({ code: '25MODAPRIME', title: '', terms: 'Disponível somente para quem é Prime.' }).membersOnly, true);
+  assert.equal(parseRules({ code: 'X', title: 'Sua primeiras compra com 20%' }).firstPurchase, true);
+});

@@ -27,6 +27,9 @@ export interface CartPanelOptions {
   stopAtFirstWin?: boolean;
 }
 
+/** Código que você viu no Pelando há pouco: um pouco mais confiável que um do feed. */
+const PELANDO_BONUS = 3;
+
 /** Liga o cartão. Lojas que trocam de página sem recarregar (SPA) são conferidas a cada 1,5 s. */
 export function mountCartPanel(options: CartPanelOptions): void {
   let panel: Panel | null = null;
@@ -88,8 +91,11 @@ function createPanel({ store, storeName, cart, maxTries, stopAtFirstWin }: CartP
     const pelando = await getPelandoCoupons(store);
     // Os que a própria loja sugere para este carrinho vêm antes de tudo.
     const suggested = cart.suggested?.() ?? [];
-    const personal = mergeCodes(suggested, mergeCodes(mine, pelando));
-    const codes = mergeCodes(personal, coupons.map((c) => c.code));
+    // Só os seus e os sugeridos pela loja passam na frente sem filtro. Os do Pelando passam pelo
+    // mesmo filtro do feed (o HEINZ20 "só no app" era testado num tênis), com um bônus por serem recentes.
+    const personal = mergeCodes(suggested, mine);
+    const codes = mergeCodes(personal, mergeCodes(pelando, coupons.map((c) => c.code)));
+    const pelandoSet = new Set(pelando);
     if (resuming) return;
     const info: CartInfo = { items: cart.items?.() ?? [], subtotal: await cart.total() };
     const profile = profileCart(info, storeName);
@@ -98,7 +104,7 @@ function createPanel({ store, storeName, cart, maxTries, stopAtFirstWin }: CartP
     const notes = new Map(codes.map((code) => [code, scoreCoupon(byCode.get(code) ?? { code }, profile)]));
     candidates = orderCandidates(codes, await getCouponHistory(store), Date.now(), maxTries, {
       cartKey: key,
-      score: (code) => notes.get(code)?.score ?? 0,
+      score: (code) => (notes.get(code)?.score ?? 0) + (pelandoSet.has(code) ? PELANDO_BONUS : 0),
       keepFirst: personal,
       minScore: SKIP_BELOW,
     });

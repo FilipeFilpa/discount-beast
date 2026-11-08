@@ -36,6 +36,8 @@ export interface CouponRules {
   selection: boolean;
   firstPurchase: boolean;
   appOnly: boolean;
+  /** Só para assinantes (Amazon Prime, Meli+...). */
+  membersOnly: boolean;
   birthday: boolean;
   /** Precisa de 2 ou mais peças (progressivo, "leve 3 pague 2"...). */
   needsMany: boolean;
@@ -138,8 +140,12 @@ export function parseRules({ code, title = '', terms = '' }: CouponText): Coupon
     minValue: Number.isFinite(minValue) ? minValue : null,
     sitewide: /todo o site|todos os produtos|todo site|em suas compras|seus pedidos|sua compra|site inteiro/.test(text),
     selection: /selecionad|selecao|selo|lista/.test(text),
-    firstPurchase: /primeira compra|boas[- ]vindas/.test(text) || /^PRIMEIRA|BOASVINDAS/.test(upper),
-    appOnly: /\b(apenas|somente|so) (no|pelo) app\b|valido (apenas )?no app/.test(text),
+    firstPurchase: /primeiras? compras?|boas[- ]vindas|novos? (clientes?|usuarios?)|primeiro pedido/.test(text) || /^PRIMEIRA|BOASVINDAS|BEMVINDO/.test(upper),
+    // "Aplicável apenas no App", "válido apenas no aplicativo", "comprando no aplicativo", "no app Amazon"...
+    appOnly:
+      /\b(apenas|somente|so|exclusivo|exclusiva) (no|pelo|para o|para) (app|aplicativo)\b|valido (apenas |somente )?no (app|aplicativo)\b|comprando (no|pelo) (app|aplicativo)\b|\bno app (amazon|shopee|magalu|do mercado|mercado|ml|aliexpress)\b|\bpelo app\b/.test(text) ||
+      /APP$|^APP(?!LE)|NOAPP/.test(upper),
+    membersOnly: /\b(somente|apenas|exclusivo|exclusiva|so) (para )?(quem e |membros? |clientes? |assinantes? )?(prime|meli\+|meli mais)\b|assinantes? (prime|meli)|membros? prime|exclusivo prime/.test(text),
     birthday: /aniversario/.test(text),
     needsMany: /progressivo|leve \d|\d pecas|\d por r\$|compre \d/.test(text) || /^COMBO$|^\dPOR\d|PROGRESSIVO/.test(upper),
     storeSellerOnly,
@@ -247,6 +253,7 @@ export function scoreCoupon(coupon: CouponText, cart: CartProfile): CouponScore 
   else if (r.selection && !targeted && !why.includes('selo no produto')) score -= 1;
 
   if (r.appOnly) { score -= 30; why.push('só no app'); }
+  if (r.membersOnly) { score -= 6; why.push('só assinantes'); }
   if (r.birthday) { score -= 6; why.push('aniversário'); }
   if (r.firstPurchase) { score -= 2; why.push('primeira compra'); }
   if (r.needsMany && knowItems && cart.itemCount < 2) { score -= 8; why.push('precisa de 2+ peças'); }
