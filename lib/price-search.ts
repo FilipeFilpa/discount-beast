@@ -1,5 +1,5 @@
 import type { StoreId } from './stores';
-import type { SearchHit } from './product-match';
+import { productKind, type SearchHit } from './product-match';
 
 /**
  * Onde o comparador procura. A busca abre a página de busca normal da loja numa aba
@@ -107,14 +107,31 @@ export function sourceFor(id: StoreId): PriceSource | undefined {
   return PRICE_SOURCES.find((s) => s.id === id);
 }
 
-/** Onde buscar a partir de uma página desta loja: o mesmo grupo + as lojas de tudo (Amazon, ML, Magalu). */
-export function sourcesFrom(from: StoreId): PriceSource[] {
-  const group = sourceFor(from)?.group ?? 'geral';
-  return PRICE_SOURCES.filter((s) => s.id !== from && (group === 'geral' || s.group === group || s.group === 'geral'));
+/**
+ * Onde buscar a partir de uma página desta loja: o mesmo grupo + as lojas de tudo (Amazon, ML, Magalu).
+ * Numa loja de tudo (Magalu), o grupo vem do produto: uma TV busca na KaBuM!/Pichau/Terabyte, não na adidas.
+ */
+export function sourcesFrom(from: StoreId, productName = ''): PriceSource[] {
+  let group: PriceGroup | null = sourceFor(from)?.group ?? 'geral';
+  if (group === 'geral') group = productKind(productName);
+  return PRICE_SOURCES.filter((s) => s.id !== from && (s.group === 'geral' || s.group === group));
 }
 
-/** Lojas onde o cartão "Comparar preço" aparece na página do produto. */
-export const PRICE_PANEL_DOMAINS = ['adidas.com.br', 'netshoes.com.br', 'centauro.com.br', 'kabum.com.br', 'pichau.com.br', 'terabyteshop.com.br'];
+/** Lojas onde o cartão "Comparar preço" aparece (página do produto e, na Magalu, também a sacola). */
+export const PRICE_PANEL_DOMAINS = [
+  'adidas.com.br', 'netshoes.com.br', 'centauro.com.br', 'kabum.com.br', 'pichau.com.br', 'terabyteshop.com.br',
+  'magazineluiza.com.br', 'magalu.com', 'amazon.com.br', 'mercadolivre.com.br',
+];
+
+/**
+ * Lojas de tudo: a busca e a home também têm listas de produtos no HTML, então o cartão só aparece
+ * quando o endereço é de página de produto (o mesmo padrão usado para reconhecer produto na busca).
+ */
+export function isProductPageUrl(store: StoreId, url: string): boolean {
+  const source = sourceFor(store);
+  if (!source || source.group !== 'geral') return true;
+  return source.productLink.test(url.replace(/magalu\.com\//, 'magazineluiza.com.br/'));
+}
 
 /**
  * Lê os resultados da página de busca. Esta função roda DENTRO da aba da loja

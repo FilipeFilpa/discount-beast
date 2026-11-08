@@ -1,6 +1,7 @@
 import type { CartItem } from '../coupon-match';
 import type { CartAdapter, TryStatus } from '../coupon-runner';
-import { parseBRL } from '../price';
+import { parseBRL, plainPrice } from '../price';
+import type { PageProduct } from '../product-match';
 import { clickLikeAPerson, isVisible, sleep, stableValue, typeInto, visible, waitFor } from './dom';
 
 /**
@@ -117,6 +118,27 @@ export function readMagaluItems(): CartItem[] {
   const seller = document.querySelector(MAGALU.sellerGroup)?.id.replace('product-group-checkbox-', '') || undefined;
   const names = [...document.querySelectorAll(MAGALU.items)].map((el) => (el.textContent ?? '').replace(/\s+/g, ' ').trim()).filter(Boolean);
   return [...new Set(names)].map((name) => ({ name, seller }));
+}
+
+/**
+ * Itens da sacola para o cartão "Comparar preço". Para cada nome de produto, sobe no HTML até o bloco
+ * do item (o maior que ainda tem só esse produto) e lê o preço à vista dele. Sem seletor de preço fixo:
+ * a captura da sacola não mostrou um data-testid para o preço do item.
+ */
+export function readMagaluCartProducts(): PageProduct[] {
+  const names = [...document.querySelectorAll<HTMLElement>(MAGALU.items)];
+  const seen = new Set<string>();
+  const out: PageProduct[] = [];
+  for (const el of names) {
+    const name = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    let card: HTMLElement = el;
+    for (let up = card.parentElement; up && up !== document.body && up.querySelectorAll(MAGALU.items).length === 1; up = up.parentElement) card = up;
+    const link = el.closest<HTMLAnchorElement>('a[href]') ?? card.querySelector<HTMLAnchorElement>('a[href*="/p/"]');
+    out.push({ name, brand: null, gtin: null, sku: null, price: plainPrice(card.textContent ?? ''), url: link?.href ?? location.href });
+  }
+  return out;
 }
 
 /** Bloco da lista "cupons disponíveis" que corresponde a este código (se a Magalu oferecer ele). */

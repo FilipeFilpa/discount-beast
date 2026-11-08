@@ -180,3 +180,10 @@ test('quantidade de controles/jogos não é número do modelo', () => {
   assert.ok(matchScore(ps5, hit('Console Playstation 5 Slim Ps5 Digital Sony+9 Jogos Gta V')).score >= MATCH_MIN);
   assert.ok(matchScore(ps5, hit('Console Playstation 4 Slim 1TB')).score < MATCH_MIN);
 });
+
+test('productKind: TV é informática, tênis é esporte, panela não é nenhum', async () => {
+  const { productKind } = await import('./product-match.ts');
+  assert.equal(productKind('Smart TV 55" Crystal UHD 4K Samsung UN55DU7700GXZD'), 'informatica');
+  assert.equal(productKind('Tênis adidas Adizero Drive RC Masculino'), 'esporte');
+  assert.equal(productKind('Jogo de Panelas Tramontina 5 peças'), null);
+});

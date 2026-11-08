@@ -28,7 +28,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 /** Busca o produto nas outras lojas do mesmo tipo (e nas que vendem de tudo) ao mesmo tempo. */
 export async function comparePrices(product: PageProduct, from: StoreId): Promise<PriceReport[]> {
   const query = searchQuery(product);
-  const sources = sourcesFrom(from);
+  const sources = sourcesFrom(from, product.name);
   return Promise.all(sources.map((source) => searchStore(source, query, product)));
 }
 

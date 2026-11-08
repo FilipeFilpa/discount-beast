@@ -32,7 +32,7 @@ export interface SearchHit {
 const TECH_CATEGORIES = [
   'placa', 'processador', 'memoria', 'ssd', 'hdd', 'gabinete', 'fonte', 'cooler', 'monitor', 'notebook', 'computador',
   'teclado', 'mouse', 'headset', 'fone', 'webcam', 'microfone', 'roteador', 'smartphone', 'celular', 'tablet',
-  'console', 'controle', 'cadeira', 'impressora', 'smartwatch', 'pendrive', 'nobreak', 'estabilizador', 'tv',
+  'console', 'controle', 'cadeira', 'impressora', 'smartwatch', 'pendrive', 'nobreak', 'estabilizador', 'tv', 'soundbar', 'projetor',
 ];
 
 const CATEGORIES = [
@@ -215,6 +215,16 @@ const FAKE_BRANDS = /^(outros?|outras?|generic[oa]?|sem marca|diversos|variados|
 function realBrand(brand: string | null): string {
   const b = brand ? normalize(brand) : '';
   return FAKE_BRANDS.test(b) ? '' : b;
+}
+
+/**
+ * Que tipo de produto é, pelo título: decide em quais lojas especializadas vale buscar quando a página
+ * é de uma loja que vende de tudo (Magalu, Amazon, Mercado Livre). TV → informática; tênis → esporte.
+ */
+export function productKind(name: string): 'informatica' | 'esporte' | null {
+  const category = tokens(name).find((w) => CATEGORIES.includes(w));
+  if (!category) return null;
+  return TECH_CATEGORIES.includes(category) ? 'informatica' : 'esporte';
 }
 
 /** Texto para buscar nas outras lojas: tipo + marca + modelo (sem cor, tamanho e público). */
