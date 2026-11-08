@@ -17,6 +17,8 @@ export interface PageProduct {
   gtin: string | null;
   /** Código do modelo na loja (ex.: "IE7262" na adidas). */
   sku: string | null;
+  /** Código do fabricante (ex.: "QN65QN800DGXZD", da ficha técnica). Opcional. */
+  mpn?: string | null;
   price: number | null;
   url: string;
 }
@@ -236,6 +238,18 @@ export function searchQuery(product: Pick<PageProduct, 'name' | 'brand'>): strin
   return [p.category, brand, ...model].filter(Boolean).join(' ');
 }
 
+/**
+ * Núcleo do código do fabricante, para comparar o mesmo modelo escrito de jeitos diferentes.
+ * Samsung: "QN65QN800DGXZD" (prefixo QN/UN + região GXZD no fim) = "65QN800D" → "65qn800d".
+ */
+export function modelCore(code: string): string {
+  return code
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
+    .replace(/^(qn|un|qe|ue)(?=\d{2}[a-z])/, '')
+    .replace(/(gxz[a-z]|xz[a-z])$/, '');
+}
+
 export interface MatchResult {
   /** 0 a 1. Acima de MATCH_MIN conta como o mesmo produto. */
   score: number;
@@ -260,6 +274,12 @@ export function matchScore(product: PageProduct, hit: Pick<SearchHit, 'title' | 
   const b = profile(hit.title, product.brand);
   if (a.category && b.category && a.category !== b.category && !hitWords.includes(a.category)) return { score: 0, why: `é ${b.category}, não ${a.category}` };
   if (a.gender && b.gender && a.gender !== b.gender && a.gender !== 'u' && b.gender !== 'u') return { score: 0, why: 'outro público (masculino/feminino/infantil)' };
+  // Código do fabricante da ficha técnica (QN65QN800DGXZD) = código no título da outra loja (65QN800D).
+  const mpn = product.mpn ? modelCore(product.mpn) : '';
+  // Só se o resultado for do mesmo tipo: "Controle remoto p/ TV 65QN800D" não é a TV.
+  if (mpn.length >= 6 && (!b.category || b.category === a.category) && haystack.split(' ').some((w) => w.length >= 6 && /\d/.test(w) && /[a-z]/.test(w) && modelCore(w) === mpn)) {
+    return { score: 1, why: 'mesmo código do fabricante' };
+  }
   // RTX 4060 x 4060 Ti, iPhone 15 x 15 Pro: o resto do título pode ser igual, mas é outro produto.
   if (a.variants.join() !== b.variants.join()) return { score: 0.3, why: 'outra versão do modelo' };
   // SSD 1TB x 500GB, notebook 8GB x 16GB.
@@ -400,5 +420,6 @@ function toPageProduct(node: Json, url: string): PageProduct | null {
   const gtin = gtinOf(node) ?? gtinOf(first);
   const sku = str(node.productGroupID) ?? str(node.sku) ?? str(node.mpn) ?? str(first.sku);
   const price = priceOf(node.offers) ?? priceOf(variants.map((v) => v.offers).flat());
-  return { name, brand, gtin: gtin && /^\d{8,14}$/.test(gtin) ? gtin : null, sku, price, url };
+  const mpn = str(node.mpn) ?? str(first.mpn);
+  return { name, brand, gtin: gtin && /^\d{8,14}$/.test(gtin) ? gtin : null, sku, ...(mpn ? { mpn } : {}), price, url };
 }

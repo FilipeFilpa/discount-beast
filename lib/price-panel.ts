@@ -45,6 +45,33 @@ export function mountPricePanel(store: StoreId, page: PriceSourcePage = PRODUCT_
 
 /** Lê o produto aberto: JSON-LD primeiro, depois as meta tags que as lojas usam para redes sociais. */
 export function readPageProduct(doc: Document = document): PageProduct | null {
+  const product = readBaseProduct(doc);
+  if (!product) return null;
+  // A ficha técnica costuma ter o código completo do fabricante (Magalu: "Referência QN65QN800DGXZD").
+  const fromSpecs = specModelCode(doc);
+  if (fromSpecs && (!product.mpn || fromSpecs.length > product.mpn.length)) product.mpn = fromSpecs;
+  return product;
+}
+
+/**
+ * Procura na ficha técnica uma linha "Referência" / "Modelo" / "Número do modelo" / "Código do fabricante"
+ * e devolve o maior valor que parece código (letras + números, sem espaço).
+ */
+function specModelCode(doc: Document): string | null {
+  const LABEL = /^(refer[êe]ncia|modelo|n[úu]mero (do|de) modelo|c[óo]digo do fabricante|part ?number|mpn)\s*:?$/i;
+  let best: string | null = null;
+  for (const el of doc.querySelectorAll<HTMLElement>('td, th, dt, span, div, p, li, strong, b')) {
+    if (el.children.length > 1) continue;
+    const label = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (!LABEL.test(label)) continue;
+    const valueEl = el.nextElementSibling ?? el.parentElement?.nextElementSibling;
+    const value = (valueEl?.textContent ?? '').replace(/[\s\u200e\u200f]+/g, ' ').trim();
+    if (/^[A-Za-z0-9][A-Za-z0-9/-]{5,29}$/.test(value) && /\d/.test(value) && /[A-Za-z]/.test(value) && (!best || value.length > best.length)) best = value;
+  }
+  return best;
+}
+
+function readBaseProduct(doc: Document): PageProduct | null {
   const blocks = [...doc.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent ?? '');
   const fromLd = productFromJsonLd(blocks, location.href);
   const meta = (name: string) => doc.querySelector<HTMLMetaElement>(`meta[property="${name}"], meta[name="${name}"], meta[itemprop="${name}"]`)?.content ?? null;
@@ -149,7 +176,8 @@ function createPanel(store: StoreId, products: PageProduct[], hereLabel: string)
     list.hidden = true;
     root.querySelector('.diag')?.remove();
     go.textContent = 'Comparar preço';
-    msg.textContent = `${product.name}${here() !== null ? ` · ${hereLabel} ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
+    const code = product.mpn && !product.name.toLowerCase().includes(product.mpn.toLowerCase()) ? ` (${product.mpn})` : '';
+    msg.textContent = `${product.name}${code}${here() !== null ? ` · ${hereLabel} ${formatBRL(here()!)}` : ''}. Procura o mesmo modelo em ${others.join(', ')} (sem frete).`;
   };
   // Sacola com vários itens: você escolhe qual comparar.
   if (products.length > 1) {

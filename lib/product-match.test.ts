@@ -187,3 +187,14 @@ test('productKind: TV é informática, tênis é esporte, panela não é nenhum'
   assert.equal(productKind('Tênis adidas Adizero Drive RC Masculino'), 'esporte');
   assert.equal(productKind('Jogo de Panelas Tramontina 5 peças'), null);
 });
+
+test('código do fabricante da ficha técnica reconhece o mesmo modelo escrito de outro jeito', async () => {
+  const { matchScore, modelCore } = await import('./product-match.ts');
+  assert.equal(modelCore('QN65QN800DGXZD'), '65qn800d');
+  const tv = { name: 'Smart TV 65" 8K MINI LED Neo QLED Samsung AI TV QN65QN800 VA 120Hz Wi-Fi Alexa 4 HDMI 3USB', brand: 'Samsung', gtin: null, sku: '238244000', mpn: 'QN65QN800DGXZD', price: 10924.05, url: '' };
+  assert.equal(matchScore(tv, { title: 'Samsung Smart TV 65" Neo QLED 8K 65QN800D - Processador com AI, Upscaling 8K AI, Mini LED', url: '' }).score, 1);
+  assert.equal(matchScore(tv, { title: 'Samsung Ai Tv 65 Neo Qled 8k Mini LED 65qn800d 2024', url: '' }).score, 1);
+  // Outro ano (B = 2022) e outro produto (controle remoto) continuam fora.
+  assert.ok(matchScore(tv, { title: 'Samsung Neo QLED 8K 65QN800B com tela QLED 8K 127/220V - preto', url: '' }).score < 0.7);
+  assert.ok(matchScore(tv, { title: 'Controle Remoto Samsung Smart Tv 65 Neo Qled 8k 65qn800d', url: '' }).score < 0.7);
+});
